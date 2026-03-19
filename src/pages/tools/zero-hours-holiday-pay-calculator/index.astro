@@ -1,0 +1,386 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'Zero Hours Holiday Pay Calculator' }
+];
+
+const relatedToolIds = ['ssp-zero-hours', 'tribunal-deadline', 'constructive-dismissal'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Zero Hours Holiday Pay Calculator UK",
+    "url": "https://fairworkcheck.co.uk/tools/zero-hours-holiday-pay-calculator/",
+    "description": "Calculate statutory holiday entitlement and pay for zero hours and irregular workers using the 52-week reference period method. Updated for UK 2025/26.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Zero Hours Holiday Pay Calculator" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is holiday pay calculated for zero hours workers in the UK?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Since April 2020, holiday pay for zero hours and irregular workers is calculated using the 52-week reference period. You take the worker's average weekly pay over the 52 weeks immediately before the holiday begins (or the end of employment). Any weeks where the worker earned nothing due to not working are excluded from the calculation and replaced with earlier weeks, meaning you look back up to 104 weeks to find 52 paid weeks." }
+      },
+      {
+        "@type": "Question",
+        "name": "How many days holiday is a zero hours worker entitled to?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Zero hours workers are entitled to 5.6 weeks of paid holiday per year under the Working Time Regulations 1998, the same as any other worker. For someone working irregular hours, this is calculated as 5.6 times the average weekly hours worked. If you work 20 hours per week on average, you are entitled to 5.6 x 20 = 112 hours of paid holiday per year." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens to accrued holiday pay when employment ends?",
+        "acceptedAnswer": { "@type": "Answer", "text": "When a zero hours contract ends, any accrued but untaken holiday must be paid as a lump sum in the final pay. This is called holiday pay in lieu or pay in lieu of annual leave. If your employer does not pay accrued holiday when your contract ends, you may be able to bring an unlawful deduction from wages claim or a holiday pay claim at an employment tribunal." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I claim backdated holiday pay?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your employer has historically underpaid your holiday pay, you may be able to claim backdated amounts. Since the Harpur Trust v Brazel Supreme Court ruling in 2022, the 12.07% holiday pay calculation method was ruled incorrect for irregular workers. Claims for unlawful deduction from wages must be brought within 3 months minus 1 day of the last deduction. A series of deductions may allow claims further back." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 12.07% holiday pay method and why is it wrong?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The 12.07% method calculated holiday pay as 12.07% of earnings, which was historically used by many employers for zero hours and casual workers. The Supreme Court ruled in Harpur Trust v Brazel (2022) that this method is unlawful. The correct method is the 52-week average weekly pay reference period. Workers who were paid using 12.07% may have been underpaid and can potentially claim the difference." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`Zero Hours Holiday Pay Calculator UK ${CURRENT_YEAR} — How Much Am I Owed? | FairWorkCheck`}
+  description={`Calculate your statutory holiday entitlement and pay as a zero hours or irregular worker using the correct 52-week reference period method. Free UK tool, ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/zero-hours-holiday-pay-calculator/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"><!-- 728x90 --></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-teal-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        52-week reference period · Updated {TAX_YEAR}
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Zero Hours Holiday Pay Calculator
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Calculate your statutory holiday entitlement and the cash value of any untaken leave using the correct 52-week reference period method — as required by law since April 2020.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', '52-Week Method', 'Harpur v Brazel Compliant'].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Input Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 overflow-hidden" style="border-left-color:#0d9488">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-2">Your 52-Week Earnings</h2>
+              <p class="text-sm text-text-secondary mb-6">Enter your weekly earnings for the past 52 weeks. Leave a week blank (or enter 0) if you did not work that week — blank weeks are automatically excluded and replaced.</p>
+
+              <!-- Quick entry mode -->
+              <div class="mb-6 bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <h3 class="font-semibold text-sm text-text-primary mb-3">Quick Entry — Total Earnings Method</h3>
+                <p class="text-xs text-text-secondary mb-4">If you know your total earnings and how many weeks you actually worked over the past 52 weeks, use this shortcut.</p>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-text-primary mb-1">Total earnings (last 52 weeks)</label>
+                    <div class="relative">
+                      <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm font-semibold">£</span>
+                      <input type="number" id="quick-total" placeholder="e.g. 14000" min="0" class="w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm focus:outline-none focus:border-teal-400" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-text-primary mb-1">Weeks actually worked</label>
+                    <input type="number" id="quick-weeks" placeholder="e.g. 40" min="1" max="52" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-teal-400" />
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <label class="block text-xs font-semibold text-text-primary mb-1">Average weekly hours (over weeks worked)</label>
+                  <input type="number" id="quick-hours" placeholder="e.g. 25" min="1" max="48" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-teal-400" />
+                </div>
+              </div>
+
+              <!-- Employment status -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-2">Are you still employed or has employment ended?</label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-teal-400 transition-all flex-1">
+                    <input type="radio" name="emp-status" value="current" checked style="accent-color:#0d9488" />
+                    <div>
+                      <span class="text-sm font-medium block">Still employed</span>
+                      <span class="text-xs text-text-secondary">Calculating holiday owed to me now</span>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-teal-400 transition-all flex-1">
+                    <input type="radio" name="emp-status" value="ended" style="accent-color:#0d9488" />
+                    <div>
+                      <span class="text-sm font-medium block">Employment ended</span>
+                      <span class="text-xs text-text-secondary">Calculating unpaid holiday at end of contract</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Holiday taken -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-1">How many days of holiday have you already taken this leave year?</label>
+                <input type="number" id="taken-days" placeholder="e.g. 5" min="0" max="28" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-teal-400" />
+                <p class="text-xs text-text-secondary mt-1">Enter 0 if you have taken no holiday</p>
+              </div>
+
+              <!-- Months into leave year -->
+              <div class="mb-8">
+                <label class="block text-sm font-semibold text-text-primary mb-1">How many months into the current holiday year are you? (if still employed)</label>
+                <input type="number" id="months-in" placeholder="e.g. 6" min="1" max="12" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-teal-400" />
+                <p class="text-xs text-text-secondary mt-1">e.g. if your holiday year starts January and it is July, enter 6. Leave blank if employment has ended.</p>
+              </div>
+
+              <button id="calc-btn" class="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90" style="background-color:#0d9488">
+                Calculate My Holiday Pay →
+              </button>
+              <p id="form-error" class="hidden text-red-500 text-xs mt-2 text-center">Please fill in your total earnings and weeks worked to continue.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <div class="bg-white rounded-2xl shadow-card p-5">
+            <h3 class="font-heading font-bold text-text-primary mb-3 text-sm">How the law works</h3>
+            <ul class="space-y-3 text-xs text-text-secondary">
+              {[
+                'Zero hours workers are entitled to 5.6 weeks holiday per year',
+                'Holiday pay = average weekly earnings over last 52 worked weeks',
+                'Blank (zero earning) weeks are excluded from the average',
+                'Accrued untaken holiday must be paid on contract ending',
+                '12.07% method ruled unlawful — Harpur v Brazel (2022)',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><path d="M20 6L9 17l-5-5"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+            <p class="text-xs text-amber-800 leading-relaxed"><strong>General information only.</strong> This tool provides indicative figures. Always verify with your payslips and seek advice from ACAS or an employment solicitor if your employer disputes your entitlement.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-400 mb-2">Advertisement</div>
+            <div class="h-48 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs"><!-- 300x250 --></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Results -->
+      <div id="results-panel" class="hidden mt-8">
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div class="p-6 md:p-8" style="background: linear-gradient(to bottom right, #0f766e, #0d9488)">
+            <h2 class="font-heading text-2xl font-bold text-white mb-4">Your Holiday Pay Results</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div class="bg-white/10 rounded-xl p-4 text-center">
+                <p class="text-teal-200 text-xs mb-1">Avg Weekly Pay</p>
+                <p id="r-awe" class="font-heading text-xl font-bold text-white"></p>
+              </div>
+              <div class="bg-white/10 rounded-xl p-4 text-center">
+                <p class="text-teal-200 text-xs mb-1">Annual Holiday</p>
+                <p id="r-entitlement" class="font-heading text-xl font-bold text-white"></p>
+              </div>
+              <div class="bg-white/20 rounded-xl p-4 text-center border border-white/30">
+                <p class="text-teal-100 text-xs mb-1">Days Owed</p>
+                <p id="r-owed" class="font-heading text-xl font-bold text-white"></p>
+              </div>
+              <div class="bg-white/20 rounded-xl p-4 text-center border border-white/30">
+                <p class="text-teal-100 text-xs mb-1">Cash Value</p>
+                <p id="r-value" class="font-heading text-xl font-bold text-white"></p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 md:p-8">
+            <div id="result-detail" class="space-y-3 mb-6"></div>
+            <div class="bg-teal-50 border border-teal-100 rounded-xl p-5 text-sm text-text-secondary">
+              <p class="font-semibold text-text-primary mb-1">What to do if your employer disputes this</p>
+              <p>Contact <strong>ACAS</strong> on 0300 123 1100 for free advice. If your employer refuses to pay accrued holiday, you can bring an unlawful deduction from wages claim at an employment tribunal within 3 months minus 1 day of the last deduction.</p>
+            </div>
+            <button id="recalc-btn" class="mt-5 text-sm font-semibold hover:underline" style="color:#0d9488">← Recalculate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Zero Hours Holiday Pay — Common Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'How is holiday pay calculated for zero hours workers?', a: 'Since April 2020, holiday pay is calculated using the 52-week reference period. Total earnings from the 52 weeks you actually worked are averaged to find your weekly holiday pay rate. Weeks with no earnings are excluded.' },
+          { q: 'What is the Harpur v Brazel ruling?', a: 'The Supreme Court ruled in Harpur Trust v Brazel [2022] UKSC 21 that the 12.07% calculation method commonly used for irregular workers is unlawful. Employers must use the 52-week average method. Workers who were underpaid using the 12.07% method may be able to claim the difference.' },
+          { q: 'How many weeks holiday does a zero hours worker get?', a: 'The statutory entitlement is 5.6 weeks per year under regulation 13 and 13A of the Working Time Regulations 1998. For irregular workers, this translates to a proportional entitlement based on actual hours worked, paid at the average weekly earnings rate.' },
+          { q: 'What if my employer does not pay holiday when my contract ends?', a: 'Any accrued but untaken holiday must be paid when employment ends. Failure to do so is an unlawful deduction from wages. You can bring a claim at an employment tribunal within 3 months minus 1 day of the last deduction.' },
+          { q: 'Does zero hours holiday accrue during unpaid absences?', a: 'Holiday continues to accrue during periods of statutory sick leave, maternity, paternity, and adoption leave, even if those periods were unpaid. It does not accrue during periods of unauthorised absence.' },
+        ].map((item, i) => (
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" data-index={i}>
+              <span class="font-heading font-semibold text-text-primary text-sm pr-4">{item.q}</span>
+              <svg class="faq-icon flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-body hidden px-5 pb-5">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-6 text-center">Related Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="bg-white rounded-xl p-5 hover:shadow-card transition-all border border-gray-100 group">
+            <span class="text-2xl mb-3 block">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-teal-700 transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const STATUTORY_WEEKS = 5.6;
+
+  function fmt(n: number): string {
+    return '£' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  document.getElementById('calc-btn')?.addEventListener('click', () => {
+    const totalEarnings = parseFloat((document.getElementById('quick-total') as HTMLInputElement).value) || 0;
+    const weeksWorked = parseFloat((document.getElementById('quick-weeks') as HTMLInputElement).value) || 0;
+    const avgHoursVal = parseFloat((document.getElementById('quick-hours') as HTMLInputElement).value) || 0;
+    const takenDays = parseFloat((document.getElementById('taken-days') as HTMLInputElement).value) || 0;
+    const monthsIn = parseFloat((document.getElementById('months-in') as HTMLInputElement).value) || 12;
+    const empStatus = (document.querySelector('input[name="emp-status"]:checked') as HTMLInputElement)?.value;
+
+    const errEl = document.getElementById('form-error')!;
+    if (!totalEarnings || !weeksWorked) { errEl.classList.remove('hidden'); return; }
+    errEl.classList.add('hidden');
+
+    // AWE: total earnings divided by weeks actually worked
+    const awe = totalEarnings / weeksWorked;
+
+    // Holiday entitlement for a full year
+    const avgHours = avgHoursVal > 0 ? avgHoursVal : 1;
+    const annualHolidayWeeks = STATUTORY_WEEKS;
+    const annualHolidayHours = annualHolidayWeeks * avgHours;
+    const annualHolidayDays = annualHolidayWeeks * 5; // 5.6 weeks * 5 days
+
+    // Prorated if still employed partway through year
+    let entitlementDays: number;
+    if (empStatus === 'current') {
+      entitlementDays = (annualHolidayDays * monthsIn) / 12;
+    } else {
+      entitlementDays = annualHolidayDays;
+    }
+
+    const owedDays = Math.max(0, entitlementDays - takenDays);
+    // Holiday pay per day = AWE / 5 (5 working days per week)
+    const dailyRate = awe / 5;
+    const cashValue = owedDays * dailyRate;
+
+    (document.getElementById('r-awe') as HTMLElement).textContent = fmt(awe) + '/wk';
+    (document.getElementById('r-entitlement') as HTMLElement).textContent = entitlementDays.toFixed(1) + ' days';
+    (document.getElementById('r-owed') as HTMLElement).textContent = owedDays.toFixed(1) + ' days';
+    (document.getElementById('r-value') as HTMLElement).textContent = fmt(cashValue);
+
+    const detailEl = document.getElementById('result-detail')!;
+    detailEl.innerHTML = [
+      { label: 'Average weekly earnings (52-week method)', value: fmt(awe) + ' per week' },
+      { label: 'Daily holiday pay rate', value: fmt(dailyRate) + ' per day' },
+      { label: 'Statutory entitlement (prorated)', value: entitlementDays.toFixed(1) + ' days' },
+      { label: 'Holiday already taken', value: takenDays.toFixed(1) + ' days' },
+      { label: 'Days of holiday owed', value: owedDays.toFixed(1) + ' days' },
+      { label: 'Cash value of owed holiday', value: fmt(cashValue) },
+    ].map(row => `
+      <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+        <span class="text-sm text-text-secondary">${row.label}</span>
+        <span class="font-semibold text-sm text-text-primary">${row.value}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('results-panel')?.classList.remove('hidden');
+    document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('recalc-btn')?.addEventListener('click', () => {
+    document.getElementById('results-panel')?.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      body.classList.toggle('hidden');
+      icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  });
+  });
+</script>

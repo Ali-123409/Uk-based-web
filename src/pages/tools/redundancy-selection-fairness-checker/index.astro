@@ -1,0 +1,500 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'Redundancy Selection Fairness Checker' }
+];
+
+const relatedToolIds = ['tribunal-deadline', 'constructive-dismissal', 'discrimination'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Redundancy Selection Criteria Fairness Checker UK",
+    "url": "https://fairworkcheck.co.uk/tools/redundancy-selection-fairness-checker/",
+    "description": "Check whether the redundancy selection criteria your employer used were legally fair or potentially discriminatory under UK employment law.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Redundancy Selection Fairness Checker" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What makes a redundancy selection unfair in the UK?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Redundancy selection is unfair if the criteria used are automatically unfair (e.g. selection related to pregnancy, whistleblowing, union membership, or exercising statutory rights), if the selection pool is too narrow or unfairly defined, if the employer failed to consult properly, if scores were manipulated or dishonest, or if objectively fair-looking criteria were applied in a way that indirectly discriminated against a protected characteristic group." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Last In First Out (LIFO) a fair redundancy selection criterion?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LIFO (Last In First Out) is not automatically unfair, but it carries significant legal risk because it can indirectly discriminate against younger workers and workers from minority ethnic backgrounds who may be statistically more likely to have been hired recently. Tribunals will scrutinise LIFO criteria carefully, and employers who rely solely on LIFO without other objective criteria may face discrimination claims even if the redundancy itself was genuine." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can attendance records be used as a redundancy selection criterion?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, but with significant caveats. Attendance can be a legitimate selection criterion, but employers must exclude disability-related absence and pregnancy/maternity-related absence from any attendance scoring. Using attendance records that include these types of absence to select for redundancy can amount to disability discrimination or pregnancy discrimination, both of which are automatically unfair." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between unfair redundancy and unfair selection?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Unfair redundancy means the redundancy situation itself was not genuine — there was no real business need to reduce the workforce. Unfair selection means the redundancy situation was genuine, but the way the employer chose which specific employees to make redundant was unfair. Both can result in an unfair dismissal claim. Unfair selection is often harder to spot because the redundancy itself looks legitimate." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the time limit to challenge an unfair redundancy?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You must bring an unfair dismissal or unfair redundancy claim at an employment tribunal within 3 months minus 1 day of your dismissal date. You must first contact ACAS for Early Conciliation before filing your ET1 claim form. You also need 2 years' continuous employment to bring a standard unfair dismissal claim, although claims based on discrimination or automatically unfair reasons have no service requirement." }
+      }
+    ]
+  }
+];
+
+const CRITERIA = [
+  {
+    id: 'attendance',
+    label: 'Attendance record',
+    risk: 'high',
+    riskLabel: '⚠️ High Risk',
+    riskColor: '#dc2626',
+    detail: 'Attendance can be used but disability-related absence and pregnancy/maternity absence must be excluded. Including these is likely discrimination. Requires careful, documented handling.'
+  },
+  {
+    id: 'performance',
+    label: 'Performance ratings or appraisals',
+    risk: 'medium',
+    riskLabel: '⚡ Medium Risk',
+    riskColor: '#d97706',
+    detail: 'Potentially fair if scores are objective, consistent, and applied equally. Risk arises if ratings are subjective, undocumented, or disproportionately affect a protected group (e.g. older workers scored down on "adaptability").'
+  },
+  {
+    id: 'lifo',
+    label: 'Last In First Out (LIFO / length of service)',
+    risk: 'high',
+    riskLabel: '⚠️ High Risk',
+    riskColor: '#dc2626',
+    detail: 'Not automatically unfair but carries significant age discrimination risk. Statistically selects against younger and more recently hired workers, who may be from minority groups. Must be justified if challenged.'
+  },
+  {
+    id: 'skills',
+    label: 'Skills, qualifications, and versatility',
+    risk: 'low',
+    riskLabel: '✅ Generally Fair',
+    riskColor: '#059669',
+    detail: 'Generally considered a fair and objective criterion. Must be applied consistently and documented. Risk if the skills assessment is subjective or if the required skills happen to filter out a protected group disproportionately.'
+  },
+  {
+    id: 'disciplinary',
+    label: 'Disciplinary record',
+    risk: 'medium',
+    riskLabel: '⚡ Medium Risk',
+    riskColor: '#d97706',
+    detail: 'Can be fair if applied consistently. Risk arises if spent or stale warnings are included, if the disciplinary record reflects conduct related to a protected characteristic, or if the process that led to the warning was itself unfair.'
+  },
+  {
+    id: 'pregnancy',
+    label: 'Selection during or after maternity/pregnancy leave',
+    risk: 'critical',
+    riskLabel: '🚨 Automatically Unfair',
+    riskColor: '#7c2d12',
+    detail: 'Selection for redundancy because of pregnancy or while on maternity leave is automatically unfair dismissal and pregnancy/maternity discrimination. No service requirement. Workers on maternity leave have a right to be offered suitable alternative vacancies ahead of other redundant employees.'
+  },
+  {
+    id: 'whistleblowing',
+    label: 'Selection after making a complaint or disclosure',
+    risk: 'critical',
+    riskLabel: '🚨 Automatically Unfair',
+    riskColor: '#7c2d12',
+    detail: 'If selection is connected to a protected disclosure (whistleblowing), trade union activity, or exercising a statutory right, it is automatically unfair. No minimum service requirement. Compensation is uncapped.'
+  },
+  {
+    id: 'part_time',
+    label: 'Part-time status or flexible working',
+    risk: 'high',
+    riskLabel: '⚠️ High Risk',
+    riskColor: '#dc2626',
+    detail: 'Selecting part-time workers over full-time equivalents without objective justification can be indirect sex discrimination (as women are statistically more likely to work part-time), and breaches Part-Time Workers Regulations 2000.'
+  },
+  {
+    id: 'broad_subjective',
+    label: 'Broad subjective criteria (e.g. "attitude", "team fit", "potential")',
+    risk: 'high',
+    riskLabel: '⚠️ High Risk',
+    riskColor: '#dc2626',
+    detail: 'Subjective criteria are high risk. They are difficult to defend at tribunal, open to unconscious bias, and may mask discriminatory decision-making. Tribunals expect objective, measurable, and consistently applied criteria.'
+  },
+  {
+    id: 'pool',
+    label: 'Artificially narrow selection pool',
+    risk: 'high',
+    riskLabel: '⚠️ High Risk',
+    riskColor: '#dc2626',
+    detail: 'If the pool was defined in a way that guaranteed you would be selected — e.g. a pool of one — this is very strong evidence of unfair selection. The pool should include all employees doing similar work or in similar roles.'
+  },
+];
+---
+
+<BaseLayout
+  title={`Redundancy Selection Criteria Fairness Checker UK ${CURRENT_YEAR} | FairWorkCheck`}
+  description={`Check whether the redundancy selection criteria used against you were legally fair or potentially discriminatory under UK employment law. Free tool, ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/redundancy-selection-fairness-checker/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"><!-- 728x90 --></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-orange-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        Select criteria used against you · Instant fairness rating
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Redundancy Selection Fairness Checker
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Tell us which criteria your employer used to select you for redundancy. We'll flag which are legally risky, potentially discriminatory, or automatically unfair under UK law.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'Instant Results', 'No Registration', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Checker -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 overflow-hidden" style="border-left-color:#ea580c">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-2">Select Your Redundancy Criteria</h2>
+              <p class="text-sm text-text-secondary mb-6">Tick every criterion your employer used to select you. Select all that apply.</p>
+
+              <div class="space-y-3 mb-8" id="criteria-list">
+                {CRITERIA.map(c => (
+                  <label class={`criteria-item flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer transition-all hover:border-orange-400`} data-risk={c.risk} data-id={c.id}>
+                    <input type="checkbox" name="criteria" value={c.id} class="mt-0.5 flex-shrink-0 w-4 h-4" style="accent-color:#ea580c" />
+                    <div class="flex-1">
+                      <div class="flex flex-wrap items-center gap-2 mb-1">
+                        <span class="font-semibold text-sm text-text-primary">{c.label}</span>
+                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full" style={`color:${c.riskColor}; background-color:${c.riskColor}18`}>{c.riskLabel}</span>
+                      </div>
+                      <p class="text-xs text-text-secondary leading-relaxed">{c.detail}</p>
+                    </div>
+                  </label>
+                ))}
+              </div>
+
+              <!-- Additional context -->
+              <div class="mb-8 space-y-4">
+                <div>
+                  <label class="block text-sm font-semibold text-text-primary mb-2">Were you given the chance to appeal the redundancy decision?</label>
+                  <div class="flex gap-3">
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="appeal" value="yes" style="accent-color:#ea580c" /><span class="text-sm">Yes</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="appeal" value="no" style="accent-color:#ea580c" /><span class="text-sm">No</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="appeal" value="na" checked style="accent-color:#ea580c" /><span class="text-sm">Not sure</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-text-primary mb-2">Were you individually consulted before the decision was made?</label>
+                  <div class="flex gap-3">
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="consulted" value="yes" style="accent-color:#ea580c" /><span class="text-sm">Yes</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="consulted" value="no" style="accent-color:#ea580c" /><span class="text-sm">No</span>
+                    </label>
+                    <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-orange-400 transition-all flex-1">
+                      <input type="radio" name="consulted" value="na" checked style="accent-color:#ea580c" /><span class="text-sm">Not sure</span>
+                    </label>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-text-primary mb-1">Years of continuous service</label>
+                  <input type="number" id="service-years" placeholder="e.g. 3" min="0" max="50" class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-orange-400" />
+                </div>
+              </div>
+
+              <button id="check-btn" class="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90" style="background-color:#ea580c">
+                Check My Redundancy Fairness →
+              </button>
+              <p id="form-error" class="hidden text-red-500 text-xs mt-2 text-center">Please select at least one criterion before checking.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <div class="bg-white rounded-2xl shadow-card p-5">
+            <h3 class="font-heading font-bold text-text-primary mb-3 text-sm">Risk Legend</h3>
+            <div class="space-y-2 text-xs">
+              {[
+                { label: '🚨 Automatically Unfair', desc: 'Illegal regardless of reason — no service needed', color: '#7c2d12' },
+                { label: '⚠️ High Risk', desc: 'Likely unlawful or discriminatory in many cases', color: '#dc2626' },
+                { label: '⚡ Medium Risk', desc: 'Can be fair if carefully applied and documented', color: '#d97706' },
+                { label: '✅ Generally Fair', desc: 'Objective and broadly accepted by tribunals', color: '#059669' },
+              ].map(item => (
+                <div class="flex items-start gap-2">
+                  <div class="w-1.5 h-5 rounded flex-shrink-0 mt-0.5" style={`background-color:${item.color}`}></div>
+                  <div>
+                    <p class="font-semibold" style={`color:${item.color}`}>{item.label}</p>
+                    <p class="text-text-secondary">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+            <p class="text-xs text-amber-800 leading-relaxed"><strong>General information only.</strong> This tool flags legal risk based on common tribunal patterns. It does not constitute legal advice. Always consult an employment solicitor before taking action.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-400 mb-2">Advertisement</div>
+            <div class="h-48 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs"><!-- 300x250 --></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Results -->
+      <div id="results-panel" class="hidden mt-8">
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div id="results-header" class="p-6 md:p-8">
+            <div class="flex items-start gap-4">
+              <div id="overall-badge" class="w-16 h-16 rounded-full flex items-center justify-center text-2xl flex-shrink-0"></div>
+              <div>
+                <h2 id="overall-heading" class="font-heading text-xl font-bold text-white mb-1"></h2>
+                <p id="overall-summary" class="text-sm opacity-90 leading-relaxed text-white"></p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="font-heading font-bold text-text-primary mb-4">Criteria Analysis</h3>
+            <div id="criteria-results" class="space-y-3 mb-6"></div>
+            <div id="process-flags" class="mb-6"></div>
+            <div id="next-steps" class="bg-orange-50 border border-orange-100 rounded-xl p-5"></div>
+            <button id="restart-btn" class="mt-5 text-sm font-semibold hover:underline" style="color:#ea580c">← Check Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Redundancy Fairness — Common Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'What makes a redundancy selection unfair?', a: 'Redundancy selection is unfair if the criteria are automatically unfair (pregnancy, whistleblowing, union activity), if subjective criteria masked discrimination, if the pool was too narrow, if scoring was dishonest, or if there was inadequate individual consultation.' },
+          { q: 'Do I need 2 years service to challenge a redundancy?', a: 'For standard unfair dismissal (under section 98 Employment Rights Act 1996) you need 2 years. But if the redundancy involved discrimination or an automatically unfair reason (pregnancy, whistleblowing etc.) there is no service requirement and you can bring a claim from day one.' },
+          { q: 'Can I be made redundant while on maternity leave?', a: 'You can be made redundant during maternity leave but only where the redundancy situation is genuine. Workers on maternity leave have additional rights under regulation 10 of the Maternity and Parental Leave Regulations 1999 including the right to be offered suitable alternative vacancies ahead of other redundant employees. Selection based on the pregnancy or maternity leave itself is automatically unfair.' },
+          { q: 'What is a fair selection pool?', a: 'The selection pool should include all employees doing similar or interchangeable work. A pool of one, or one that is defined in a way that practically guarantees your selection, is strong evidence of unfair or predetermined selection.' },
+          { q: 'What is the time limit to challenge an unfair redundancy?', a: 'You must contact ACAS for Early Conciliation within 3 months minus 1 day of your dismissal date. Strict time limits apply — do not delay.' },
+        ].map((item, i) => (
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" data-index={i}>
+              <span class="font-heading font-semibold text-text-primary text-sm pr-4">{item.q}</span>
+              <svg class="faq-icon flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-body hidden px-5 pb-5">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-6 text-center">Related Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="bg-white rounded-xl p-5 hover:shadow-card transition-all border border-gray-100 group">
+            <span class="text-2xl mb-3 block">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-orange-700 transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .criteria-item:has(input:checked) { border-color: #ea580c; background-color: rgba(234,88,12,0.04); }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const RISK_SCORES: Record<string, number> = {
+    critical: 4, high: 3, medium: 2, low: 0
+  };
+
+  const CRITERIA_DATA: Record<string, { risk: string; label: string }> = {
+    attendance: { risk: 'high', label: 'Attendance record' },
+    performance: { risk: 'medium', label: 'Performance ratings' },
+    lifo: { risk: 'high', label: 'Last In First Out (LIFO)' },
+    skills: { risk: 'low', label: 'Skills and qualifications' },
+    disciplinary: { risk: 'medium', label: 'Disciplinary record' },
+    pregnancy: { risk: 'critical', label: 'Pregnancy/maternity selection' },
+    whistleblowing: { risk: 'critical', label: 'Post-complaint/disclosure selection' },
+    part_time: { risk: 'high', label: 'Part-time / flexible working status' },
+    broad_subjective: { risk: 'high', label: 'Broad subjective criteria' },
+    pool: { risk: 'high', label: 'Artificially narrow selection pool' },
+  };
+
+  document.getElementById('check-btn')?.addEventListener('click', () => {
+    const selected = Array.from(document.querySelectorAll('input[name="criteria"]:checked')) as HTMLInputElement[];
+    const errEl = document.getElementById('form-error')!;
+    if (selected.length === 0) { errEl.classList.remove('hidden'); return; }
+    errEl.classList.add('hidden');
+
+    const appeal = (document.querySelector('input[name="appeal"]:checked') as HTMLInputElement)?.value;
+    const consulted = (document.querySelector('input[name="consulted"]:checked') as HTMLInputElement)?.value;
+    const serviceYears = parseFloat((document.getElementById('service-years') as HTMLInputElement).value) || 0;
+
+    const hasCritical = selected.some(s => CRITERIA_DATA[s.value]?.risk === 'critical');
+    const hasHigh = selected.some(s => CRITERIA_DATA[s.value]?.risk === 'high');
+    const hasLow = selected.some(s => CRITERIA_DATA[s.value]?.risk === 'low');
+    const hasMixed = hasLow && hasHigh && !hasCritical;
+    const totalScore = selected.reduce((acc, s) => acc + (RISK_SCORES[CRITERIA_DATA[s.value]?.risk] || 0), 0);
+
+    // Header
+    let heading = '', summary = '', headerBg = '', emoji = '';
+    if (hasCritical) {
+      heading = 'Automatically Unfair Grounds Present';
+      summary = 'Your selection appears to include grounds that are automatically unfair under UK employment law. This means you may have a strong claim regardless of your length of service.';
+      headerBg = 'linear-gradient(to bottom right, #7c2d12, #991b1b)';
+      emoji = '🚨';
+    } else if (hasMixed) {
+      heading = 'Mixed Criteria — High-Risk Grounds May Invalidate Objective Scoring';
+      summary = 'Your employer used a mix of generally fair and high-risk criteria. The presence of high-risk criteria may invalidate otherwise objective scoring — a tribunal can reject the entire process if tainted criteria influenced the outcome, even partially.';
+      headerBg = 'linear-gradient(to bottom right, #991b1b, #dc2626)';
+      emoji = '⚠️';
+    } else if (totalScore >= 6) {
+      heading = 'High Legal Risk — Potentially Unfair Selection';
+      summary = 'The criteria used against you carry significant legal risk. There are multiple grounds that could be challenged as unfair or discriminatory at an employment tribunal.';
+      headerBg = 'linear-gradient(to bottom right, #991b1b, #dc2626)';
+      emoji = '⚠️';
+    } else if (totalScore >= 3) {
+      heading = 'Some Risk — Merits Careful Review';
+      summary = 'One or more of the criteria used carries legal risk. Whether your redundancy was fair depends heavily on how the criteria were applied and documented.';
+      headerBg = 'linear-gradient(to bottom right, #92400e, #d97706)';
+      emoji = '⚡';
+    } else {
+      heading = 'Lower Risk — Criteria Appear More Objective';
+      summary = 'The criteria flagged are generally considered more objective and defensible. This does not mean the redundancy was fair — process failures and discrimination can still occur with fair-looking criteria.';
+      headerBg = 'linear-gradient(to bottom right, #065f46, #059669)';
+      emoji = '📋';
+    }
+
+    const header = document.getElementById('results-header')!;
+    header.style.background = headerBg;
+    (document.getElementById('overall-badge') as HTMLElement).textContent = emoji;
+    (document.getElementById('overall-heading') as HTMLElement).textContent = heading;
+    (document.getElementById('overall-summary') as HTMLElement).textContent = summary;
+
+    // Criteria breakdown
+    const criteriaResultsEl = document.getElementById('criteria-results')!;
+    criteriaResultsEl.innerHTML = selected.map(s => {
+      const c = CRITERIA_DATA[s.value];
+      if (!c) return '';
+      const colors: Record<string, string> = { critical: '#7c2d12', high: '#dc2626', medium: '#d97706', low: '#059669' };
+      const labels: Record<string, string> = { critical: '🚨 Automatically Unfair', high: '⚠️ High Risk', medium: '⚡ Medium Risk', low: '✅ Generally Fair' };
+      const bgs: Record<string, string> = { critical: '#fee2e2', high: '#fef2f2', medium: '#fffbeb', low: '#f0fdf4' };
+      return `<div class="flex items-center justify-between p-3 rounded-lg border" style="background-color:${bgs[c.risk]}; border-color:${colors[c.risk]}30">
+        <span class="text-sm font-medium text-text-primary">${c.label}</span>
+        <span class="text-xs font-semibold" style="color:${colors[c.risk]}">${labels[c.risk]}</span>
+      </div>`;
+    }).join('');
+
+    // Process flags
+    const processFlags: string[] = [];
+    if (appeal === 'no') processFlags.push('🚫 No right of appeal offered — failure to offer appeal is a procedural defect that can make a redundancy unfair.');
+    if (consulted === 'no') processFlags.push('🚫 No individual consultation — failure to consult individually is a significant procedural failure and is frequently the basis of unfair redundancy claims.');
+    if (serviceYears >= 2) processFlags.push('✅ You have 2+ years service — you qualify for unfair dismissal protection. A claim must be brought within 3 months minus 1 day of dismissal.');
+
+    const processFlagsEl = document.getElementById('process-flags')!;
+    if (processFlags.length > 0) {
+      processFlagsEl.innerHTML = `<h3 class="font-heading font-bold text-text-primary mb-3">Process Issues</h3>
+        <div class="space-y-2">${processFlags.map(f => `<div class="p-3 bg-gray-50 rounded-lg text-sm text-text-secondary">${f}</div>`).join('')}</div>`;
+    }
+
+    // Next steps
+    const steps: string[] = [];
+    if (hasCritical) steps.push('Contact <strong>ACAS on 0300 123 1100</strong> immediately — automatically unfair grounds have no service requirement and carry uncapped compensation.');
+    if (!hasCritical && serviceYears >= 2) steps.push('You have the qualifying period for unfair dismissal. Contact ACAS within 3 months minus 1 day of your dismissal date to start Early Conciliation.');
+    steps.push('Request the full selection scoring matrix from your employer in writing — you are entitled to see how you were scored against others in the pool.');
+    steps.push('Preserve all documents: your employment contract, any performance reviews, payslips, and all correspondence about the redundancy.');
+    if (hasHigh || hasCritical) steps.push('Consider instructing an employment solicitor. Many offer free initial consultations and no win no fee arrangements for strong cases.');
+
+    (document.getElementById('next-steps') as HTMLElement).innerHTML = `
+      <h4 class="font-heading font-semibold text-text-primary mb-3">Recommended Next Steps</h4>
+      <div class="space-y-2 text-sm text-text-secondary">${steps.map(s => `<p class="flex items-start gap-2"><span style="color:#ea580c" class="flex-shrink-0">→</span><span>${s}</span></p>`).join('')}</div>`;
+
+    document.getElementById('results-panel')?.classList.remove('hidden');
+    document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    document.querySelectorAll('input[type="checkbox"]').forEach((c: any) => c.checked = false);
+    document.getElementById('results-panel')?.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      body.classList.toggle('hidden');
+      icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  });
+  });
+</script>

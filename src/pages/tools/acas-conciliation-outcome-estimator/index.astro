@@ -1,0 +1,507 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'ACAS Conciliation Outcome Estimator' }
+];
+
+const relatedToolIds = ['tribunal-deadline', 'settlement-tax', 'discrimination'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ACAS Early Conciliation Outcome Estimator UK",
+    "url": "https://fairworkcheck.co.uk/tools/acas-conciliation-outcome-estimator/",
+    "description": "Estimate what ACAS Early Conciliation could realistically achieve versus going to tribunal. Compare routes and understand realistic settlement ranges.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "ACAS Conciliation Outcome Estimator" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ACAS Early Conciliation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ACAS Early Conciliation is a mandatory step before submitting an employment tribunal claim. You must notify ACAS and give them the opportunity to help you and your employer reach a settlement before the case goes to tribunal. It is free, voluntary (your employer can decline), and confidential. The process can last up to six weeks. If settlement is not reached, ACAS issues a certificate that allows you to proceed to tribunal." }
+      },
+      {
+        "@type": "Question",
+        "name": "How much do most ACAS settlements pay out?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ACAS settlement amounts vary enormously depending on claim type, salary level, length of service, and case strength. Government statistics show the average COT3 settlement for unfair dismissal is typically in the range of £5,000 to £15,000, though amounts for discrimination claims, high earners, or strong cases can be substantially higher. Employers often settle to avoid legal costs and management time, even in weaker cases." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a COT3 agreement?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A COT3 is the settlement agreement reached through ACAS Early Conciliation or during tribunal proceedings. It is a legally binding contract between you and your employer that settles your claim. Unlike a settlement agreement, a COT3 does not require you to receive independent legal advice, making it quicker and cheaper to conclude. Once signed, you cannot bring a tribunal claim for the matters covered — a COT3 is binding under section 203 Employment Rights Act 1996." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the advantages of settling through ACAS vs going to tribunal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ACAS settlement advantages include: certainty of outcome, speed (usually resolved within weeks rather than years), privacy (tribunal hearings are public), no legal costs risk, and avoiding the stress of a hearing. Tribunal advantages include: potentially higher awards, a public finding against the employer, reinstatement orders, and setting a precedent. Most workers prioritise certainty and speed, which is why approximately 70% of claims notified to ACAS are resolved without reaching a tribunal hearing." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I negotiate my ACAS settlement myself?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. There is no legal requirement to have a solicitor for ACAS Early Conciliation — unlike a settlement agreement, which requires independent legal advice. The ACAS conciliator acts as a neutral intermediary passing offers between you and your employer. You can negotiate directly or with legal representation. Having a clear idea of your claim's value and a realistic bottom line before entering conciliation significantly improves outcomes." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`ACAS Conciliation Outcome Estimator UK ${CURRENT_YEAR} — What Could I Get? | FairWorkCheck`}
+  description={`Estimate what ACAS Early Conciliation could realistically achieve for your employment claim. Compare settlement vs tribunal. Free UK tool, ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/acas-conciliation-outcome-estimator/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"><!-- 728x90 --></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-blue-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Settlement vs Tribunal · Realistic benchmarks
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        ACAS Conciliation Outcome Estimator
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Input your claim type, salary, and circumstances. Get a realistic estimate of what ACAS conciliation could achieve, what a tribunal might award, and a side-by-side comparison to help you decide which route to take.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Settlement vs Tribunal', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 overflow-hidden" style="border-left-color:#2563eb">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-6">Your Claim Details</h2>
+
+              <!-- Claim type -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-2">Type of claim <span class="text-red-500">*</span></label>
+                <select id="claim-type" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-blue-400 bg-white">
+                  <option value="">Select your primary claim type</option>
+                  <option value="unfair_dismissal">Unfair Dismissal</option>
+                  <option value="constructive_dismissal">Constructive Dismissal</option>
+                  <option value="discrimination">Discrimination (Equality Act)</option>
+                  <option value="whistleblowing">Whistleblowing / Protected Disclosure</option>
+                  <option value="redundancy">Unfair Redundancy</option>
+                  <option value="wages">Unpaid Wages / Unlawful Deduction</option>
+                  <option value="holiday">Holiday Pay</option>
+                </select>
+              </div>
+
+              <!-- Case strength -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-3">How strong do you believe your case is? <span class="text-red-500">*</span></label>
+                <div class="space-y-2" id="strength-options">
+                  {[
+                    { value: 'strong', label: 'Strong — clear facts, good evidence, employer clearly acted wrongly' },
+                    { value: 'moderate', label: 'Moderate — good argument but some weaknesses or gaps in evidence' },
+                    { value: 'weak', label: 'Weaker — the situation is arguable but outcome is uncertain' },
+                  ].map(opt => (
+                    <label class="strength-opt flex items-center gap-3 p-3 rounded-xl border border-gray-200 cursor-pointer hover:border-blue-400 hover:bg-blue-50/20 transition-all">
+                      <input type="radio" name="strength" value={opt.value} class="flex-shrink-0" style="accent-color:#2563eb" />
+                      <span class="text-sm text-text-primary">{opt.label}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Salary -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-1">Gross annual salary <span class="text-red-500">*</span></label>
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary font-semibold">£</span>
+                  <input type="number" id="salary" placeholder="e.g. 35000" min="0" max="500000" class="w-full border border-gray-200 rounded-lg pl-8 pr-4 py-3 text-sm focus:outline-none focus:border-blue-400" />
+                </div>
+              </div>
+
+              <!-- Service -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-1">Years of continuous service</label>
+                <input type="number" id="service" placeholder="e.g. 4" min="0" max="50" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-blue-400" />
+              </div>
+
+              <!-- Desired outcome -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-3">What outcome are you primarily seeking?</label>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[
+                    { value: 'compensation', label: '💷 Financial compensation', desc: 'A cash settlement' },
+                    { value: 'reinstatement', label: '🔄 Reinstatement', desc: 'Return to my job' },
+                    { value: 'reference', label: '📄 Clean reference', desc: 'Agreed reference wording' },
+                  ].map(opt => (
+                    <label class="outcome-opt flex flex-col gap-1 p-3 rounded-xl border border-gray-200 cursor-pointer hover:border-blue-400 hover:bg-blue-50/20 transition-all text-center">
+                      <input type="radio" name="outcome" value={opt.value} class="sr-only" />
+                      <span class="text-lg">{opt.label.split(' ')[0]}</span>
+                      <span class="text-xs font-semibold text-text-primary">{opt.label.split(' ').slice(1).join(' ')}</span>
+                      <span class="text-xs text-text-secondary">{opt.desc}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Has legal rep -->
+              <div class="mb-8">
+                <label class="block text-sm font-semibold text-text-primary mb-3">Do you have or plan to get legal representation?</label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-blue-400 transition-all flex-1">
+                    <input type="radio" name="legal-rep" value="yes" style="accent-color:#2563eb" /><span class="text-sm">Yes</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-blue-400 transition-all flex-1">
+                    <input type="radio" name="legal-rep" value="no" checked style="accent-color:#2563eb" /><span class="text-sm">No — self-representing</span>
+                  </label>
+                </div>
+              </div>
+
+              <button id="estimate-btn" class="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90" style="background-color:#2563eb">
+                Estimate My Outcome →
+              </button>
+              <p id="form-error" class="hidden text-red-500 text-xs mt-2 text-center">Please select a claim type, case strength, and salary to continue.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <div class="bg-white rounded-2xl shadow-card p-5">
+            <h3 class="font-heading font-bold text-text-primary mb-3 text-sm">Key ACAS Facts</h3>
+            <ul class="space-y-3 text-xs text-text-secondary">
+              {[
+                'ACAS Early Conciliation is free and confidential',
+                '~70% of claims are settled before reaching tribunal',
+                'Process can last up to 6 weeks',
+                'Your tribunal deadline is paused while in ACAS',
+                'A COT3 agreement is legally binding once signed',
+                'ACAS conciliators are neutral — they do not advise you',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><path d="M20 6L9 17l-5-5"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+            <p class="text-xs text-amber-800 leading-relaxed"><strong>Indicative estimates only.</strong> Real outcomes depend entirely on specific facts, employer attitude, and negotiation. This is not legal advice.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-400 mb-2">Advertisement</div>
+            <div class="h-48 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs"><!-- 300x250 --></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Results -->
+      <div id="results-panel" class="hidden mt-8">
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div class="p-6 md:p-8" style="background: linear-gradient(to bottom right, #1e40af, #2563eb)">
+            <h2 class="font-heading text-2xl font-bold text-white mb-1">Your Outcome Estimate</h2>
+            <p class="text-blue-200 text-sm">Indicative ranges based on typical tribunal award data and settlement patterns for your claim type.</p>
+          </div>
+          <div class="p-6 md:p-8">
+
+            <!-- Comparison table -->
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="rounded-xl p-5 border-2" style="background:#eff6ff; border-color:#93c5fd">
+                <h3 class="font-heading font-bold text-blue-800 mb-1 text-sm">🤝 ACAS Settlement</h3>
+                <p id="acas-low" class="font-heading text-2xl font-bold text-blue-900 mb-1"></p>
+                <p class="text-xs text-blue-700 mb-3">Typical range: <span id="acas-range"></span></p>
+                <div id="acas-pros" class="space-y-1 text-xs text-blue-700"></div>
+              </div>
+              <div class="rounded-xl p-5 border-2" style="background:#faf5ff; border-color:#c4b5fd">
+                <h3 class="font-heading font-bold text-purple-800 mb-1 text-sm">⚖️ Tribunal Award</h3>
+                <p id="tribunal-low" class="font-heading text-2xl font-bold text-purple-900 mb-1"></p>
+                <p class="text-xs text-purple-700 mb-3">Typical range: <span id="tribunal-range"></span></p>
+                <div id="tribunal-pros" class="space-y-1 text-xs text-purple-700"></div>
+              </div>
+            </div>
+
+            <!-- Recommendation -->
+            <div id="recommendation" class="rounded-xl p-5 mb-6 border"></div>
+
+            <!-- Route comparison -->
+            <h3 class="font-heading font-bold text-text-primary mb-4">Route Comparison</h3>
+            <div class="overflow-x-auto mb-6">
+              <table class="w-full text-xs border-collapse">
+                <thead>
+                  <tr class="bg-gray-50">
+                    <th class="p-3 text-left font-semibold text-text-primary border-b border-gray-200">Factor</th>
+                    <th class="p-3 text-center font-semibold text-blue-700 border-b border-gray-200">🤝 ACAS</th>
+                    <th class="p-3 text-center font-semibold text-purple-700 border-b border-gray-200">⚖️ Tribunal</th>
+                  </tr>
+                </thead>
+                <tbody id="comparison-table"></tbody>
+              </table>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 text-sm text-text-secondary mb-4">
+              <p class="font-semibold text-text-primary mb-1">Important</p>
+              <p>These estimates are based on statistical patterns, not your specific case. The most important factor in any outcome is the quality of your evidence and legal argument. <strong>Consider speaking to an employment solicitor before making any decisions.</strong></p>
+            </div>
+
+            <button id="recalc-btn" class="text-sm font-semibold hover:underline" style="color:#2563eb">← Recalculate</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How ACAS Works -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">How ACAS Early Conciliation Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-5">
+        {[
+          { num: '01', title: 'Contact ACAS', desc: 'Notify ACAS online or by phone before submitting any tribunal claim. This is mandatory.' },
+          { num: '02', title: 'ACAS Contact Employer', desc: 'ACAS contacts your employer to see if both sides are willing to enter conciliation.' },
+          { num: '03', title: 'Negotiate', desc: 'ACAS passes offers between you and your employer. You decide whether to accept. Up to 6 weeks.' },
+          { num: '04', title: 'COT3 or Certificate', desc: 'If settled, you sign a COT3. If not, ACAS issues a certificate and you can proceed to tribunal.' },
+        ].map(step => (
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-3" style="background-color:#2563eb">{step.num}</div>
+            <h3 class="font-heading font-semibold text-text-primary mb-1 text-sm">{step.title}</h3>
+            <p class="text-text-secondary text-xs leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">ACAS Conciliation — Common Questions</h2>
+      <div class="space-y-4">
+        {[
+          { q: 'What is ACAS Early Conciliation?', a: 'A mandatory free process before any employment tribunal claim. ACAS acts as a neutral go-between to help you and your employer reach a voluntary settlement. Around 70% of matters are resolved without a tribunal hearing.' },
+          { q: 'What is a COT3 agreement?', a: 'A COT3 is the legally binding settlement agreement concluded through ACAS. Unlike a settlement agreement, it does not require you to have independent legal advice, making it faster and cheaper. Once signed, you cannot bring a tribunal claim for the matters covered — a COT3 is binding under section 203 Employment Rights Act 1996.' },
+          { q: 'Does ACAS advise me what to accept?', a: 'No. ACAS conciliators are neutral and do not advise either party on whether an offer is fair. They simply pass offers between the parties. You should seek independent legal advice if you are unsure whether to accept an offer.' },
+          { q: 'What happens to my tribunal deadline during ACAS?', a: 'Your tribunal deadline is paused (frozen) from the day you contact ACAS until the day ACAS issues the Early Conciliation Certificate. The time spent in conciliation is added back onto your deadline.' },
+          { q: 'Can my employer refuse to participate in ACAS?', a: 'Yes. Conciliation is voluntary for the employer. If your employer refuses to engage, ACAS will issue your certificate quickly so you can proceed to tribunal. An employer\'s refusal to engage can be a factor a tribunal considers.' },
+        ].map((item, i) => (
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" data-index={i}>
+              <span class="font-heading font-semibold text-text-primary text-sm pr-4">{item.q}</span>
+              <svg class="faq-icon flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-body hidden px-5 pb-5">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-6 text-center">Related Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="bg-gray-50 rounded-xl p-5 hover:bg-white hover:shadow-card transition-all border border-gray-100 group">
+            <span class="text-2xl mb-3 block">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-blue-700 transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .strength-opt:has(input:checked), .outcome-opt:has(input:checked) { border-color: #2563eb; background-color: rgba(37,99,235,0.05); }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // Benchmark settlement/tribunal ranges by claim type and strength
+  const BENCHMARKS: Record<string, Record<string, { acasLow: number; acasMid: number; acasHigh: number; tribunalLow: number; tribunalMid: number; tribunalHigh: number }>> = {
+    unfair_dismissal: {
+      strong:   { acasLow: 8000,  acasMid: 14000, acasHigh: 25000, tribunalLow: 12000, tribunalMid: 20000, tribunalHigh: 35000 },
+      moderate: { acasLow: 4000,  acasMid: 8000,  acasHigh: 14000, tribunalLow: 6000,  tribunalMid: 11000, tribunalHigh: 18000 },
+      weak:     { acasLow: 1500,  acasMid: 4000,  acasHigh: 8000,  tribunalLow: 0,     tribunalMid: 3000,  tribunalHigh: 8000 },
+    },
+    constructive_dismissal: {
+      strong:   { acasLow: 9000,  acasMid: 16000, acasHigh: 28000, tribunalLow: 13000, tribunalMid: 22000, tribunalHigh: 40000 },
+      moderate: { acasLow: 4500,  acasMid: 9000,  acasHigh: 16000, tribunalLow: 6000,  tribunalMid: 12000, tribunalHigh: 20000 },
+      weak:     { acasLow: 2000,  acasMid: 5000,  acasHigh: 9000,  tribunalLow: 0,     tribunalMid: 4000,  tribunalHigh: 9000 },
+    },
+    discrimination: {
+      strong:   { acasLow: 15000, acasMid: 30000, acasHigh: 60000, tribunalLow: 20000, tribunalMid: 45000, tribunalHigh: 90000 },
+      moderate: { acasLow: 7000,  acasMid: 15000, acasHigh: 28000, tribunalLow: 8000,  tribunalMid: 20000, tribunalHigh: 40000 },
+      weak:     { acasLow: 2000,  acasMid: 6000,  acasHigh: 12000, tribunalLow: 0,     tribunalMid: 8000,  tribunalHigh: 20000 },
+    },
+    whistleblowing: {
+      strong:   { acasLow: 20000, acasMid: 40000, acasHigh: 80000, tribunalLow: 25000, tribunalMid: 55000, tribunalHigh: 120000 },
+      moderate: { acasLow: 8000,  acasMid: 18000, acasHigh: 35000, tribunalLow: 10000, tribunalMid: 25000, tribunalHigh: 50000 },
+      weak:     { acasLow: 2500,  acasMid: 7000,  acasHigh: 15000, tribunalLow: 0,     tribunalMid: 10000, tribunalHigh: 25000 },
+    },
+    redundancy: {
+      strong:   { acasLow: 6000,  acasMid: 12000, acasHigh: 22000, tribunalLow: 8000,  tribunalMid: 16000, tribunalHigh: 28000 },
+      moderate: { acasLow: 3000,  acasMid: 7000,  acasHigh: 12000, tribunalLow: 4000,  tribunalMid: 9000,  tribunalHigh: 16000 },
+      weak:     { acasLow: 1000,  acasMid: 3000,  acasHigh: 7000,  tribunalLow: 0,     tribunalMid: 2000,  tribunalHigh: 7000 },
+    },
+    wages: {
+      strong:   { acasLow: 2000,  acasMid: 5000,  acasHigh: 12000, tribunalLow: 3000,  tribunalMid: 7000,  tribunalHigh: 15000 },
+      moderate: { acasLow: 1000,  acasMid: 3000,  acasHigh: 7000,  tribunalLow: 1500,  tribunalMid: 4000,  tribunalHigh: 9000 },
+      weak:     { acasLow: 300,   acasMid: 1000,  acasHigh: 3000,  tribunalLow: 500,   tribunalMid: 2000,  tribunalHigh: 5000 },
+    },
+    holiday: {
+      strong:   { acasLow: 1000,  acasMid: 3000,  acasHigh: 8000,  tribunalLow: 1500,  tribunalMid: 4000,  tribunalHigh: 10000 },
+      moderate: { acasLow: 500,   acasMid: 1500,  acasHigh: 4000,  tribunalLow: 800,   tribunalMid: 2500,  tribunalHigh: 6000 },
+      weak:     { acasLow: 100,   acasMid: 500,   acasHigh: 1500,  tribunalLow: 200,   tribunalMid: 1000,  tribunalHigh: 3000 },
+    },
+  };
+
+  function fmt(n: number): string {
+    return '£' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  document.getElementById('estimate-btn')?.addEventListener('click', () => {
+    const claimType = (document.getElementById('claim-type') as HTMLSelectElement).value;
+    const strength = (document.querySelector('input[name="strength"]:checked') as HTMLInputElement)?.value;
+    const salary = parseFloat((document.getElementById('salary') as HTMLInputElement).value) || 0;
+    const service = parseFloat((document.getElementById('service') as HTMLInputElement).value) || 0;
+    const legalRep = (document.querySelector('input[name="legal-rep"]:checked') as HTMLInputElement)?.value === 'yes';
+
+    const errEl = document.getElementById('form-error')!;
+    if (!claimType || !strength || !salary) { errEl.classList.remove('hidden'); return; }
+    errEl.classList.add('hidden');
+
+    const bench = BENCHMARKS[claimType]?.[strength];
+    if (!bench) return;
+
+    // Scale by salary (benchmark assumes ~£30k; scale proportionally, capped)
+    const salaryFactor = Math.min(Math.max(salary / 30000, 0.5), 3.0);
+    const acasLow = bench.acasLow * salaryFactor;
+    const acasMid = bench.acasMid * salaryFactor;
+    const acasHigh = bench.acasHigh * salaryFactor;
+    const tribLow = bench.tribunalLow * salaryFactor;
+    const tribMid = bench.tribunalMid * salaryFactor;
+    const tribHigh = bench.tribunalHigh * salaryFactor;
+
+    // Legal rep boost for tribunal (10%)
+    const tribBoost = legalRep ? 1.1 : 1.0;
+
+    (document.getElementById('acas-low') as HTMLElement).textContent = fmt(acasMid);
+    (document.getElementById('acas-range') as HTMLElement).textContent = `${fmt(acasLow)} – ${fmt(acasHigh)}`;
+    (document.getElementById('tribunal-low') as HTMLElement).textContent = fmt(tribMid * tribBoost);
+    (document.getElementById('tribunal-range') as HTMLElement).textContent = `${fmt(tribLow)} – ${fmt(tribHigh * tribBoost)}`;
+
+    const acasPros = ['✓ Certainty of outcome', '✓ Resolved in weeks', '✓ Confidential', '✓ No legal costs risk', '✓ No hearing stress'];
+    const tribPros = ['✓ Potentially higher award', '✓ Public vindication', strength === 'strong' ? '✓ No cap on compensation' : '~ Uncertain outcome', legalRep ? '✓ Stronger with representation' : '~ Self-representing risk', '~ Can take 12–24 months'];
+
+    (document.getElementById('acas-pros') as HTMLElement).innerHTML = acasPros.map(p => `<p>${p}</p>`).join('');
+    (document.getElementById('tribunal-pros') as HTMLElement).innerHTML = tribPros.map(p => `<p>${p}</p>`).join('');
+
+    // Recommendation
+    const recEl = document.getElementById('recommendation')!;
+    let recText = '', recBg = '', recBorder = '';
+    if (strength === 'strong' && ['discrimination','whistleblowing'].includes(claimType)) {
+      recText = '⚖️ <strong>Tribunal may be worth pursuing.</strong> With a strong case and uncapped compensation, the tribunal route may deliver significantly better outcomes. However, ACAS settlement still provides certainty. Consider legal advice before accepting any early offer.';
+      recBg = '#f5f3ff'; recBorder = '#c4b5fd';
+    } else if (strength === 'strong') {
+      recText = '🤝 <strong>Strong ACAS negotiating position.</strong> A strong case means your employer has good reason to settle. Push for a figure close to the tribunal estimate — employers want to avoid the cost and risk of a hearing. Don\'t accept the first offer.';
+      recBg = '#eff6ff'; recBorder = '#93c5fd';
+    } else if (strength === 'moderate') {
+      recText = '🤝 <strong>ACAS settlement is likely the better route.</strong> With moderate case strength, the certainty of ACAS settlement outweighs the risk of tribunal. Aim for the mid-range estimate. Having legal representation or an advice session can significantly improve your position.';
+      recBg = '#eff6ff'; recBorder = '#93c5fd';
+    } else {
+      recText = '📋 <strong>Manage expectations carefully.</strong> A weaker case may still result in a settlement — employers often pay to avoid disruption. However, the amounts are likely lower. ACAS is your best route for a pragmatic outcome. Legal advice before entering conciliation is strongly recommended.';
+      recBg = '#fffbeb'; recBorder = '#fcd34d';
+    }
+    recEl.style.backgroundColor = recBg;
+    recEl.style.borderColor = recBorder;
+    recEl.innerHTML = `<p class="text-sm text-text-primary leading-relaxed">${recText}</p>`;
+
+    // Comparison table
+    const rows = [
+      ['Timeline', '2–6 weeks', '12–24 months'],
+      ['Certainty', 'High — you agree or decline', 'Low — tribunal decides'],
+      ['Confidentiality', 'Yes — COT3 is private', 'No — hearings are public'],
+      ['Legal costs risk', 'None (rare costs orders)', 'Very low but possible'],
+      ['Typical outcome', fmt(acasMid), fmt(tribMid * tribBoost)],
+      ['Reinstatement possible?', 'Only if employer agrees', 'Yes — tribunal can order'],
+    ];
+    const tableEl = document.getElementById('comparison-table')!;
+    tableEl.innerHTML = rows.map((r, i) => `
+      <tr class="${i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}">
+        <td class="p-3 text-text-secondary border-b border-gray-100">${r[0]}</td>
+        <td class="p-3 text-center font-medium text-blue-700 border-b border-gray-100">${r[1]}</td>
+        <td class="p-3 text-center font-medium text-purple-700 border-b border-gray-100">${r[2]}</td>
+      </tr>
+    `).join('');
+
+    document.getElementById('results-panel')?.classList.remove('hidden');
+    document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('recalc-btn')?.addEventListener('click', () => {
+    document.getElementById('results-panel')?.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      body.classList.toggle('hidden');
+      icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  });
+  });
+</script>

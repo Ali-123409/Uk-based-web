@@ -1,0 +1,866 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'TUPE Rights Checker' }
+];
+
+const relatedToolIds = ['tribunal-deadline', 'constructive-dismissal', 'settlement-tax'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TUPE Rights Checker UK",
+    "url": "https://fairworkcheck.co.uk/tools/tupe-rights-checker/",
+    "description": "Check whether TUPE regulations apply to your situation and understand your protected employment rights during a business transfer or outsourcing in the UK.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "TUPE Rights Checker" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does TUPE mean and when does it apply?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TUPE stands for Transfer of Undertakings (Protection of Employment) Regulations 2006. It applies when a business or part of a business is transferred from one employer to another, or when a service (such as cleaning, security, or IT support) changes hands between contractors. When TUPE applies, employees automatically transfer to the new employer on the same terms and conditions, with their continuous employment preserved."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TUPE protect my pay and contract terms?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. One of the strongest protections TUPE provides is that your existing terms and conditions of employment transfer with you. The new employer cannot simply impose new contracts with worse terms. Any attempt to change your terms because of the transfer is legally void. There are very limited exceptions where changes may be permitted for economic, technical or organisational reasons, but these are tightly controlled."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I be made redundant because of a TUPE transfer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Dismissal connected to a TUPE transfer is automatically unfair unless the employer can show an economic, technical or organisational reason entailing changes in the workforce (known as an ETO reason). Even if an ETO reason exists, standard unfair dismissal rules then apply. If you are dismissed in connection with a TUPE transfer and believe it is unfair, you should seek legal advice and consider an employment tribunal claim."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What information must my employer give me about a TUPE transfer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both the outgoing employer (transferor) and incoming employer (transferee) have legal obligations to inform and consult employee representatives before a TUPE transfer. They must provide: the fact that a transfer is happening and when, the legal, economic and social implications for employees, any measures envisaged in connection with the transfer, and information about the new employer. Failure to inform and consult can result in compensation of up to 13 weeks' pay per employee."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I do not want to transfer to the new employer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You have the right to object to transferring to the new employer. If you object, your employment ends on the date of transfer and you are not treated as having been dismissed — meaning you generally have no claim for unfair dismissal or redundancy pay. However, if the transfer involves a substantial change to your working conditions to your material detriment, you may be able to treat yourself as constructively dismissed and bring a claim."
+        }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`TUPE Rights Checker UK ${CURRENT_YEAR} — Does TUPE Apply to Me? | FairWorkCheck`}
+  description={`Check whether TUPE applies to your situation and understand your protected employment rights during a business transfer or outsourcing. Free UK tool, updated ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/tupe-rights-checker/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit 1 -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto">
+        <!-- 728x90 Leaderboard / 320x50 Mobile -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-purple-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7h12m0 0l-4-4m4 4l-4 4M4 17h12m0 0l-4-4m4 4l-4 4"/></svg>
+        Business transfer · Outsourcing · Service change
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        TUPE Rights Checker UK
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Being transferred to a new employer? Check whether TUPE applies to your situation, what your protected rights are, and exactly what your employer must do. Free, instant, updated for UK law {TAX_YEAR}.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Instant Results', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tool Section -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Tool Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-orange overflow-hidden">
+            <div class="p-6 md:p-8">
+
+              <!-- Step indicator -->
+              <div id="step-indicator" class="mb-8">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-semibold text-text-primary">Step <span id="current-step">1</span> of 5</span>
+                  <span class="text-sm text-text-secondary"><span id="step-pct">0</span>% complete</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div id="step-progress" class="h-full bg-orange rounded-full transition-all duration-500" style="width:0%"></div>
+                </div>
+              </div>
+
+              <!-- Steps Container -->
+              <div id="steps-container">
+
+                <!-- STEP 1: What is happening -->
+                <div class="step-slide" id="step1">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Step 1 of 5</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">What is happening at your workplace?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Select the option that best describes your current situation. TUPE covers two main scenarios: business transfers and service provision changes.
+                  </p>
+                  <div class="space-y-3" id="s1-options">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s1" value="business_sale" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">The business (or part of it) is being sold to another company</span>
+                        <span class="text-xs text-text-secondary">A new owner is taking over — share sale, asset sale, merger</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s1" value="outsourcing" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">A service is being outsourced to a contractor for the first time</span>
+                        <span class="text-xs text-text-secondary">e.g. cleaning, security, catering, IT support being handed to an external provider</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s1" value="retendering" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">A service contract is being awarded to a different contractor</span>
+                        <span class="text-xs text-text-secondary">e.g. the cleaning or security contract my employer currently holds is moving to a new company</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s1" value="insourcing" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">A previously outsourced service is being brought back in-house</span>
+                        <span class="text-xs text-text-secondary">The client is taking direct control of a service they previously contracted out</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s1" value="insolvency" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">My employer is insolvent / going into administration</span>
+                        <span class="text-xs text-text-secondary">The company is bankrupt or in administration proceedings</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an option to continue.</p>
+                </div>
+
+                <!-- STEP 2: Activity continuing -->
+                <div class="step-slide hidden" id="step2">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Step 2 of 5</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Will the same or similar work continue after the transfer?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    For TUPE to apply, the activity or service must continue after the transfer — it cannot simply cease to exist. The work itself must carry on, even if under different management.
+                  </p>
+                  <div class="space-y-3" id="s2-options">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s2" value="yes_same" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — the same work will continue, just under a different employer</span>
+                        <span class="text-xs text-text-secondary">The activity, service or business continues unchanged</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s2" value="yes_similar" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — similar work continues but with some changes</span>
+                        <span class="text-xs text-text-secondary">The core activity is the same but processes or scope may differ slightly</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s2" value="unclear" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Unclear — I am not sure what the new employer plans to do</span>
+                        <span class="text-xs text-text-secondary">The new employer's intentions regarding the work are unknown</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s2" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — the service or activity will cease entirely</span>
+                        <span class="text-xs text-text-secondary">The work I currently do will not continue with the new employer</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an option to continue.</p>
+                </div>
+
+                <!-- STEP 3: Currently employed -->
+                <div class="step-slide hidden" id="step3">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Step 3 of 5</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Are you currently employed by the transferring organisation?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    TUPE protects employees who are employed by the transferring employer immediately before the transfer. Agency workers and self-employed contractors are generally not covered, though there are exceptions.
+                  </p>
+                  <div class="space-y-3" id="s3-options">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s3" value="employee" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I am a direct employee with a contract of employment</span>
+                        <span class="text-xs text-text-secondary">I am employed directly, not through an agency or as self-employed</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s3" value="agency" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">I work through an agency — the agency is my employer</span>
+                        <span class="text-xs text-text-secondary">I have a contract with an employment agency, not the business directly</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s3" value="self_employed" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">I am self-employed / work through my own limited company</span>
+                        <span class="text-xs text-text-secondary">I am an independent contractor, not an employee</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s3" value="worker" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">I am a worker — not quite an employee but not self-employed</span>
+                        <span class="text-xs text-text-secondary">Zero hours, casual or irregular work arrangements</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an option to continue.</p>
+                </div>
+
+                <!-- STEP 4: Dedicated to service -->
+                <div class="step-slide hidden" id="step4">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Step 4 of 5</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Are you mainly assigned to the work or service that is transferring?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    For service provision change TUPE, you must be assigned to an organised grouping of employees dedicated to the transferring service. If you split your time across many different clients or services, TUPE may not apply to you individually.
+                  </p>
+                  <div class="space-y-3" id="s4-options">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s4" value="dedicated" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I work mainly or exclusively on this contract or service</span>
+                        <span class="text-xs text-text-secondary">The majority of my time is spent on the transferring work</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s4" value="mostly" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Mostly — but I also do some work on other contracts or services</span>
+                        <span class="text-xs text-text-secondary">Majority of my time is on this service but I occasionally work elsewhere</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s4" value="split" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Split — I work across multiple contracts or clients roughly equally</span>
+                        <span class="text-xs text-text-secondary">My time is spread across different services or client sites</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s4" value="business_transfer" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">This is a whole business transfer — not a service contract</span>
+                        <span class="text-xs text-text-secondary">The entire business or business unit is being transferred, not just one service</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an option to continue.</p>
+                </div>
+
+                <!-- STEP 5: Employer behaviour -->
+                <div class="step-slide hidden" id="step5">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Step 5 of 5</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Has your employer informed you about the transfer?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Employers have a legal duty to inform and consult employee representatives before a TUPE transfer. The law requires them to provide specific information. This helps us assess whether your employer is meeting their obligations.
+                  </p>
+                  <div class="space-y-3" id="s5-options">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s5" value="yes_full" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I have been formally notified with full details</span>
+                        <span class="text-xs text-text-secondary">Told about the transfer, timing, implications and any proposed changes</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s5" value="yes_partial" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Partially — I know something is happening but not full details</span>
+                        <span class="text-xs text-text-secondary">I have been told informally or heard rumours but no formal notification</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s5" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — I have not been told anything officially</span>
+                        <span class="text-xs text-text-secondary">I only found out through other means, or the transfer has already happened</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="s5" value="changes_proposed" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — and the new employer wants to change my terms and conditions</span>
+                        <span class="text-xs text-text-secondary">I have been told my pay, hours or contract terms will change after the transfer</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an option to continue.</p>
+                </div>
+
+              </div><!-- /steps-container -->
+
+              <!-- Navigation -->
+              <div class="flex gap-3 mt-8" id="nav-btns">
+                <button id="prev-btn" class="hidden px-5 py-3 border border-gray-200 text-text-secondary hover:border-gray-300 rounded-lg transition-all text-sm font-medium">
+                  ← Back
+                </button>
+                <button id="next-btn" class="flex-1 bg-orange hover:bg-orange-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2">
+                  Next Step
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button id="submit-btn" class="hidden flex-1 bg-navy hover:bg-navy-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all text-sm flex items-center justify-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                  Check My TUPE Rights
+                </button>
+              </div>
+
+              <!-- Results -->
+              <div id="results-section" class="hidden mt-8 results-animate">
+                <div class="border-t border-gray-100 pt-8">
+
+                  <!-- Verdict Banner -->
+                  <div id="verdict-banner" class="rounded-2xl p-6 mb-6 text-center">
+                    <div id="verdict-icon" class="text-5xl mb-3"></div>
+                    <h3 id="verdict-title" class="font-heading text-2xl font-bold mb-2"></h3>
+                    <p id="verdict-desc" class="text-sm leading-relaxed max-w-lg mx-auto"></p>
+                  </div>
+
+                  <!-- TUPE Applies: Rights list -->
+                  <div id="rights-section" class="hidden mb-5">
+                    <h4 class="font-heading font-bold text-text-primary mb-4 flex items-center gap-2">
+                      <span class="text-green-600">✅</span> Your Protected Rights Under TUPE
+                    </h4>
+                    <div class="space-y-3">
+                      {[
+                        { right: 'Contract Terms Preserved', detail: 'Your pay, hours, holiday entitlement and all other contract terms transfer unchanged to the new employer. Any attempt to impose worse terms because of the transfer is void.' },
+                        { right: 'Continuous Employment Protected', detail: 'Your length of service is preserved. Your start date does not reset — your employment is treated as continuous with the new employer.' },
+                        { right: 'Dismissal Protection', detail: 'Being dismissed solely because of the TUPE transfer is automatically unfair. The new employer must have an economic, technical or organisational reason to make changes.' },
+                        { right: 'Right to Be Informed', detail: 'Both employers must inform you (via representatives) about the transfer, its implications, timing and any proposed measures before the transfer takes place.' },
+                        { right: 'Right to Object', detail: 'You can object to transferring to the new employer. If you do, your employment ends but this is not treated as a dismissal in most circumstances.' },
+                        { right: 'Pension Rights', detail: 'The new employer must provide broadly comparable pension arrangements if you were a member of an occupational pension scheme.' },
+                      ].map(r => (
+                        <div class="bg-green-50 border border-green-100 rounded-xl p-4">
+                          <h5 class="font-semibold text-sm text-green-800 mb-1">{r.right}</h5>
+                          <p class="text-xs text-green-700 leading-relaxed">{r.detail}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Employer Obligations -->
+                  <div id="obligations-section" class="hidden mb-5">
+                    <h4 class="font-heading font-bold text-text-primary mb-4 flex items-center gap-2">
+                      <span>📋</span> What Your Employer Must Do
+                    </h4>
+                    <div class="bg-white border border-gray-100 rounded-xl p-5 space-y-3">
+                      {[
+                        'Inform employee representatives about the transfer in writing, in good time before the transfer',
+                        'Provide the date of transfer, reasons for it, and legal/economic/social implications for employees',
+                        'Disclose any measures the new employer plans to take in relation to the workforce',
+                        'Consult with employee representatives if any measures affecting the workforce are proposed',
+                        'Provide employee liability information to the new employer at least 28 days before the transfer',
+                        'Failure to inform and consult can result in compensation of up to 13 weeks\' pay per affected employee',
+                      ].map((obligation, i) => (
+                        <div class="flex items-start gap-3 text-sm">
+                          <span class="w-5 h-5 bg-navy rounded-full flex items-center justify-center text-xs text-white font-bold flex-shrink-0 mt-0.5">{i+1}</span>
+                          <span class="text-text-secondary">{obligation}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Specific Warnings -->
+                  <div id="warnings-section" class="mb-5">
+                    <h4 class="font-heading font-bold text-text-primary mb-3">⚠️ Specific Issues Identified</h4>
+                    <div id="warnings-list" class="space-y-2"></div>
+                  </div>
+
+                  <!-- Next Steps -->
+                  <div class="bg-navy rounded-xl p-5 text-white mb-4">
+                    <h4 class="font-heading font-bold text-base mb-4">Your Next Steps</h4>
+                    <ol id="next-steps" class="space-y-3"></ol>
+                  </div>
+
+                  <!-- Restart -->
+                  <button id="restart-btn" class="w-full py-3 border border-gray-200 text-text-secondary hover:border-orange hover:text-orange rounded-lg transition-all text-sm font-medium">
+                    Start Again
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Ad Unit 2 -->
+          <div class="ad-unit mt-6" data-ad-position="below-tool">
+            <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+            <div class="h-[250px] bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+              <!-- 300x250 Rectangle Ad Unit -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+
+          <!-- What is TUPE -->
+          <div class="bg-navy rounded-xl p-5 text-white">
+            <h3 class="font-heading font-bold text-base mb-3">What Is TUPE?</h3>
+            <p class="text-xs text-gray-300 leading-relaxed mb-4">
+              TUPE stands for <strong class="text-white">Transfer of Undertakings (Protection of Employment) Regulations 2006</strong>. It protects employees when the business or service they work for changes hands.
+            </p>
+            <div class="space-y-3">
+              {[
+                { icon: '🔄', text: 'Business sales & mergers' },
+                { icon: '📤', text: 'Outsourcing to contractors' },
+                { icon: '🔁', text: 'Service contract retendering' },
+                { icon: '📥', text: 'Insourcing (bringing work back in-house)' },
+              ].map(item => (
+                <div class="flex items-center gap-2.5 text-sm text-gray-300">
+                  <span class="flex-shrink-0">{item.icon}</span>
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Key Facts -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4">
+            <h3 class="font-semibold text-sm text-text-primary mb-3">Key TUPE Facts</h3>
+            <div class="space-y-2.5">
+              {[
+                { label: 'Min service required', value: 'None' },
+                { label: 'Applies from', value: 'Day 1 of employment' },
+                { label: 'Max consultation comp.', value: 'Up to 13 weeks\' pay' },
+                { label: 'Transfer dismissal', value: 'Automatically unfair' },
+                { label: 'Contract changes', value: 'Generally void' },
+              ].map(fact => (
+                <div class="flex justify-between items-center text-xs border-b border-gray-50 pb-2">
+                  <span class="text-text-secondary">{fact.label}</span>
+                  <span class="font-semibold text-text-primary">{fact.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="flex items-start gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-amber-800 mb-1">Important Notice</p>
+                <p class="text-xs text-amber-700 leading-relaxed">TUPE is complex and case-specific. Insolvency situations have different rules. Always confirm with an employment solicitor.</p>
+                <a href="/disclaimer/" class="text-xs text-amber-700 underline mt-1 block">Read full disclaimer →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Free Help -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4">
+            <h3 class="font-semibold text-sm text-text-primary mb-3">Free Help Available</h3>
+            <div class="space-y-2">
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">ACAS:</strong> 0300 123 1100</div>
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">Citizens Advice:</strong> 0800 144 8848</div>
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">Gov.uk TUPE Guide:</strong> gov.uk/transfers-takeovers</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white border-t border-gray-100 py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: '01', title: 'Answer 5 Questions', desc: 'Tell us what is happening at your workplace — business sale, outsourcing, service retendering, or insourcing.' },
+          { num: '02', title: 'We Analyse Your Situation', desc: 'The tool applies the TUPE Regulations 2006 to your specific answers, covering both standard and service provision scenarios.' },
+          { num: '03', title: 'Get Your Rights', desc: 'See whether TUPE applies, your full list of protected rights, your employer\'s legal obligations, and clear next steps.' },
+        ].map(step => (
+          <div class="flex gap-4">
+            <div class="font-heading text-4xl font-bold text-navy/15 flex-shrink-0 leading-none">{step.num}</div>
+            <div>
+              <h3 class="font-heading font-semibold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-cream">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        {[
+          {
+            q: 'What does TUPE mean and when does it apply?',
+            a: 'TUPE stands for Transfer of Undertakings (Protection of Employment) Regulations 2006 (as amended by the Collective Redundancies and TUPE (Amendment) Regulations 2014). It applies when a business or part of a business is transferred to another employer, or when a service such as cleaning, catering, or IT support changes hands between contractors. When TUPE applies, employees automatically transfer to the new employer on the same terms and conditions, with their continuous employment preserved.'
+          },
+          {
+            q: 'Does TUPE protect my pay and contract terms?',
+            a: 'Yes. One of TUPE\'s strongest protections is that your existing terms and conditions transfer with you. The new employer cannot impose new contracts with worse terms simply because of the transfer. Any attempt to change your terms because of the transfer is legally void. Very limited exceptions exist where changes may be permitted for economic, technical or organisational reasons, but these are tightly controlled by law.'
+          },
+          {
+            q: 'Can I be made redundant because of a TUPE transfer?',
+            a: 'Dismissal connected to a TUPE transfer is automatically unfair unless the employer can demonstrate an economic, technical or organisational reason entailing changes in the workforce — known as an ETO reason. Even if an ETO reason exists, standard unfair dismissal rules then apply. If you are dismissed in connection with a TUPE transfer, you should seek legal advice and consider an employment tribunal claim.'
+          },
+          {
+            q: 'What information must my employer give me about a TUPE transfer?',
+            a: 'Both the outgoing and incoming employers have legal obligations to inform and consult employee representatives before a TUPE transfer. They must provide: the fact that a transfer is happening and when, the legal, economic and social implications for employees, any measures proposed in connection with the transfer, and information about the new employer. Failure to inform and consult can result in compensation of up to 13 weeks\' pay per employee.'
+          },
+          {
+            q: 'What if I do not want to transfer to the new employer?',
+            a: 'You have the right to object to transferring to the new employer. If you object, your employment ends on the transfer date and you are generally not treated as having been dismissed — meaning you will not normally have a claim for unfair dismissal or redundancy pay. However, if the transfer involves a substantial change to your working conditions to your material detriment, you may be able to treat yourself as constructively dismissed and bring a claim.'
+          }
+        ].map(faq => (
+          <details class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-text-primary text-sm hover:text-navy transition-colors list-none">
+              <span>{faq.q}</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed border-t border-gray-50 pt-4">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Ad Unit 3 -->
+      <div class="ad-unit mt-8" data-ad-position="faq-mid">
+        <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+        <div class="h-[250px] bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+          <!-- 300x250 Rectangle Ad Unit -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Other Tools You Might Need</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="group bg-cream rounded-xl border border-gray-100 p-5 hover:border-orange/30 hover:shadow-card transition-all duration-200">
+            <span class="text-2xl block mb-3">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-navy transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+            <span class="text-orange text-xs font-medium mt-3 inline-flex items-center gap-1">
+              Use tool free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .results-animate { animation: fadeInUp 0.4s ease forwards; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .accent-navy { accent-color: #1a3c5e; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const totalSteps = 5;
+  let currentStep = 1;
+  const answers: Record<string, string> = {};
+
+  const steps = document.querySelectorAll('.step-slide');
+  const progressBar = document.getElementById('step-progress');
+  const currentStepEl = document.getElementById('current-step');
+  const stepPctEl = document.getElementById('step-pct');
+  const nextBtn = document.getElementById('next-btn');
+  const prevBtn = document.getElementById('prev-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const resultsSection = document.getElementById('results-section');
+
+  function updateProgress() {
+    const pct = Math.round(((currentStep - 1) / totalSteps) * 100);
+    if (progressBar) progressBar.style.width = pct + '%';
+    if (currentStepEl) currentStepEl.textContent = String(currentStep);
+    if (stepPctEl) stepPctEl.textContent = String(pct);
+  }
+
+  function showStep(n: number) {
+    steps.forEach((s, i) => {
+      if (i + 1 === n) s.classList.remove('hidden');
+      else s.classList.add('hidden');
+    });
+    if (prevBtn) {
+      n > 1 ? prevBtn.classList.remove('hidden') : prevBtn.classList.add('hidden');
+    }
+    if (n === totalSteps) {
+      nextBtn?.classList.add('hidden');
+      submitBtn?.classList.remove('hidden');
+    } else {
+      nextBtn?.classList.remove('hidden');
+      submitBtn?.classList.add('hidden');
+    }
+    updateProgress();
+  }
+
+  function getAnswer(stepNum: number): string | null {
+    const sel = document.querySelector(`input[name="s${stepNum}"]:checked`) as HTMLInputElement;
+    return sel ? sel.value : null;
+  }
+
+  nextBtn?.addEventListener('click', () => {
+    const ans = getAnswer(currentStep);
+    if (!ans) {
+      document.getElementById(`step${currentStep}`)?.querySelector('.error-msg')?.classList.remove('hidden');
+      return;
+    }
+    document.getElementById(`step${currentStep}`)?.querySelector('.error-msg')?.classList.add('hidden');
+    answers[`s${currentStep}`] = ans;
+    currentStep++;
+    showStep(currentStep);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  submitBtn?.addEventListener('click', () => {
+    const ans = getAnswer(currentStep);
+    if (!ans) {
+      document.getElementById(`step${currentStep}`)?.querySelector('.error-msg')?.classList.remove('hidden');
+      return;
+    }
+    answers[`s${currentStep}`] = ans;
+    calculateResults();
+  });
+
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    currentStep = 1;
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('input[type="radio"]').forEach(r => (r as HTMLInputElement).checked = false);
+    resultsSection?.classList.add('hidden');
+    document.getElementById('step-indicator')?.classList.remove('hidden');
+    document.getElementById('nav-btns')?.classList.remove('hidden');
+    showStep(1);
+  });
+
+  function calculateResults() {
+    const s1 = answers.s1;
+    const s2 = answers.s2;
+    const s3 = answers.s3;
+    const s4 = answers.s4;
+    const s5 = answers.s5;
+
+    // Determine TUPE applicability
+    let tupeVerdict: 'likely' | 'possible' | 'unlikely' | 'complex' = 'likely';
+    const warnings: string[] = [];
+    const nextStepsList: string[] = [];
+
+    // Core logic
+    if (s1 === 'insolvency') {
+      tupeVerdict = 'complex';
+      warnings.push('⚠️ Insolvency situations have special TUPE rules. Some protections still apply but others are modified. You must seek specialist legal advice immediately.');
+    }
+
+    if (s2 === 'no') {
+      tupeVerdict = 'unlikely';
+      warnings.push('❌ If the service or activity is ceasing entirely, TUPE is unlikely to apply. TUPE requires the activity to continue with the new employer.');
+    }
+
+    if (s3 === 'self_employed') {
+      tupeVerdict = 'unlikely';
+      warnings.push('❌ Self-employed contractors are not covered by TUPE. However, if you believe you should be classified as an employee, seek legal advice about your employment status.');
+    }
+
+    if (s3 === 'agency') {
+      tupeVerdict = 'possible';
+      warnings.push('⚠️ Agency workers are generally not covered by TUPE as your employer is the agency, not the business. However, in some circumstances TUPE may apply. Seek specialist advice.');
+    }
+
+    if (s3 === 'worker') {
+      tupeVerdict = 'possible';
+      warnings.push('⚠️ TUPE applies to employees. If you are a worker rather than an employee, your coverage depends on the exact nature of your contract. Seek legal advice on your employment status.');
+    }
+
+    if (s4 === 'split') {
+      if (tupeVerdict === 'likely') tupeVerdict = 'possible';
+      warnings.push('⚠️ If you split your time equally across multiple services, whether TUPE applies to you individually depends on how you are assigned. Your employer should confirm which employees are assigned to the transferring service.');
+    }
+
+    if (s2 === 'unclear') {
+      if (tupeVerdict === 'likely') tupeVerdict = 'possible';
+      warnings.push('💡 It is unclear whether the activity will continue. You should formally ask your employer to clarify whether TUPE applies and what happens to your employment.');
+    }
+
+    // Employer notification warnings
+    if (s5 === 'no') {
+      warnings.push('🚨 Your employer has not notified you about the transfer. This is a potential breach of their duty to inform and consult. Each affected employee can claim up to 13 weeks\' pay in compensation.');
+    }
+    if (s5 === 'yes_partial') {
+      warnings.push('⚠️ You have only been partially informed. Your employer must provide full written details. Request formal written notification from your employer or HR.');
+    }
+    if (s5 === 'changes_proposed') {
+      warnings.push('🚨 Your employer is proposing to change your terms after the transfer. Changes to your contract because of a TUPE transfer are generally legally void. Do not agree to any changes without first seeking legal advice.');
+    }
+
+    // Set verdict UI
+    const verdictBanner = document.getElementById('verdict-banner');
+    const verdictIcon = document.getElementById('verdict-icon');
+    const verdictTitle = document.getElementById('verdict-title');
+    const verdictDesc = document.getElementById('verdict-desc');
+    const rightsSection = document.getElementById('rights-section');
+    const obligationsSection = document.getElementById('obligations-section');
+
+    if (tupeVerdict === 'likely') {
+      if (verdictBanner) verdictBanner.className = 'rounded-2xl p-6 mb-6 text-center bg-green-50 border border-green-200';
+      if (verdictIcon) verdictIcon.textContent = '✅';
+      if (verdictTitle) { verdictTitle.textContent = 'TUPE Likely Applies'; verdictTitle.className = 'font-heading text-2xl font-bold mb-2 text-green-800'; }
+      if (verdictDesc) { verdictDesc.textContent = 'Based on your answers, TUPE is likely to apply to your transfer. Your employment rights should be fully protected. See your rights below.'; verdictDesc.className = 'text-sm leading-relaxed max-w-lg mx-auto text-green-700'; }
+      rightsSection?.classList.remove('hidden');
+      obligationsSection?.classList.remove('hidden');
+      nextStepsList.push('✅ Your terms and conditions should transfer unchanged — do not sign any new contract without legal advice');
+      nextStepsList.push('📋 Request written confirmation from your employer that TUPE applies to your transfer');
+      nextStepsList.push('📄 Keep copies of your current contract, payslips and any communications about the transfer');
+      nextStepsList.push('⚖️ If your new employer tries to change your terms, contact ACAS on 0300 123 1100 immediately');
+      nextStepsList.push('💡 If you are dismissed connected to the transfer, seek urgent legal advice about an unfair dismissal claim');
+    } else if (tupeVerdict === 'possible') {
+      if (verdictBanner) verdictBanner.className = 'rounded-2xl p-6 mb-6 text-center bg-amber-50 border border-amber-200';
+      if (verdictIcon) verdictIcon.textContent = '⚠️';
+      if (verdictTitle) { verdictTitle.textContent = 'TUPE May Apply — Seek Clarification'; verdictTitle.className = 'font-heading text-2xl font-bold mb-2 text-amber-800'; }
+      if (verdictDesc) { verdictDesc.textContent = 'Your situation has elements that could bring it within TUPE but there are factors that create uncertainty. You should seek legal advice to clarify your position before the transfer takes place.'; verdictDesc.className = 'text-sm leading-relaxed max-w-lg mx-auto text-amber-700'; }
+      nextStepsList.push('⚖️ Seek legal advice from an employment solicitor before the transfer date');
+      nextStepsList.push('📋 Formally ask your employer in writing whether TUPE applies and request their reasoning');
+      nextStepsList.push('📞 Contact ACAS on 0300 123 1100 for free guidance on your specific situation');
+      nextStepsList.push('📄 Keep copies of your contract, payslips and all communications about the transfer');
+      nextStepsList.push('⏱️ If you believe TUPE has been breached, check your tribunal deadline with our Deadline Calculator');
+    } else if (tupeVerdict === 'unlikely') {
+      if (verdictBanner) verdictBanner.className = 'rounded-2xl p-6 mb-6 text-center bg-red-50 border border-red-200';
+      if (verdictIcon) verdictIcon.textContent = '❌';
+      if (verdictTitle) { verdictTitle.textContent = 'TUPE Unlikely to Apply'; verdictTitle.className = 'font-heading text-2xl font-bold mb-2 text-red-800'; }
+      if (verdictDesc) { verdictDesc.textContent = 'Based on your answers, TUPE is unlikely to apply to your situation. However, you may have other employment rights. See the specific issues identified below and consider seeking legal advice.'; verdictDesc.className = 'text-sm leading-relaxed max-w-lg mx-auto text-red-700'; }
+      nextStepsList.push('⚖️ Seek legal advice — you may have other employment rights even if TUPE does not apply');
+      nextStepsList.push('📞 Call Citizens Advice on 0800 144 8848 for a free assessment of your situation');
+      nextStepsList.push('💡 If you are being dismissed, check your redundancy rights and notice pay entitlement');
+      nextStepsList.push('🔍 Consider whether your employment status (employee vs worker vs self-employed) is correctly classified');
+    } else {
+      if (verdictBanner) verdictBanner.className = 'rounded-2xl p-6 mb-6 text-center bg-purple-50 border border-purple-200';
+      if (verdictIcon) verdictIcon.textContent = '⚖️';
+      if (verdictTitle) { verdictTitle.textContent = 'Complex Situation — Specialist Advice Required'; verdictTitle.className = 'font-heading text-2xl font-bold mb-2 text-purple-800'; }
+      if (verdictDesc) { verdictDesc.textContent = 'Insolvency TUPE situations are legally complex and different rules apply depending on the type of insolvency. You must seek specialist advice urgently.'; verdictDesc.className = 'text-sm leading-relaxed max-w-lg mx-auto text-purple-700'; }
+      nextStepsList.push('🚨 Contact an employment solicitor immediately — insolvency TUPE is highly complex');
+      nextStepsList.push('📞 Call Citizens Advice on 0800 144 8848 for emergency free guidance');
+      nextStepsList.push('💡 Some TUPE protections still apply in insolvency — do not assume you have no rights');
+      nextStepsList.push('📋 Keep copies of all communications from administrators or receivers');
+    }
+
+    // Render warnings
+    const warningsList = document.getElementById('warnings-list');
+    const warningsSection = document.getElementById('warnings-section');
+    if (warningsList) {
+      if (warnings.length === 0) {
+        warningsSection?.classList.add('hidden');
+      } else {
+        warningsList.innerHTML = warnings.map(w =>
+          `<div class="bg-amber-50 border border-amber-100 rounded-lg px-4 py-3 text-sm text-amber-800">${w}</div>`
+        ).join('');
+      }
+    }
+
+    // Render next steps
+    const nextStepsEl = document.getElementById('next-steps');
+    if (nextStepsEl) {
+      nextStepsEl.innerHTML = nextStepsList.map((step, i) =>
+        `<li class="flex items-start gap-3 text-sm text-gray-200">
+          <span class="w-5 h-5 bg-orange rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">${i+1}</span>
+          <span>${step}</span>
+        </li>`
+      ).join('');
+    }
+
+    // Show results
+    document.getElementById('step-indicator')?.classList.add('hidden');
+    document.getElementById('nav-btns')?.classList.add('hidden');
+    steps.forEach(s => s.classList.add('hidden'));
+    resultsSection?.classList.remove('hidden');
+    resultsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Init
+  showStep(1);
+  });
+</script>

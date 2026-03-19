@@ -1,0 +1,932 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'Constructive Dismissal Checker' }
+];
+
+const relatedToolIds = ['tribunal-deadline', 'tupe-rights', 'settlement-tax'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Constructive Dismissal Checker UK",
+    "url": "https://fairworkcheck.co.uk/tools/constructive-dismissal-checker/",
+    "description": "Check whether your resignation could qualify as constructive dismissal under UK employment law with our free step-by-step assessment tool.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Constructive Dismissal Checker" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is constructive dismissal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Constructive dismissal is when an employee resigns because their employer has seriously breached their employment contract, making it impossible for them to continue working there. You effectively treat yourself as dismissed because of your employer's conduct. To claim constructive dismissal at an employment tribunal, you must show there was a fundamental breach of contract, you resigned in response to that breach, and you did not delay too long after the breach before resigning." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to resign to claim constructive dismissal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Constructive dismissal claims require you to actually resign your position. You cannot claim constructive dismissal while still employed. Once you resign, you must bring your claim to an employment tribunal within 3 months minus 1 day of your resignation date, after first contacting ACAS for Early Conciliation." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as a fundamental breach of contract for constructive dismissal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A fundamental breach is one that goes to the heart of your employment contract. Examples include: a significant reduction in pay without agreement, a demotion without consent, being subjected to harassment or bullying that the employer ignores, being required to work in a completely different role or location without agreement, the employer seriously undermining your authority, or a pattern of behaviour that cumulatively destroys trust and confidence." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it matter if I resigned immediately or waited?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Timing matters significantly in constructive dismissal claims. If you wait too long after the breach before resigning, a tribunal may conclude that you accepted (or 'affirmed') the breach of contract, which would defeat your claim. There is no fixed time limit, but generally speaking, waiting more than a few months after the triggering incident without resigning or raising a formal grievance can seriously weaken your case." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I raise a grievance before resigning for constructive dismissal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It is strongly advisable to raise a formal grievance before resigning if circumstances allow. While it is not a legal requirement, failing to use your employer's grievance procedure can result in a reduction to your compensation of up to 25% under the ACAS Code of Practice. Raising a grievance also demonstrates that you tried to resolve the situation, which strengthens your credibility before a tribunal." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`Constructive Dismissal Checker UK ${CURRENT_YEAR} — Do I Have a Case? | FairWorkCheck`}
+  description={`Find out if your resignation qualifies as constructive dismissal under UK law. Free step-by-step case strength checker. Updated for ${TAX_YEAR} employment law.`}
+  canonical="https://fairworkcheck.co.uk/tools/constructive-dismissal-checker/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit 1 -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto">
+        <!-- 728x90 Leaderboard / 320x50 Mobile -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-blue-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        8-question assessment · Takes 2 minutes
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Constructive Dismissal Checker UK
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Answer 8 questions about your situation and find out how strong your constructive dismissal claim is under UK employment law {TAX_YEAR}. Free, instant, and completely private.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Instant Results', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Quiz Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-orange overflow-hidden">
+            <div class="p-6 md:p-8">
+
+              <!-- Progress Bar -->
+              <div class="mb-8" id="progress-section">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-semibold text-text-primary">Question <span id="current-q">1</span> of 8</span>
+                  <span class="text-sm text-text-secondary"><span id="progress-pct">0</span>% complete</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full bg-orange rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+              </div>
+
+              <!-- Questions Container -->
+              <div id="questions-container">
+
+                <!-- Q1 -->
+                <div class="question-slide" id="q1" data-question="1">
+                  <div class="mb-2">
+                    <span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 1 of 8</span>
+                  </div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">
+                    Did your employer seriously breach your employment contract?
+                  </h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    This could be a breach of a written contract term (e.g. cutting your pay, changing your hours) or a breach of the implied duty of mutual trust and confidence (e.g. bullying, humiliation, ignoring your complaints).
+                  </p>
+                  <div class="space-y-3" data-q="q1">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all group">
+                      <input type="radio" name="q1" value="yes_clear" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — there was a clear, serious breach</span>
+                        <span class="text-xs text-text-secondary">e.g. unauthorised pay cut, demotion, systematic bullying</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all group">
+                      <input type="radio" name="q1" value="yes_arguable" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Possibly — the situation was serious but not clear-cut</span>
+                        <span class="text-xs text-text-secondary">e.g. increased workload, changed responsibilities, difficult management</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all group">
+                      <input type="radio" name="q1" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — there was no specific breach</span>
+                        <span class="text-xs text-text-secondary">I just found the work environment unpleasant</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-slide hidden" id="q2" data-question="2">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 2 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did your employer breach your actual employment contract or destroy mutual trust?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Constructive dismissal requires a breach of the employment contract — either an express term (written) or the implied term of mutual trust and confidence. Personal grievances with colleagues, general unhappiness, or minor management issues typically do not meet this test.
+                  </p>
+                  <div class="space-y-3" data-q="q2">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q2" value="yes_contract" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — a written contract term was breached</span>
+                        <span class="text-xs text-text-secondary">e.g. pay, hours, job title, location changed without consent</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q2" value="yes_trust" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — my employer's behaviour destroyed trust and confidence</span>
+                        <span class="text-xs text-text-secondary">e.g. bullying, harassment, unfair accusations, being undermined</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q2" value="unsure" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Unsure — the situation was unpleasant but unclear</span>
+                        <span class="text-xs text-text-secondary">I am not sure if it technically breached any contract term</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q2" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — it was a personal/colleague issue, not employer conduct</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-slide hidden" id="q3" data-question="3">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 3 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did you resign because of your employer's breach — not for another reason?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    This is a critical legal test. You must show that the employer's breach was the main reason you resigned. If you resigned primarily for personal reasons (new job, relocation, family reasons) while the breach existed, your claim will likely fail.
+                  </p>
+                  <div class="space-y-3" data-q="q3">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q3" value="yes_clear" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I resigned solely because of my employer's conduct</span>
+                        <span class="text-xs text-text-secondary">I would not have resigned otherwise</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q3" value="yes_mainly" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Mainly yes — it was the primary reason, though not the only one</span>
+                        <span class="text-xs text-text-secondary">The breach was the main reason but I also had other considerations</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q3" value="partially" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Partially — there were mixed reasons for my resignation</span>
+                        <span class="text-xs text-text-secondary">I was already considering leaving and the breach accelerated my decision</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q3" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — I had already decided to leave for other reasons</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-slide hidden" id="q4" data-question="4">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 4 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">How quickly did you resign after the breach occurred?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Delay is a major risk factor. If you continue working for a long time after the breach without resigning or raising a grievance, a tribunal may decide you "affirmed" the contract — meaning you accepted the situation, which defeats your claim.
+                  </p>
+                  <div class="space-y-3" data-q="q4">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q4" value="immediate" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Within a few days to 2 weeks</span>
+                        <span class="text-xs text-text-secondary">I resigned very shortly after the breach</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q4" value="weeks" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Within 2 to 8 weeks</span>
+                        <span class="text-xs text-text-secondary">I resigned within a couple of months</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q4" value="months" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">2 to 6 months after the breach</span>
+                        <span class="text-xs text-text-secondary">I stayed on for some time before eventually resigning</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q4" value="long" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">More than 6 months after the breach</span>
+                        <span class="text-xs text-text-secondary">I stayed working for a significant period before resigning</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-slide hidden" id="q5" data-question="5">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 5 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did you raise a formal grievance before resigning?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    While not legally required, raising a formal grievance strengthens your case and demonstrates you tried to resolve the situation. Failing to follow the ACAS Code of Practice on grievances can reduce your compensation by up to 25%.
+                  </p>
+                  <div class="space-y-3" data-q="q5">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q5" value="yes_formal" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I raised a formal written grievance</span>
+                        <span class="text-xs text-text-secondary">I followed the company grievance procedure</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q5" value="yes_informal" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">I complained informally but not through a formal process</span>
+                        <span class="text-xs text-text-secondary">I raised concerns verbally or by email but not formally</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q5" value="no_reason" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — it was not possible or safe to do so</span>
+                        <span class="text-xs text-text-secondary">e.g. the breach involved the HR department, there was no safe route</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q5" value="no" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">No — I did not raise any grievance</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-slide hidden" id="q6" data-question="6">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 6 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">How long had you worked for this employer at the time of resigning?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    For most types of unfair/constructive dismissal claims, you need 2 years of continuous employment. However, some exceptions apply — discrimination-based constructive dismissal has no minimum service requirement.
+                  </p>
+                  <div class="space-y-3" data-q="q6">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q6" value="over2" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">2 years or more</span>
+                        <span class="text-xs text-text-secondary">I have the qualifying period for unfair dismissal</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q6" value="under2_discrimination" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Under 2 years — but the breach involved discrimination</span>
+                        <span class="text-xs text-text-secondary">e.g. the conduct related to race, sex, disability, age, religion or sexual orientation</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q6" value="under2_whistleblowing" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Under 2 years — but I was a whistleblower</span>
+                        <span class="text-xs text-text-secondary">I made a protected disclosure and was then treated badly</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q6" value="under2" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Under 2 years — no discrimination or whistleblowing involved</span>
+                        <span class="text-xs text-text-secondary">Standard employment situation</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-slide hidden" id="q7" data-question="7">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 7 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Do you have evidence of the breach?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Evidence significantly strengthens your case before a tribunal. This could include emails, letters, text messages, witness statements, payslips showing pay cuts, or written records of incidents.
+                  </p>
+                  <div class="space-y-3" data-q="q7">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q7" value="strong" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Yes — I have strong documentary evidence</span>
+                        <span class="text-xs text-text-secondary">Emails, letters, payslips, written records, witness statements</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q7" value="some" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Some evidence — not comprehensive but something in writing</span>
+                        <span class="text-xs text-text-secondary">A few emails or records that support my account</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q7" value="witness" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Mainly witness evidence — colleagues can support my account</span>
+                        <span class="text-xs text-text-secondary">No documents but witnesses who saw or heard what happened</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q7" value="none" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Little or no evidence — it is mainly my word against theirs</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-slide hidden" id="q8" data-question="8">
+                  <div class="mb-2"><span class="text-xs font-semibold text-orange uppercase tracking-wider">Question 8 of 8</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Was this a single incident or a series of incidents over time?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Constructive dismissal can arise from a single serious breach, or from a "last straw" where a series of smaller incidents cumulatively destroyed trust and confidence. A clear pattern of behaviour over time can be just as powerful as one major incident.
+                  </p>
+                  <div class="space-y-3" data-q="q8">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q8" value="single_serious" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">A single serious incident</span>
+                        <span class="text-xs text-text-secondary">One clear event that constituted a fundamental breach</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q8" value="pattern" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">A pattern of behaviour over time — final incident was the last straw</span>
+                        <span class="text-xs text-text-secondary">A series of incidents that cumulatively made my position untenable</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q8" value="ongoing" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">Ongoing conduct with no clear single incident</span>
+                        <span class="text-xs text-text-secondary">The general working environment and treatment became intolerable</span>
+                      </div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 hover:bg-navy/3 transition-all">
+                      <input type="radio" name="q8" value="unclear" class="mt-0.5 accent-navy flex-shrink-0" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">I am not sure — things just gradually became impossible</span>
+                      </div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+              </div><!-- /questions-container -->
+
+              <!-- Navigation Buttons -->
+              <div class="flex gap-3 mt-8" id="nav-buttons">
+                <button id="prev-btn" class="hidden px-5 py-3 border border-gray-200 text-text-secondary hover:border-gray-300 rounded-lg transition-all text-sm font-medium">
+                  ← Back
+                </button>
+                <button id="next-btn" class="flex-1 bg-orange hover:bg-orange-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2">
+                  Next Question
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button id="submit-btn" class="hidden flex-1 bg-navy hover:bg-navy-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                  Get My Results
+                </button>
+              </div>
+
+              <!-- Results Section -->
+              <div id="results-section" class="hidden mt-8 results-animate">
+                <div class="border-t border-gray-100 pt-8">
+
+                  <!-- Score Badge -->
+                  <div class="text-center mb-8">
+                    <div id="score-badge" class="inline-flex flex-col items-center justify-center w-32 h-32 rounded-full border-4 mb-4">
+                      <span id="score-number" class="font-heading text-4xl font-bold"></span>
+                      <span class="text-xs font-semibold uppercase tracking-wide mt-1">out of 13</span>
+                    </div>
+                    <h3 id="verdict-title" class="font-heading text-2xl font-bold mb-2"></h3>
+                    <p id="verdict-subtitle" class="text-text-secondary text-sm"></p>
+                  </div>
+
+                  <!-- Factor Breakdown -->
+                  <div class="bg-gray-50 rounded-xl p-5 mb-5">
+                    <h4 class="font-semibold text-text-primary text-sm mb-4">Your Case Factors</h4>
+                    <div id="factors-list" class="space-y-2.5"></div>
+                  </div>
+
+                  <!-- Key Findings -->
+                  <div id="key-findings" class="bg-white border border-gray-100 rounded-xl p-5 mb-5">
+                    <h4 class="font-semibold text-text-primary text-sm mb-3">Key Findings & Warnings</h4>
+                    <div id="findings-content" class="space-y-2 text-sm text-text-secondary"></div>
+                  </div>
+
+                  <!-- Next Steps -->
+                  <div class="bg-navy rounded-xl p-5 text-white">
+                    <h4 class="font-heading font-bold text-base mb-4">Recommended Next Steps</h4>
+                    <ol id="next-steps" class="space-y-3"></ol>
+                  </div>
+
+                  <!-- Start Over -->
+                  <button id="restart-btn" class="w-full mt-4 py-3 border border-gray-200 text-text-secondary hover:border-orange hover:text-orange rounded-lg transition-all text-sm font-medium">
+                    Start Assessment Again
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Ad Unit 2 -->
+          <div class="ad-unit mt-6" data-ad-position="below-tool">
+            <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+            <div class="h-[250px] bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+              <!-- 300x250 Rectangle Ad Unit -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <!-- Legal Tests -->
+          <div class="bg-navy rounded-xl p-5 text-white">
+            <h3 class="font-heading font-bold text-base mb-4">The 3 Legal Tests</h3>
+            <p class="text-xs text-gray-300 mb-4">A tribunal will apply all three tests. You must pass all of them.</p>
+            <div class="space-y-4">
+              {[
+                { num: '1', title: 'Fundamental Breach', desc: 'Your employer seriously breached your contract or destroyed mutual trust.' },
+                { num: '2', title: 'Resigned Because of It', desc: 'The breach must be the direct reason you resigned — not another cause.' },
+                { num: '3', title: 'Did Not Affirm', desc: 'You resigned promptly and did not "accept" the breach by delaying too long.' },
+              ].map(t => (
+                <div class="flex gap-3">
+                  <span class="w-6 h-6 bg-orange rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{t.num}</span>
+                  <div>
+                    <p class="text-sm font-semibold text-white">{t.title}</p>
+                    <p class="text-xs text-gray-300 mt-0.5 leading-snug">{t.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="flex items-start gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-amber-800 mb-1">Important Notice</p>
+                <p class="text-xs text-amber-700 leading-relaxed">
+                  This checker provides a general indication only. Constructive dismissal cases are highly fact-specific. Do not resign without first seeking legal advice.
+                </p>
+                <a href="/disclaimer/" class="text-xs text-amber-700 underline mt-1 block">Read full disclaimer →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning: Don't Resign Yet -->
+          <div class="bg-red-50 border border-red-200 rounded-xl p-4">
+            <div class="flex items-start gap-2">
+              <span class="text-lg flex-shrink-0">⚠️</span>
+              <div>
+                <p class="text-xs font-semibold text-red-800 mb-1">Have You Resigned Yet?</p>
+                <p class="text-xs text-red-700 leading-relaxed">If you have NOT yet resigned — do not resign before seeking legal advice. Once you resign, you cannot take it back. Speak to an employment solicitor first.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Free Help -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4">
+            <h3 class="font-semibold text-sm text-text-primary mb-3">Free Help Available</h3>
+            <div class="space-y-2">
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">ACAS:</strong> 0300 123 1100</div>
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">Citizens Advice:</strong> 0800 144 8848</div>
+              <div class="text-xs text-text-secondary"><strong class="text-text-primary">Community Legal Advice:</strong> 0345 345 4 345</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white border-t border-gray-100 py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: '01', title: 'Answer 8 Questions', desc: 'Go through our structured assessment covering the exact legal factors employment tribunals consider in constructive dismissal cases.' },
+          { num: '02', title: 'We Score Your Case', desc: 'Each answer is weighted against the legal tests tribunals apply. You get a score out of 13 with a clear strength rating.' },
+          { num: '03', title: 'See Your Findings', desc: 'Get a breakdown of your strongest and weakest factors, key warnings, and clear next steps tailored to your situation.' },
+        ].map(step => (
+          <div class="flex gap-4">
+            <div class="font-heading text-4xl font-bold text-navy/15 flex-shrink-0 leading-none">{step.num}</div>
+            <div>
+              <h3 class="font-heading font-semibold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-cream">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        {[
+          { q: 'What is constructive dismissal?', a: 'Constructive dismissal is when an employee resigns because their employer has seriously breached their employment contract, making it impossible for them to continue working. You effectively treat yourself as dismissed because of your employer\'s conduct. To succeed at an employment tribunal, you must show there was a fundamental breach, you resigned in response to it, and you did not delay unreasonably before resigning.' },
+          { q: 'Do I have to resign to claim constructive dismissal?', a: 'Yes. Constructive dismissal requires you to resign your position. You cannot claim constructive dismissal while still employed. Once you resign, you must bring your ACAS Early Conciliation notification within 3 months minus 1 day of your resignation date. Use our Employment Tribunal Deadline Calculator to find your exact deadline.' },
+          { q: 'What counts as a fundamental breach of contract?', a: 'A fundamental breach is one that goes to the heart of your employment contract (as defined by the courts under the Employment Rights Act 1996 and common law). Examples include: a significant unauthorised pay reduction, a demotion without consent, being subjected to bullying or harassment that the employer ignores, being required to work in a completely different role without agreement, or a pattern of behaviour that cumulatively destroys trust and confidence between employer and employee.' },
+          { q: 'Does it matter if I resigned immediately or waited?', a: 'Timing matters significantly. If you wait too long after the breach before resigning, a tribunal may conclude that you accepted ("affirmed") the breach, which would defeat your claim. There is no fixed time limit but waiting more than a few months after the main incident without resigning or raising a grievance can seriously weaken your case.' },
+          { q: 'Should I raise a grievance before resigning?', a: 'It is strongly advisable to raise a formal grievance before resigning if circumstances allow. While not legally required, failing to use your employer\'s grievance procedure can reduce your compensation by up to 25% under the ACAS Code of Practice on Discipline and Grievance. Raising a grievance also shows you tried to resolve the situation, which improves your credibility before a tribunal.' },
+        ].map(faq => (
+          <details class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-text-primary text-sm hover:text-navy transition-colors list-none">
+              <span>{faq.q}</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed border-t border-gray-50 pt-4">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Ad Unit 3 -->
+      <div class="ad-unit mt-8" data-ad-position="faq-mid">
+        <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+        <div class="h-[250px] bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+          <!-- 300x250 Rectangle Ad Unit -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Other Tools You Might Need</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="group bg-cream rounded-xl border border-gray-100 p-5 hover:border-orange/30 hover:shadow-card transition-all duration-200">
+            <span class="text-2xl block mb-3">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-navy transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+            <span class="text-orange text-xs font-medium mt-3 inline-flex items-center gap-1">
+              Use tool free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .results-animate { animation: fadeInUp 0.4s ease forwards; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .accent-navy { accent-color: #1a3c5e; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // State
+  let currentQuestion = 1;
+  const totalQuestions = 8;
+  const answers: Record<string, string> = {};
+
+  const questions = document.querySelectorAll('.question-slide');
+  const progressBar = document.getElementById('progress-bar');
+  const currentQEl = document.getElementById('current-q');
+  const progressPctEl = document.getElementById('progress-pct');
+  const nextBtn = document.getElementById('next-btn');
+  const prevBtn = document.getElementById('prev-btn');
+  const submitBtn = document.getElementById('submit-btn');
+  const resultsSection = document.getElementById('results-section');
+
+  function updateProgress() {
+    const pct = Math.round(((currentQuestion - 1) / totalQuestions) * 100);
+    if (progressBar) progressBar.style.width = pct + '%';
+    if (currentQEl) currentQEl.textContent = String(currentQuestion);
+    if (progressPctEl) progressPctEl.textContent = String(pct);
+  }
+
+  function showQuestion(n: number) {
+    questions.forEach((q, i) => {
+      if (i + 1 === n) q.classList.remove('hidden');
+      else q.classList.add('hidden');
+    });
+    if (prevBtn) {
+      if (n > 1) prevBtn.classList.remove('hidden');
+      else prevBtn.classList.add('hidden');
+    }
+    if (n === totalQuestions) {
+      nextBtn?.classList.add('hidden');
+      submitBtn?.classList.remove('hidden');
+    } else {
+      nextBtn?.classList.remove('hidden');
+      submitBtn?.classList.add('hidden');
+    }
+    updateProgress();
+  }
+
+  function getAnswer(qNum: number): string | null {
+    const selected = document.querySelector(`input[name="q${qNum}"]:checked`) as HTMLInputElement;
+    return selected ? selected.value : null;
+  }
+
+  function clearError(qNum: number) {
+    const slide = document.getElementById(`q${qNum}`);
+    slide?.querySelector('.error-msg')?.classList.add('hidden');
+  }
+
+  nextBtn?.addEventListener('click', () => {
+    const answer = getAnswer(currentQuestion);
+    if (!answer) {
+      const slide = document.getElementById(`q${currentQuestion}`);
+      slide?.querySelector('.error-msg')?.classList.remove('hidden');
+      return;
+    }
+    clearError(currentQuestion);
+    answers[`q${currentQuestion}`] = answer;
+    currentQuestion++;
+    showQuestion(currentQuestion);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  prevBtn?.addEventListener('click', () => {
+    if (currentQuestion > 1) {
+      currentQuestion--;
+      showQuestion(currentQuestion);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  submitBtn?.addEventListener('click', () => {
+    const answer = getAnswer(currentQuestion);
+    if (!answer) {
+      const slide = document.getElementById(`q${currentQuestion}`);
+      slide?.querySelector('.error-msg')?.classList.remove('hidden');
+      return;
+    }
+    answers[`q${currentQuestion}`] = answer;
+    calculateResults();
+  });
+
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    currentQuestion = 1;
+    Object.keys(answers).forEach(k => delete answers[k]);
+    document.querySelectorAll('input[type="radio"]').forEach(r => (r as HTMLInputElement).checked = false);
+    resultsSection?.classList.add('hidden');
+    document.getElementById('progress-section')?.classList.remove('hidden');
+    document.getElementById('nav-buttons')?.classList.remove('hidden');
+    showQuestion(1);
+  });
+
+  // Score each answer
+  function scoreAnswer(q: string, val: string): { score: number; label: string; positive: boolean; note: string } {
+    const map: Record<string, Record<string, { score: number; label: string; positive: boolean; note: string }>> = {
+      q1: {
+        yes_clear:    { score: 2, label: 'Clear serious breach', positive: true, note: 'A clear fundamental breach is the foundation of your claim.' },
+        yes_arguable: { score: 1, label: 'Possible breach — arguable', positive: true, note: 'This is arguable but will need strong supporting evidence.' },
+        no:           { score: 0, label: 'No specific breach', positive: false, note: 'Without a fundamental breach, a constructive dismissal claim will not succeed.' },
+      },
+      q2: {
+        yes_contract: { score: 2, label: 'Written contract breach', positive: true, note: 'Breach of an express contract term is a strong legal foundation.' },
+        yes_trust:    { score: 2, label: 'Trust & confidence destroyed', positive: true, note: 'Destruction of mutual trust and confidence is a well-recognised basis for constructive dismissal.' },
+        unsure:       { score: 1, label: 'Breach unclear', positive: false, note: 'Uncertainty about the nature of the breach is a significant weakness.' },
+        no:           { score: 0, label: 'No contract breach', positive: false, note: 'Without a contract breach, your claim has no legal basis.' },
+      },
+      q3: {
+        yes_clear:   { score: 2, label: 'Resigned solely due to breach', positive: true, note: 'The clearest possible causal link between breach and resignation.' },
+        yes_mainly:  { score: 1, label: 'Breach was primary reason', positive: true, note: 'Good but the employer may argue other reasons motivated your resignation.' },
+        partially:   { score: 0, label: 'Mixed reasons for resignation', positive: false, note: 'Mixed reasons significantly weaken the causal link test.' },
+        no:          { score: 0, label: 'Resigned for other reasons', positive: false, note: 'If you had already decided to leave, your claim is very unlikely to succeed.' },
+      },
+      q4: {
+        immediate: { score: 2, label: 'Resigned very promptly', positive: true, note: 'Prompt resignation is strong evidence you did not affirm the breach.' },
+        weeks:     { score: 1, label: 'Resigned within weeks', positive: true, note: 'Still acceptable but a tribunal will want to understand the timeline.' },
+        months:    { score: 0, label: 'Waited 2–6 months', positive: false, note: 'This raises a significant risk that you affirmed the breach by continuing to work.' },
+        long:      { score: 0, label: 'Waited over 6 months', positive: false, note: 'A tribunal is likely to find you affirmed the breach. This is a serious weakness.' },
+      },
+      q5: {
+        yes_formal:   { score: 1, label: 'Formal grievance raised', positive: true, note: 'Raising a formal grievance demonstrates you attempted to resolve the situation.' },
+        yes_informal: { score: 1, label: 'Informal complaint made', positive: true, note: 'Helpful but a formal grievance would have been stronger.' },
+        no_reason:    { score: 1, label: 'Could not safely raise grievance', positive: true, note: 'Valid reason for not grieving. Explain this clearly to a tribunal.' },
+        no:           { score: 0, label: 'No grievance raised', positive: false, note: 'Failing to use the grievance procedure can reduce your compensation by up to 25%.' },
+      },
+      q6: {
+        over2:                  { score: 1, label: '2+ years service', positive: true, note: 'You have the qualifying period for unfair/constructive dismissal claims.' },
+        under2_discrimination:  { score: 1, label: 'Under 2 years — discrimination claim', positive: true, note: 'Discrimination-based constructive dismissal has no minimum service requirement.' },
+        under2_whistleblowing:  { score: 1, label: 'Under 2 years — whistleblower', positive: true, note: 'Whistleblowing constructive dismissal has no minimum service requirement.' },
+        under2:                 { score: 0, label: 'Under 2 years service', positive: false, note: 'You do not have the qualifying period for standard constructive dismissal. You may have other claims depending on the nature of the breach.' },
+      },
+      q7: {
+        strong:  { score: 2, label: 'Strong documentary evidence', positive: true, note: 'Strong evidence significantly increases your prospects before a tribunal.' },
+        some:    { score: 1, label: 'Some written evidence', positive: true, note: 'Some evidence is better than none. Gather everything you can.' },
+        witness: { score: 1, label: 'Witness evidence available', positive: true, note: 'Witness evidence is valuable but documentary evidence is generally stronger.' },
+        none:    { score: 0, label: 'Little or no evidence', positive: false, note: 'Without evidence, it becomes your word against your employer\'s, which is a significant risk.' },
+      },
+      q8: {
+        single_serious: { score: 1, label: 'Single serious incident', positive: true, note: 'A clear single incident is straightforward for a tribunal to assess.' },
+        pattern:        { score: 1, label: 'Last straw — pattern of conduct', positive: true, note: '"Last straw" cases are well-recognised in constructive dismissal law.' },
+        ongoing:        { score: 1, label: 'Ongoing conduct', positive: true, note: 'Tribunals recognise ongoing conduct but you will need to identify specific incidents.' },
+        unclear:        { score: 0, label: 'Unclear pattern', positive: false, note: 'If you cannot articulate specific incidents, this may be harder to prove.' },
+      },
+    };
+    return map[q]?.[val] || { score: 0, label: 'Not answered', positive: false, note: '' };
+  }
+
+  function calculateResults() {
+    let totalScore = 0;
+    const factors: Array<{ label: string; positive: boolean; note: string; q: string }> = [];
+    const warnings: string[] = [];
+
+    for (let i = 1; i <= 8; i++) {
+      const qKey = `q${i}`;
+      const val = answers[qKey] || '';
+      const result = scoreAnswer(qKey, val);
+      totalScore += result.score;
+      factors.push({ ...result, q: qKey });
+    }
+
+    // Determine verdict
+    let verdictTitle = '';
+    let verdictSubtitle = '';
+    let badgeClass = '';
+
+    if (totalScore >= 12) {
+      verdictTitle = 'Strong Case';
+      verdictSubtitle = 'Your answers suggest you have a strong constructive dismissal claim. You should seek legal advice promptly to take this forward.';
+      badgeClass = 'border-green-400 text-green-600 bg-green-50';
+    } else if (totalScore >= 8) {
+      verdictTitle = 'Possible Case';
+      verdictSubtitle = 'You may have a constructive dismissal claim but there are weaknesses. Legal advice is strongly recommended before taking any action.';
+      badgeClass = 'border-amber-400 text-amber-600 bg-amber-50';
+    } else if (totalScore >= 4) {
+      verdictTitle = 'Weak Case';
+      verdictSubtitle = 'There are significant weaknesses in your case as you have described it. Speak to a solicitor before deciding whether to proceed.';
+      badgeClass = 'border-orange-400 text-orange-600 bg-orange-50';
+    } else {
+      verdictTitle = 'Very Difficult Case';
+      verdictSubtitle = 'Based on your answers, you are likely to face very significant legal challenges. Seek specialist advice before taking any steps.';
+      badgeClass = 'border-red-400 text-red-600 bg-red-50';
+    }
+
+    // Specific warnings
+    if (answers.q4 === 'months' || answers.q4 === 'long') warnings.push('⚠️ Your delay in resigning is a significant risk. A tribunal may find you affirmed the breach.');
+    if (answers.q6 === 'under2') warnings.push('⚠️ You do not have 2 years service. Standard constructive dismissal claims may not be available to you.');
+    if (answers.q3 === 'no' || answers.q3 === 'partially') warnings.push('⚠️ Mixed or alternative reasons for your resignation seriously weaken the causal link test.');
+    if (answers.q7 === 'none') warnings.push('⚠️ Lack of evidence means this becomes your word against your employer\'s. Gather any evidence you can immediately.');
+    // Last straw doctrine — long delay + pattern of behaviour
+    if ((answers.q4 === 'months' || answers.q4 === 'long') && answers.q8 === 'pattern') {
+      warnings.push('ℹ️ Note: While a long delay usually weakens a claim, UK law allows for a "last straw" incident to revive older breaches where there is a pattern of conduct. The Employment Appeal Tribunal has held that the last act in a series need not itself be a breach — it merely needs to be the final incident that causes the employee to resign. You should discuss this specific timeline with an employment solicitor.');
+    }
+    if (answers.q5 === 'no') warnings.push('💡 Not raising a grievance can reduce your compensation by up to 25% if you succeed.');
+
+    // Render results
+    const scoreBadge = document.getElementById('score-badge');
+    const scoreNumber = document.getElementById('score-number');
+    const verdictTitleEl = document.getElementById('verdict-title');
+    const verdictSubtitleEl = document.getElementById('verdict-subtitle');
+    const factorsList = document.getElementById('factors-list');
+    const findingsContent = document.getElementById('findings-content');
+    const nextStepsEl = document.getElementById('next-steps');
+
+    if (scoreBadge) scoreBadge.className = `inline-flex flex-col items-center justify-center w-32 h-32 rounded-full border-4 mb-4 ${badgeClass}`;
+    if (scoreNumber) scoreNumber.textContent = String(totalScore);
+    if (verdictTitleEl) verdictTitleEl.textContent = verdictTitle;
+    if (verdictSubtitleEl) verdictSubtitleEl.textContent = verdictSubtitle;
+
+    if (factorsList) {
+      factorsList.innerHTML = factors.map(f => `
+        <div class="flex items-start gap-3">
+          <span class="flex-shrink-0 mt-0.5">${f.positive ? '✅' : '❌'}</span>
+          <div>
+            <span class="text-sm font-semibold ${f.positive ? 'text-green-700' : 'text-red-600'}">${f.label}</span>
+            <p class="text-xs text-text-secondary mt-0.5">${f.note}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    if (findingsContent) {
+      if (warnings.length === 0) {
+        findingsContent.innerHTML = '<p class="text-sm text-green-700">No major warnings identified based on your answers.</p>';
+      } else {
+        findingsContent.innerHTML = warnings.map(w => `<p class="text-sm text-text-secondary py-1">${w}</p>`).join('');
+      }
+    }
+
+    const steps = totalScore >= 8 ? [
+      '📞 Contact ACAS immediately: 0300 123 1100 — start Early Conciliation',
+      '⚖️ Consult an employment solicitor — many offer free initial advice',
+      '📋 Gather all evidence: emails, letters, payslips, records of incidents',
+      '⏱️ Check your tribunal deadline with our Deadline Calculator',
+      '📄 Do not discuss your claim on social media or with colleagues',
+    ] : [
+      '⚖️ Speak to an employment solicitor before taking any action',
+      '📞 Call Citizens Advice on 0800 144 8848 for free guidance',
+      '📋 Gather any evidence that supports your account of events',
+      '💡 Consider whether alternative actions (grievance, mediation) are more appropriate',
+      '⏱️ If you have already resigned, check your tribunal deadline urgently',
+    ];
+
+    if (nextStepsEl) {
+      nextStepsEl.innerHTML = steps.map((step, i) => `
+        <li class="flex items-start gap-3 text-sm text-gray-200">
+          <span class="w-5 h-5 bg-orange rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">${i+1}</span>
+          <span>${step}</span>
+        </li>
+      `).join('');
+    }
+
+    // Show results
+    document.getElementById('progress-section')?.classList.add('hidden');
+    document.getElementById('nav-buttons')?.classList.add('hidden');
+    questions.forEach(q => q.classList.add('hidden'));
+    resultsSection?.classList.remove('hidden');
+    resultsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Init
+  showQuestion(1);
+  });
+</script>

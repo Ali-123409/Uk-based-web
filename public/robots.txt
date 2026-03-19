@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Block AI scrapers
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+Sitemap: https://fairworkcheck.co.uk/sitemap-index.xml
+
+Host: https://fairworkcheck.co.uk

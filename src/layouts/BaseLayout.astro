@@ -1,0 +1,108 @@
+---
+/**
+ * DEPLOYMENT CHECKLIST — READ BEFORE GOING LIVE
+ * ────────────────────────────────────────────────
+ * ✅ Ensure public/og-default.jpg exists and is exactly 1200×630px.
+ *    This image appears when pages are shared on LinkedIn, Twitter/X,
+ *    WhatsApp, Facebook, and in Google search rich results.
+ *    A missing or wrong-size image = broken social previews on every page.
+ *
+ * To generate: open public/og-default.svg in a browser, screenshot at
+ * 1200×630, or use: npx sharp-cli resize 1200 630 --input og-raw.png
+ *                                                  --output public/og-default.jpg
+ */
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = 'https://fairworkcheck.co.uk/og-default.jpg',
+  schema
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary SEO -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="FairWorkCheck" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Schema JSON-LD -->
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(schema) ? schema : [schema])} />
+  )}
+
+  <!-- Google AdSense — replace ca-pub-XXXXXXXXXX with your ID after approval -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <style>
+    :root {
+      --navy: #1a3c5e;
+      --navy-dark: #122b45;
+      --orange: #e8622a;
+      --cream: #f8f7f4;
+      --text-primary: #1a1a2e;
+      --text-secondary: #5a6a7a;
+      --success: #2d7a4f;
+      --warning: #c97b2a;
+      --danger: #c0392b;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-primary);
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+    }
+    @media print {
+      header, footer, .ad-unit, nav { display: none !important; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <slot name="header" />
+  <main class="flex-1">
+    <slot />
+  </main>
+  <slot name="footer" />
+</body>
+</html>

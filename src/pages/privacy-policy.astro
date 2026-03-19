@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy | FairWorkCheck"
+  description="Privacy policy for FairWorkCheck.co.uk. We do not store personal data. All calculations happen in your browser."
+  canonical="https://fairworkcheck.co.uk/privacy-policy/"
+>
+  <Header slot="header" />
+  <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="font-heading text-3xl font-bold text-text-primary mb-8">Privacy Policy</h1>
+      <div class="bg-white rounded-2xl shadow-card p-8 text-text-secondary leading-relaxed space-y-6">
+        <p class="text-sm text-gray-400">Last updated: January 2026</p>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">What Data We Collect</h2>
+          <p class="text-sm">FairWorkCheck does not collect, store, or transmit any personal data you enter into our tools. All calculations are performed entirely within your web browser. Nothing you enter is sent to our servers.</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">Analytics</h2>
+          <p class="text-sm">We use Google Analytics to understand how visitors use our website. This collects anonymised data such as pages visited, time on site, and browser type. No personally identifiable information is collected through analytics.</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">Advertising</h2>
+          <p class="text-sm">We display advertisements via Google AdSense. Google may use cookies to serve ads based on your prior visits to this or other websites. You can opt out of personalised advertising by visiting Google's Ads Settings.</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">Cookies</h2>
+          <p class="text-sm">We use cookies for analytics and advertising purposes only. No cookies are used to store personal information related to your tool usage.</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">Your Rights</h2>
+          <p class="text-sm">Under UK GDPR, you have the right to access, correct, or delete any personal data we hold about you. As we do not store personal tool data, there is typically nothing to delete. For analytics opt-out, use your browser's privacy controls.</p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-lg font-bold text-text-primary mb-2">Contact</h2>
+          <p class="text-sm">For any privacy-related queries, contact us at: privacy@fairworkcheck.co.uk</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+

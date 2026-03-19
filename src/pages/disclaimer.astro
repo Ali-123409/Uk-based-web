@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+---
+
+<BaseLayout
+  title="Disclaimer | FairWorkCheck"
+  description="Legal disclaimer for FairWorkCheck.co.uk. Our tools provide general information only and do not constitute legal advice."
+  canonical="https://fairworkcheck.co.uk/disclaimer/"
+>
+  <Header slot="header" />
+  <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Disclaimer' }]} />
+
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="font-heading text-3xl font-bold text-text-primary mb-8">Disclaimer</h1>
+      <div class="bg-white rounded-2xl shadow-card p-8 prose prose-sm max-w-none text-text-secondary leading-relaxed space-y-5">
+        <p class="text-sm text-gray-400">Last updated: January 2026</p>
+        <h2 class="font-heading text-lg font-bold text-text-primary">General Information Only</h2>
+        <p>The tools, calculators, and content on FairWorkCheck.co.uk are provided for general informational purposes only. Nothing on this website constitutes legal advice, and no solicitor-client relationship is formed by using this website.</p>
+        <h2 class="font-heading text-lg font-bold text-text-primary">No Legal Advice</h2>
+        <p>The results produced by our tools are estimates and general indicators based on common scenarios. Employment law is complex and highly fact-specific. Your specific circumstances may produce a different legal outcome. Always consult a qualified employment solicitor before taking any legal action.</p>
+        <h2 class="font-heading text-lg font-bold text-text-primary">Accuracy of Information</h2>
+        <p>We make every effort to ensure our tools reflect current UK employment law and statutory rates. However, we cannot guarantee that all information is current, complete, or accurate. Laws and rates change — always verify critical deadlines and figures with official sources such as GOV.UK, ACAS, or a qualified solicitor.</p>
+        <h2 class="font-heading text-lg font-bold text-text-primary">Free Resources</h2>
+        <p>For free legal guidance, contact: <strong>ACAS</strong> on 0300 123 1100 | <strong>Citizens Advice</strong> on 0800 144 8848 | <strong>GOV.UK</strong> at gov.uk/employment-tribunals</p>
+        <h2 class="font-heading text-lg font-bold text-text-primary">Limitation of Liability</h2>
+        <p>FairWorkCheck accepts no liability for any loss or damage arising from reliance on the information or tools provided on this website. Use of this website is entirely at your own risk.</p>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+

@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About FairWorkCheck",
+  "url": "https://fairworkcheck.co.uk/about/",
+  "description": "FairWorkCheck provides free interactive tools to help UK workers understand their employment rights, calculate deadlines, and assess their legal position.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "FairWorkCheck",
+    "url": "https://fairworkcheck.co.uk"
+  }
+};
+---
+
+<BaseLayout
+  title="About FairWorkCheck — Free UK Employment Rights Tools"
+  description="Learn about FairWorkCheck — why we built it, what we do, and how our free tools help UK workers understand their employment rights instantly."
+  canonical="https://fairworkcheck.co.uk/about/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h1 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">About FairWorkCheck</h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-10">
+        Free, accurate employment rights tools — built for UK workers who need answers fast.
+      </p>
+
+      <div class="bg-white rounded-2xl shadow-card p-8 space-y-8 text-text-secondary leading-relaxed">
+
+        <div>
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">Why We Built This</h2>
+          <p>
+            Employment disputes are stressful. Deadlines are strict. Legal advice is expensive. Most workers facing unfair dismissal, a TUPE transfer, or a settlement offer don't know where to start — or how much time they have.
+          </p>
+          <p class="mt-3">
+            FairWorkCheck exists to change that. We build free, plain-English tools that give UK workers instant, accurate answers — without the need to register, pay, or wait for a callback.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">What We Do</h2>
+          <p>
+            Every tool on FairWorkCheck is purpose-built for a specific employment law scenario. We cover tribunal deadlines, dismissal assessments, TUPE rights, sick pay calculations for zero hours workers, and settlement agreement tax breakdowns — all updated for UK law 2025/26.
+          </p>
+          <p class="mt-3">
+            Our tools are not generic calculators. Each one reflects the actual legal tests that employment tribunals apply, the statutory rates HMRC enforces, and the procedures ACAS requires.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">Our Principles</h2>
+          <ul class="space-y-3 mt-2">
+            {[
+              { icon: '🎯', title: 'UK Law Only', desc: 'Every tool is built exclusively for UK employment law. No generic international content.' },
+              { icon: '🔒', title: 'Completely Private', desc: 'We never store your data. All calculations run in your browser. Nothing is sent to our servers.' },
+              { icon: '⚡', title: 'Always Free', desc: 'No subscriptions, no paywalls, no registration. Free — full stop.' },
+              { icon: '📅', title: 'Kept Current', desc: 'We update rates and legislation annually. Every tool is marked with its applicable tax year.' },
+            ].map(item => (
+              <li class="flex gap-3">
+                <span class="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                <div>
+                  <span class="font-semibold text-text-primary">{item.title}:</span>{' '}
+                  <span>{item.desc}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">Our Review Process</h2>
+          <p class="text-text-secondary text-sm leading-relaxed mb-3">
+            Every tool on FairWorkCheck is built and maintained against primary legal sources. Our process involves four steps:
+          </p>
+          <ol class="text-text-secondary text-sm leading-relaxed space-y-2 mb-8 list-decimal list-inside">
+            <li><strong class="text-text-primary">Statutory grounding</strong> — each calculator references the relevant Act of Parliament or Statutory Instrument directly (e.g. Employment Rights Act 1996, Working Time Regulations 1998, Equality Act 2010, ITEPA 2003).</li>
+            <li><strong class="text-text-primary">ACAS guidance alignment</strong> — tools reflect current ACAS Codes of Practice, including the Code on Disciplinary and Grievance Procedures and ACAS Early Conciliation guidance.</li>
+            <li><strong class="text-text-primary">Rate verification</strong> — financial figures (SSP rates, Vento bands, NI thresholds, income tax bands) are checked and updated each April when HMRC publishes new rates for the tax year.</li>
+            <li><strong class="text-text-primary">Case law review</strong> — major Employment Appeal Tribunal and Supreme Court decisions (such as Harpur Trust v Brazel [2022] UKSC 21 on holiday pay) are reflected in tool logic when they change the legal position.</li>
+          </ol>
+
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">Important Limitation</h2>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-sm text-amber-800">
+            <strong>FairWorkCheck is not a law firm and does not provide legal advice.</strong> Our tools provide general information based on common employment law scenarios. Your specific circumstances may produce a different outcome. Always consult a qualified employment solicitor before taking legal action.
+            <a href="/disclaimer/" class="underline hover:text-amber-900 ml-1">Read our full disclaimer →</a>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-heading text-xl font-bold text-text-primary mb-3">Free Help Is Available</h2>
+          <p>If you need free legal guidance beyond our tools, these organisations can help:</p>
+          <ul class="mt-3 space-y-2 text-sm">
+            <li><strong class="text-text-primary">ACAS</strong> — 0300 123 1100 · <a href="https://www.acas.org.uk" target="_blank" rel="noopener" class="text-orange hover:underline">acas.org.uk</a></li>
+            <li><strong class="text-text-primary">Citizens Advice</strong> — 0800 144 8848 · <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener" class="text-orange hover:underline">citizensadvice.org.uk</a></li>
+            <li><strong class="text-text-primary">GOV.UK Employment Tribunals</strong> — <a href="https://www.gov.uk/employment-tribunals" target="_blank" rel="noopener" class="text-orange hover:underline">gov.uk/employment-tribunals</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+

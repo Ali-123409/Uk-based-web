@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#1a3c5e"/>
+  <rect width="1200" height="630" fill="url(#grad)" opacity="0.4"/>
+  <defs>
+    <radialGradient id="grad" cx="20%" cy="50%">
+      <stop offset="0%" stop-color="#e8622a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1a3c5e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- Logo icon -->
+  <rect x="80" y="80" width="64" height="64" rx="12" fill="#e8622a"/>
+  <circle cx="112" cy="112" r="20" fill="none" stroke="white" stroke-width="3"/>
+  <polyline points="104,112 110,118 122,106" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Brand name -->
+  <text x="160" y="126" font-family="Georgia, serif" font-size="40" font-weight="bold" fill="white">FairWork<tspan fill="#e8622a">Check</tspan></text>
+  <!-- Headline -->
+  <text x="80" y="290" font-family="Georgia, serif" font-size="64" font-weight="bold" fill="white">Know Your Rights.</text>
+  <text x="80" y="370" font-family="Georgia, serif" font-size="64" font-weight="bold" fill="#e8622a">Check Your Claim.</text>
+  <!-- Subtext -->
+  <text x="80" y="450" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">Free UK employment rights tools. No signup. No fees.</text>
+  <!-- Pills -->
+  <rect x="80" y="510" width="200" height="44" rx="22" fill="#e8622a" opacity="0.2"/>
+  <text x="180" y="538" font-family="Arial, sans-serif" font-size="18" fill="#e8622a" text-anchor="middle">5 Free Tools</text>
+  <rect x="298" y="510" width="220" height="44" rx="22" fill="white" opacity="0.1"/>
+  <text x="408" y="538" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">UK Law 2025/26</text>
+  <rect x="536" y="510" width="260" height="44" rx="22" fill="white" opacity="0.1"/>
+  <text x="666" y="538" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle">0 Registration Required</text>
+</svg>

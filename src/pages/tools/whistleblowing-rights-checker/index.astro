@@ -1,0 +1,711 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'Whistleblowing Rights Checker' }
+];
+
+const relatedToolIds = ['constructive-dismissal', 'tribunal-deadline', 'acas-conciliation'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Whistleblowing Rights Checker UK",
+    "url": "https://fairworkcheck.co.uk/tools/whistleblowing-rights-checker/",
+    "description": "Check whether your disclosure qualifies as a protected disclosure under UK whistleblowing law and whether any retaliation you experienced is actionable.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Whistleblowing Rights Checker" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a protected disclosure under UK whistleblowing law?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A protected disclosure is a report made by a worker (as defined by the Public Interest Disclosure Act 1998, which inserted sections 43A–43L into the Employment Rights Act 1996) in the reasonable belief that it is in the public interest, revealing one of six qualifying types of wrongdoing: a criminal offence, a breach of a legal obligation, a miscarriage of justice, a danger to health or safety, damage to the environment, or a deliberate cover-up of any of the above. The disclosure must be made to an appropriate recipient — typically your employer, a prescribed regulator, or in some cases the media." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need to be an employee to be protected by whistleblowing law?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Whistleblowing protections under the Public Interest Disclosure Act 1998 (PIDA) apply to a broad category of 'workers', not just employees. This includes agency workers, NHS workers, contractors, and trainees. Self-employed contractors may also qualify in certain circumstances. The protections are wider than standard employment rights, which is one of the key advantages of a whistleblowing claim." }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as detriment after making a protected disclosure?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Detriment means any disadvantage imposed by your employer because of your whistleblowing. Examples include demotion, disciplinary action, being passed over for promotion, changes to your duties, exclusion from meetings, increased workload, being subjected to a hostile management style, or being dismissed. Dismissal connected to a protected disclosure is automatically unfair with no minimum service requirement, and compensation is uncapped." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my concern have to be true to qualify as a protected disclosure?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. You do not need to be correct that wrongdoing occurred. What matters is that you had a reasonable belief that the information tended to show one of the qualifying categories of wrongdoing, and that you reasonably believed the disclosure was in the public interest. If you acted honestly and reasonably, you are protected even if it later turns out you were wrong about the facts." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I be dismissed for whistleblowing?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Dismissal for making a protected disclosure is automatically unfair under UK employment law. Crucially, there is no minimum length of service required to bring this type of claim — unlike standard unfair dismissal which requires 2 years. Compensation is also uncapped, meaning tribunals can award very large sums in serious cases. If you were dismissed and believe it was connected to a protected disclosure, you should contact ACAS immediately to start the early conciliation process." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`Whistleblowing Rights Checker UK ${CURRENT_YEAR} — Am I Protected? | FairWorkCheck`}
+  description={`Check whether your disclosure is legally protected under UK whistleblowing law. Find out if retaliation by your employer is actionable. Free tool, updated ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/whistleblowing-rights-checker/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"><!-- 728x90 --></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-purple-50 text-purple-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-purple-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        9-question assessment · Takes 3 minutes
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Whistleblowing Rights Checker UK
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Answer questions about what you reported, who you told, and what happened afterwards. Find out if your disclosure is legally protected and whether any retaliation is actionable under UK law.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Completely Private', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Checker Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-purple overflow-hidden">
+            <div class="p-6 md:p-8">
+
+              <!-- Progress -->
+              <div class="mb-8" id="progress-section">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-sm font-semibold text-text-primary">Question <span id="current-q">1</span> of 9</span>
+                  <span class="text-sm text-text-secondary"><span id="progress-pct">0</span>% complete</span>
+                </div>
+                <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div id="progress-bar" class="h-full rounded-full transition-all duration-500" style="width: 0%; background-color: #7c3aed;"></div>
+                </div>
+              </div>
+
+              <!-- Questions -->
+              <div id="questions-container">
+
+                <!-- Q1 -->
+                <div class="question-slide" id="q1" data-question="1">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 1 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">What type of wrongdoing did you report?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    UK whistleblowing law only protects disclosures about specific categories of wrongdoing. Personal grievances, complaints about your own treatment, or internal policy disagreements do not qualify on their own.
+                  </p>
+                  <div class="space-y-3" data-q="q1">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="criminal" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A criminal offence</span><span class="text-xs text-text-secondary">Fraud, theft, bribery, regulatory crime</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="legal_breach" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A breach of a legal obligation</span><span class="text-xs text-text-secondary">Breach of contract, regulatory non-compliance, tax evasion</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="health_safety" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A danger to health or safety</span><span class="text-xs text-text-secondary">Unsafe working conditions, unreported accidents, risk to the public</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="environment" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Environmental damage</span><span class="text-xs text-text-secondary">Illegal dumping, pollution, failure to comply with environmental law</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="miscarriage" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A miscarriage of justice</span><span class="text-xs text-text-secondary">Wrongful prosecution, concealment of evidence, judicial misconduct</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="cover_up" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A deliberate cover-up of any of the above</span><span class="text-xs text-text-secondary">Suppression of evidence, falsifying records</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q1" value="personal" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A personal grievance or workplace complaint</span><span class="text-xs text-text-secondary">My own treatment, management style, pay dispute</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q2 -->
+                <div class="question-slide hidden" id="q2" data-question="2">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 2 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did you genuinely believe the wrongdoing was occurring or was likely to occur?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    You don't need to have proof. The law requires that you had a reasonable, honest belief — not certainty. However, making up or exaggerating concerns for personal advantage is not protected.
+                  </p>
+                  <div class="space-y-3" data-q="q2">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q2" value="yes_certain" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — I was certain the wrongdoing was happening</span><span class="text-xs text-text-secondary">I had direct knowledge or clear evidence</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q2" value="yes_reasonable" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — I had reasonable grounds to believe it</span><span class="text-xs text-text-secondary">I may not have had proof, but my concern was genuine and reasonable</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q2" value="unsure" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I suspected something was wrong but wasn't sure</span><span class="text-xs text-text-secondary">I reported it out of concern but wasn't certain</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q2" value="no" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No — I reported it for other reasons</span><span class="text-xs text-text-secondary">I had a personal motive unrelated to the concern itself</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q3 -->
+                <div class="question-slide hidden" id="q3" data-question="3">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 3 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did you believe your disclosure was in the public interest?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Since 2013, disclosures must be made in the public interest — not just for personal benefit. This doesn't mean you need to be altruistic; mixed motives are fine. But purely private disputes don't qualify.
+                  </p>
+                  <div class="space-y-3" data-q="q3">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q3" value="yes_clear" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — the wrongdoing affected the public, customers, or many workers</span><span class="text-xs text-text-secondary">Not just my own situation</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q3" value="yes_mixed" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Partly — it affected me personally but also others</span><span class="text-xs text-text-secondary">Mixed personal and public element</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q3" value="no" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No — it mainly related to my own employment situation</span><span class="text-xs text-text-secondary">Pay, my own treatment, personal contractual dispute</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q4 -->
+                <div class="question-slide hidden" id="q4" data-question="4">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 4 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Who did you make the disclosure to?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Who you report to matters. Reporting to your employer or an internal channel is always protected if the other criteria are met. Reporting to regulators or externally carries additional requirements.
+                  </p>
+                  <div class="space-y-3" data-q="q4">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q4" value="employer" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">My employer, manager, or internal whistleblowing channel</span><span class="text-xs text-text-secondary">Internal report — the most common route</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q4" value="regulator" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A prescribed regulator (FCA, CQC, HSE, HMRC etc.)</span><span class="text-xs text-text-secondary">Official regulatory body relevant to the sector</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q4" value="legal_adviser" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">A legal adviser (solicitor)</span><span class="text-xs text-text-secondary">For the purpose of getting legal advice</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q4" value="media" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">The press, media, or publicly</span><span class="text-xs text-text-secondary">This route carries stricter requirements</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q4" value="colleague" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Only a colleague or friend informally</span><span class="text-xs text-text-secondary">No formal report was made</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q5 -->
+                <div class="question-slide hidden" id="q5" data-question="5">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 5 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">What is your working relationship with the organisation?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Whistleblowing protections cover a wider category of workers than standard employment rights. You don't need to be a traditional employee.
+                  </p>
+                  <div class="space-y-3" data-q="q5">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q5" value="employee" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I am a full employee (permanent or fixed-term)</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q5" value="worker" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I am a worker (zero hours, casual, agency)</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q5" value="contractor" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I am a contractor or freelancer working personally</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q5" value="trainee" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I am a trainee, intern, or student on placement</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q5" value="self_employed" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">I am fully self-employed with my own company</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q6 -->
+                <div class="question-slide hidden" id="q6" data-question="6">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 6 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Did your employer take any action against you after you made the disclosure?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Retaliation (called "detriment") is unlawful if it's connected to your protected disclosure. This is a separate claim from the disclosure itself being protected.
+                  </p>
+                  <div class="space-y-3" data-q="q6">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q6" value="dismissed" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — I was dismissed</span><span class="text-xs text-text-secondary">Dismissed after making the disclosure</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q6" value="detriment" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — I suffered detriment (but was not dismissed)</span><span class="text-xs text-text-secondary">Demotion, disciplinary, excluded, passed over for promotion, hostile treatment</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q6" value="constructive" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — the treatment forced me to resign</span><span class="text-xs text-text-secondary">Effectively constructive dismissal due to whistleblowing retaliation</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q6" value="none" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No — I have not suffered any negative consequences yet</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q7 -->
+                <div class="question-slide hidden" id="q7" data-question="7">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 7 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">How long after your disclosure did the negative treatment start?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Timing is important evidence. Detriment that follows soon after a disclosure is more easily linked to the whistleblowing. A long gap makes the causal connection harder to establish but doesn't make it impossible.
+                  </p>
+                  <div class="space-y-3" data-q="q7">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q7" value="immediate" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Within days or weeks of the disclosure</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q7" value="months" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">1 to 6 months after the disclosure</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q7" value="long" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">More than 6 months after the disclosure</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q7" value="na" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No negative treatment has occurred</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q8 -->
+                <div class="question-slide hidden" id="q8" data-question="8">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 8 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Does your employer know that you were the person who made the disclosure?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    For a detriment or dismissal claim to succeed, the employer's action must be because of your disclosure. If they didn't know it was you, the causal link is harder to establish — though circumstantial evidence can still support a claim.
+                  </p>
+                  <div class="space-y-3" data-q="q8">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q8" value="yes_certain" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — they know it was me</span><span class="text-xs text-text-secondary">I disclosed openly or they identified me</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q8" value="suspected" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">They probably suspect it was me</span><span class="text-xs text-text-secondary">Anonymous but I believe they can work out it was me</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q8" value="anonymous" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No — I reported anonymously and they don't know it was me</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+                <!-- Q9 -->
+                <div class="question-slide hidden" id="q9" data-question="9">
+                  <div class="mb-2"><span class="text-xs font-semibold uppercase tracking-wider" style="color:#7c3aed">Question 9 of 9</span></div>
+                  <h2 class="font-heading text-xl font-bold text-text-primary mb-2 leading-snug">Do you have any evidence of the disclosure or the retaliation?</h2>
+                  <p class="text-sm text-text-secondary mb-6 leading-relaxed">
+                    Evidence is important in whistleblowing claims. Courts look favourably on workers who have documented their disclosure and the employer's response.
+                  </p>
+                  <div class="space-y-3" data-q="q9">
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q9" value="strong" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Yes — I have emails, letters or written records of both</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q9" value="partial" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Partial — I have some written evidence but not comprehensive</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q9" value="witness" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">Witness evidence only — colleagues who can support my account</span></div>
+                    </label>
+                    <label class="answer-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-purple-400 hover:bg-purple-50/30 transition-all">
+                      <input type="radio" name="q9" value="none" class="mt-0.5 flex-shrink-0" style="accent-color:#7c3aed" />
+                      <div><span class="font-semibold text-sm text-text-primary block">No written evidence — my account only</span></div>
+                    </label>
+                  </div>
+                  <p class="error-msg text-red-500 text-xs mt-2 hidden">Please select an answer to continue.</p>
+                </div>
+
+              </div><!-- /questions-container -->
+
+              <!-- Navigation -->
+              <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-100" id="nav-buttons">
+                <button id="prev-btn" class="hidden px-5 py-2.5 rounded-lg border border-gray-200 text-sm font-semibold text-text-secondary hover:bg-gray-50 transition-colors">← Back</button>
+                <button id="next-btn" class="ml-auto px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90" style="background-color:#7c3aed">Next Question →</button>
+                <button id="submit-btn" class="hidden ml-auto px-6 py-2.5 rounded-lg text-sm font-semibold text-white transition-all hover:opacity-90" style="background-color:#7c3aed">Check My Rights →</button>
+              </div>
+
+            </div>
+          </div>
+        </div><!-- /quiz card -->
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <div class="bg-white rounded-2xl shadow-card p-5">
+            <h3 class="font-heading font-bold text-text-primary mb-3 text-sm">What this tool checks</h3>
+            <ul class="space-y-2.5 text-sm text-text-secondary">
+              {[
+                'Whether your disclosure qualifies as protected',
+                'If you reported to the right recipient',
+                'Whether retaliation you suffered is actionable',
+                'Your worker status and eligibility',
+                'Strength of your evidence',
+              ].map(item => (
+                <li class="flex items-start gap-2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" class="flex-shrink-0 mt-0.5"><path d="M20 6L9 17l-5-5"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+            <p class="text-xs text-amber-800 leading-relaxed"><strong>General information only.</strong> This tool does not constitute legal advice. Whistleblowing claims are complex. Always seek advice from a qualified employment solicitor or contact <strong>Protect</strong> (the UK's whistleblowing charity) on 020 3117 2520.</p>
+          </div>
+          <!-- Ad -->
+          <div class="bg-gray-50 rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-400 mb-2">Advertisement</div>
+            <div class="h-48 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs"><!-- 300x250 --></div>
+          </div>
+        </div>
+
+      </div><!-- /grid -->
+
+      <!-- Results Panel (hidden initially) -->
+      <div id="results-panel" class="hidden mt-8">
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div class="p-6 md:p-8" style="background: linear-gradient(to bottom right, #5b21b6, #7c3aed)">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+              <div id="result-badge" class="inline-flex flex-col items-center justify-center w-36 h-36 rounded-full border-4 border-white/40 bg-white/10 flex-shrink-0">
+                <span id="result-icon" class="text-4xl mb-1"></span>
+                <span id="result-label" class="text-xs font-bold uppercase tracking-wide text-white text-center px-2"></span>
+              </div>
+              <div class="text-center md:text-left">
+                <h2 id="result-heading" class="font-heading text-2xl font-bold text-white mb-2"></h2>
+                <p id="result-summary" class="text-purple-100 text-sm leading-relaxed"></p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="font-heading font-bold text-text-primary mb-4">Your Assessment Breakdown</h3>
+            <div id="result-breakdown" class="space-y-3 mb-6"></div>
+            <div id="result-actions" class="bg-purple-50 border border-purple-100 rounded-xl p-5">
+              <h4 class="font-heading font-semibold text-text-primary mb-2">Recommended Next Steps</h4>
+              <div id="result-steps" class="text-sm text-text-secondary space-y-2"></div>
+            </div>
+            <button id="restart-btn" class="mt-5 text-sm font-semibold hover:underline" style="color:#7c3aed">← Start Again</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">How the Checker Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { num: '01', title: 'Answer 9 Questions', desc: 'Tell us what you reported, who you told, and what happened after.' },
+          { num: '02', title: 'We Apply PIDA', desc: 'Your answers are assessed against the Public Interest Disclosure Act 1998 criteria.' },
+          { num: '03', title: 'Get Your Result', desc: 'Instant assessment of whether your disclosure is protected and if retaliation is actionable.' },
+        ].map(step => (
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-3" style="background-color:#7c3aed">{step.num}</div>
+            <h3 class="font-heading font-semibold text-text-primary mb-1">{step.title}</h3>
+            <p class="text-text-secondary text-sm">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Whistleblowing Law — Common Questions</h2>
+      <div class="space-y-4" id="faq-list">
+        {[
+          { q: 'What is a protected disclosure under UK whistleblowing law?', a: 'A protected disclosure is a report made by a worker (as defined by the Public Interest Disclosure Act 1998, which inserted sections 43A–43L into the Employment Rights Act 1996) with a reasonable belief that it is in the public interest, revealing one of six qualifying types of wrongdoing: a criminal offence, a breach of a legal obligation, a miscarriage of justice, a health and safety danger, environmental damage, or a cover-up of any of the above.' },
+          { q: 'Do I need to be an employee to be protected?', a: 'No. The Public Interest Disclosure Act 1998 protects a broad category of workers, including employees, agency workers, NHS workers, contractors, and trainees. You do not need a minimum length of service.' },
+          { q: 'Does my concern have to be correct to be protected?', a: 'No. You need a reasonable belief that wrongdoing is occurring, not certainty. You are protected even if you turn out to be wrong, as long as you acted honestly and reasonably.' },
+          { q: 'What is the time limit for a whistleblowing detriment claim?', a: 'You must submit your claim to an employment tribunal within 3 months minus 1 day of the detriment occurring. For dismissal, it is 3 months minus 1 day from your dismissal date. You must first contact ACAS for Early Conciliation before filing.' },
+          { q: 'Is there a cap on compensation for whistleblowing dismissal?', a: 'No. Unlike standard unfair dismissal, compensation for whistleblowing-related dismissal is uncapped. Tribunals can award very substantial sums in serious cases, including loss of earnings, injury to feelings, and future loss.' },
+        ].map((item, i) => (
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" data-index={i}>
+              <span class="font-heading font-semibold text-text-primary text-sm pr-4">{item.q}</span>
+              <svg class="faq-icon flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-body hidden px-5 pb-5">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.a}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-6 text-center">Related Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="bg-gray-50 rounded-xl p-5 hover:bg-white hover:shadow-card transition-all border border-gray-100 group">
+            <span class="text-2xl mb-3 block">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-purple-700 transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .answer-option:has(input:checked) { border-color: #7c3aed; background-color: rgba(124,58,237,0.05); }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const TOTAL = 9;
+  let current = 1;
+  const answers: Record<string, string> = {};
+
+  function show(n: number) {
+    document.querySelectorAll('.question-slide').forEach(el => el.classList.add('hidden'));
+    document.getElementById(`q${n}`)?.classList.remove('hidden');
+    (document.getElementById('current-q') as HTMLElement).textContent = String(n);
+    const pct = Math.round(((n - 1) / TOTAL) * 100);
+    (document.getElementById('progress-pct') as HTMLElement).textContent = String(pct);
+    (document.getElementById('progress-bar') as HTMLElement).style.width = `${pct}%`;
+    const prev = document.getElementById('prev-btn')!;
+    const next = document.getElementById('next-btn')!;
+    const sub = document.getElementById('submit-btn')!;
+    prev.classList.toggle('hidden', n === 1);
+    next.classList.toggle('hidden', n === TOTAL);
+    sub.classList.toggle('hidden', n !== TOTAL);
+  }
+
+  document.getElementById('next-btn')?.addEventListener('click', () => {
+    const sel = document.querySelector(`input[name="q${current}"]:checked`) as HTMLInputElement;
+    const errMsg = document.querySelector(`#q${current} .error-msg`) as HTMLElement;
+    if (!sel) { errMsg?.classList.remove('hidden'); return; }
+    errMsg?.classList.add('hidden');
+    answers[`q${current}`] = sel.value;
+    current++;
+    show(current);
+  });
+
+  document.getElementById('prev-btn')?.addEventListener('click', () => {
+    if (current > 1) { current--; show(current); }
+  });
+
+  document.getElementById('submit-btn')?.addEventListener('click', () => {
+    const sel = document.querySelector(`input[name="q${TOTAL}"]:checked`) as HTMLInputElement;
+    const errMsg = document.querySelector(`#q${TOTAL} .error-msg`) as HTMLElement;
+    if (!sel) { errMsg?.classList.remove('hidden'); return; }
+    errMsg?.classList.add('hidden');
+    answers[`q${TOTAL}`] = sel.value;
+    showResults();
+  });
+
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    document.querySelectorAll('input[type="radio"]').forEach((r: any) => r.checked = false);
+    Object.keys(answers).forEach(k => delete answers[k]);
+    current = 1;
+    show(1);
+    document.getElementById('results-panel')?.classList.add('hidden');
+    document.getElementById('progress-section')?.classList.remove('hidden');
+    document.getElementById('nav-buttons')?.classList.remove('hidden');
+    document.querySelectorAll('.question-slide').forEach(el => el.classList.add('hidden'));
+    document.getElementById('q1')?.classList.remove('hidden');
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      body.classList.toggle('hidden');
+      icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
+    });
+  });
+
+  function showResults() {
+    document.getElementById('progress-section')?.classList.add('hidden');
+    document.getElementById('nav-buttons')?.classList.add('hidden');
+    document.querySelectorAll('.question-slide').forEach(el => el.classList.add('hidden'));
+    document.getElementById('results-panel')?.classList.remove('hidden');
+
+    // Scoring
+    const q1 = answers.q1;
+    const q2 = answers.q2;
+    const q3 = answers.q3;
+    const q4 = answers.q4;
+    const q5 = answers.q5;
+    const q6 = answers.q6;
+    const q7 = answers.q7;
+    const q8 = answers.q8;
+    const q9 = answers.q9;
+
+    // Disclosure qualifies?
+    const qualifyingSubject = ['criminal','legal_breach','health_safety','environment','miscarriage','cover_up'].includes(q1);
+    const honestBelief = ['yes_certain','yes_reasonable','unsure'].includes(q2);
+    const publicInterest = ['yes_clear','yes_mixed'].includes(q3);
+    const properRecipient = ['employer','regulator','legal_adviser'].includes(q4);
+    const workerStatus = ['employee','worker','contractor','trainee'].includes(q5);
+    const retaliated = ['dismissed','detriment','constructive'].includes(q6);
+    const quickRetaliation = q7 === 'immediate';
+    const knownSource = ['yes_certain','suspected'].includes(q8);
+    const hasEvidence = ['strong','partial'].includes(q9);
+
+    const disclosureProtected = qualifyingSubject && honestBelief && publicInterest && properRecipient && workerStatus;
+    const retaliationActionable = disclosureProtected && retaliated && (quickRetaliation || knownSource);
+
+    let score = 0;
+    if (qualifyingSubject) score += 3;
+    if (honestBelief) score += 2;
+    if (publicInterest) score += 2;
+    if (properRecipient) score += 2;
+    if (workerStatus) score += 1;
+    if (retaliated) score += 2;
+    if (quickRetaliation) score += 1;
+    if (knownSource) score += 1;
+    if (hasEvidence) score += 1;
+
+    const MAX = 15;
+
+    let heading = '', summary = '', icon = '', label = '';
+    if (score >= 12 && disclosureProtected && retaliationActionable) {
+      heading = 'Strong Protected Disclosure — Retaliation Likely Actionable';
+      summary = 'Your disclosure appears to meet the criteria for a protected disclosure under PIDA, and the retaliation you experienced has strong indicators of being actionable at tribunal.';
+      icon = '🛡️'; label = 'Well Protected';
+    } else if (score >= 8 && disclosureProtected) {
+      heading = 'Disclosure Likely Protected';
+      summary = 'Your disclosure shows good indicators of being a protected disclosure. Whether any retaliation is actionable depends on the evidence and causal link — legal advice is strongly recommended.';
+      icon = '✅'; label = 'Likely Protected';
+    } else if (score >= 5) {
+      heading = 'Partial Protection — Key Gaps Present';
+      summary = 'Some elements of your situation suggest protection may apply, but there are significant gaps in the criteria. Professional legal advice is essential before taking any action.';
+      icon = '⚠️'; label = 'Partial';
+    } else {
+      heading = 'Protection Unlikely on These Facts';
+      summary = 'Based on your answers, your disclosure may not meet the criteria for a protected disclosure under PIDA. However, you may still have other employment law claims. Seek legal advice.';
+      icon = '🔴'; label = 'Uncertain';
+    }
+
+    (document.getElementById('result-heading') as HTMLElement).textContent = heading;
+    (document.getElementById('result-summary') as HTMLElement).textContent = summary;
+    (document.getElementById('result-icon') as HTMLElement).textContent = icon;
+    (document.getElementById('result-label') as HTMLElement).textContent = label;
+
+    const breakdown = [
+      { label: 'Qualifying subject matter', ok: qualifyingSubject, note: qualifyingSubject ? 'Your disclosure covers a qualifying category of wrongdoing.' : 'Personal grievances do not qualify as protected disclosures without a qualifying public interest element.' },
+      { label: 'Honest belief in wrongdoing', ok: honestBelief, note: honestBelief ? 'You had a genuine, reasonable belief wrongdoing was occurring.' : 'Disclosures made without honest belief are not protected.' },
+      { label: 'Public interest element', ok: publicInterest, note: publicInterest ? 'Your disclosure has a public interest component.' : 'Since 2013 disclosures must be in the public interest, not purely personal.' },
+      { label: 'Proper disclosure recipient', ok: properRecipient, note: properRecipient ? 'You reported to an appropriate person or body.' : 'Disclosures only to colleagues or friends without any formal report may not be protected.' },
+      { label: 'Worker status covered', ok: workerStatus, note: workerStatus ? 'Your working relationship is covered by PIDA.' : 'Fully self-employed individuals operating through a company may fall outside PIDA.' },
+      { label: 'Retaliation / detriment occurred', ok: retaliated, note: retaliated ? 'You have experienced detriment — this is a separate actionable claim if linked to your disclosure.' : 'No retaliation experienced. You can still seek confirmation your disclosure was protected.' },
+      { label: 'Evidence available', ok: hasEvidence, note: hasEvidence ? 'Evidence significantly strengthens your position before a tribunal.' : 'Lack of documentary evidence weakens a claim. Start preserving any records you have now.' },
+    ];
+
+    const breakdownEl = document.getElementById('result-breakdown')!;
+    breakdownEl.innerHTML = breakdown.map(item => `
+      <div class="flex items-start gap-3 p-3 rounded-lg ${item.ok ? 'bg-green-50 border border-green-100' : 'bg-red-50 border border-red-100'}">
+        <span class="text-lg flex-shrink-0">${item.ok ? '✅' : '❌'}</span>
+        <div>
+          <p class="font-semibold text-sm text-text-primary">${item.label}</p>
+          <p class="text-xs text-text-secondary mt-0.5">${item.note}</p>
+        </div>
+      </div>
+    `).join('');
+
+    const steps: string[] = [];
+    if (!disclosureProtected) steps.push('Speak to an employment solicitor or contact <strong>Protect</strong> (whistleblowing charity) on 020 3117 2520 to discuss your specific situation.');
+    if (retaliated) steps.push('Contact <strong>ACAS</strong> on 0300 123 1100 immediately — you must start Early Conciliation before filing a tribunal claim. Time limits are strict (3 months minus 1 day).');
+    if (disclosureProtected && retaliated) steps.push('Start preserving all evidence now — emails, messages, records of incidents, and any witnesses who can support your account.');
+    if (disclosureProtected && !retaliated) steps.push('Your disclosure appears protected. Keep a record of everything in case your employer takes action against you in future.');
+    steps.push('Visit <strong>GOV.UK</strong> or <strong>ACAS</strong> for free guidance on whistleblowing rights at work.');
+
+    (document.getElementById('result-steps') as HTMLElement).innerHTML = steps.map(s => `<p class="flex items-start gap-2"><span class="text-purple-600 flex-shrink-0">→</span><span>${s}</span></p>`).join('');
+  }
+
+  show(1);
+  });
+</script>

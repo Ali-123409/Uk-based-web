@@ -1,0 +1,624 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'Employment Tribunal Deadline Calculator' }
+];
+
+const relatedToolIds = ['constructive-dismissal', 'tupe-rights', 'settlement-tax'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Employment Tribunal Deadline Calculator UK",
+    "url": "https://fairworkcheck.co.uk/tools/employment-tribunal-deadline-calculator/",
+    "description": "Calculate your ACAS Early Conciliation and Employment Tribunal ET1 filing deadlines for UK employment claims instantly.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Employment Tribunal Deadline Calculator" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long do I have to make an employment tribunal claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For most employment tribunal claims in the UK, you have 3 months minus 1 day from the date of the act you are complaining about. For unfair dismissal, this is typically from your last day of employment. For discrimination claims, it is from the last act of discrimination. Before you can submit your ET1 claim form, you must first notify ACAS for Early Conciliation, which can give you additional time." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is ACAS Early Conciliation and do I have to do it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "ACAS Early Conciliation is a mandatory step before you can submit an employment tribunal claim. You must contact ACAS and give them the opportunity to help you and your employer settle the dispute before it reaches a tribunal. The process can last up to 6 weeks. Once ACAS issues an Early Conciliation Certificate, your tribunal deadline is automatically extended." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can my employment tribunal deadline be extended?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Employment tribunals have very limited discretion to extend time limits. For unfair dismissal, the test is whether it was 'not reasonably practicable' to submit the claim in time. For discrimination claims, the test is whether it is 'just and equitable' to extend time. Extensions are not automatically granted, and tribunals take a strict approach. You should always aim to meet your deadline." }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if I miss my employment tribunal deadline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "If you miss your employment tribunal deadline, your claim will almost certainly be rejected unless you can satisfy a very high legal test for extension. You would need to apply to the tribunal explaining why you missed the deadline. The tribunal has discretion to accept late claims but this is rarely granted. It is critical that you take action well before your deadline expires." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the ACAS Early Conciliation period extend my tribunal deadline?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. When you contact ACAS for Early Conciliation, the clock stops on your tribunal deadline. The time spent in Early Conciliation is added on to your deadline once ACAS issues your Early Conciliation Certificate (known as an A certificate). This means your final ET1 deadline can be extended by up to 1 month beyond your original 3-month deadline." }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`Employment Tribunal Deadline Calculator UK ${CURRENT_YEAR} | FairWorkCheck`}
+  description={`Calculate your exact ACAS Early Conciliation and ET1 employment tribunal deadline instantly. Free UK tool updated for ${TAX_YEAR}. Never miss your 3-month time limit.`}
+  canonical="https://fairworkcheck.co.uk/tools/employment-tribunal-deadline-calculator/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit 1: Below nav, above tool -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto">
+        <!-- 728x90 Leaderboard / 320x50 Mobile -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-red-50 text-red-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-red-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        Time-sensitive — deadlines are strict
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Employment Tribunal Deadline Calculator UK
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Calculate your exact ACAS Early Conciliation notification deadline and ET1 tribunal filing deadline instantly. Updated for UK employment law {TAX_YEAR}.
+      </p>
+      <!-- Trust badges -->
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Instant Results', `UK Law ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tool Section -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Tool Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-orange overflow-hidden">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-6 flex items-center gap-2">
+                <span class="text-2xl">⏱️</span> Calculate Your Deadline
+              </h2>
+
+              <!-- Form -->
+              <div id="calculator-form">
+                <!-- Claim Type -->
+                <div class="mb-6">
+                  <label class="block text-sm font-semibold text-text-primary mb-2" for="claim-type">
+                    What type of claim are you making? <span class="text-red-500">*</span>
+                  </label>
+                  <select
+                    id="claim-type"
+                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-text-primary bg-white focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all text-sm"
+                  >
+                    <option value="">— Select claim type —</option>
+                    <option value="unfair-dismissal">Unfair Dismissal</option>
+                    <option value="discrimination">Discrimination (Race, Sex, Disability, Age, Religion)</option>
+                    <option value="redundancy">Redundancy Pay</option>
+                    <option value="wrongful-dismissal">Wrongful Dismissal / Notice Pay</option>
+                    <option value="constructive-dismissal">Constructive Dismissal</option>
+                    <option value="equal-pay">Equal Pay</option>
+                    <option value="whistleblowing">Whistleblowing / Protected Disclosure</option>
+                  </select>
+                  <p id="claim-type-error" class="text-red-500 text-xs mt-1.5 hidden">Please select your claim type.</p>
+                </div>
+
+                <!-- Incident Date -->
+                <div class="mb-6">
+                  <label class="block text-sm font-semibold text-text-primary mb-2" for="incident-date">
+                    Date of dismissal or last act complained of <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    id="incident-date"
+                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-text-primary bg-white focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all text-sm"
+                    max=""
+                  />
+                  <p class="text-gray-400 text-xs mt-1.5">For unfair/constructive dismissal, use your last day of employment.</p>
+                  <p id="date-error" class="text-red-500 text-xs mt-1.5 hidden">Please enter a valid date.</p>
+                </div>
+
+                <!-- ACAS Conciliation -->
+                <div class="mb-6">
+                  <label class="block text-sm font-semibold text-text-primary mb-2">
+                    Have you already contacted ACAS for Early Conciliation?
+                  </label>
+                  <div class="flex gap-4">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="acas-status" value="no" checked class="accent-navy" />
+                      <span class="text-sm text-text-primary">No, not yet</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="acas-status" value="yes" class="accent-navy" />
+                      <span class="text-sm text-text-primary">Yes, I have an EC Certificate</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- ACAS Certificate Date (conditional) -->
+                <div id="acas-date-section" class="mb-6 hidden">
+                  <label class="block text-sm font-semibold text-text-primary mb-2" for="acas-cert-date">
+                    Date on your ACAS Early Conciliation Certificate (A Certificate)
+                  </label>
+                  <input
+                    type="date"
+                    id="acas-cert-date"
+                    class="w-full border border-gray-200 rounded-lg px-4 py-3 text-text-primary bg-white focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all text-sm"
+                  />
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-3 mt-8">
+                  <button
+                    id="calculate-btn"
+                    class="flex-1 bg-orange hover:bg-orange-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Calculate My Deadline
+                  </button>
+                  <button
+                    id="reset-btn"
+                    class="px-5 py-3.5 border border-gray-200 text-text-secondary hover:border-gray-300 hover:text-text-primary rounded-lg transition-all text-sm font-medium"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+              <!-- Results Section (hidden until calculated) -->
+              <div id="results-section" class="hidden mt-8 results-animate">
+                <div class="border-t border-gray-100 pt-8">
+                  <h3 class="font-heading text-lg font-bold text-text-primary mb-5 flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2d7a4f" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Your Deadline Results
+                  </h3>
+
+                  <!-- Urgency Banner -->
+                  <div id="urgency-banner" class="hidden rounded-xl p-4 mb-6 flex items-start gap-3">
+                    <span id="urgency-icon" class="text-xl flex-shrink-0"></span>
+                    <div>
+                      <p id="urgency-title" class="font-semibold text-sm"></p>
+                      <p id="urgency-message" class="text-sm mt-0.5 opacity-90"></p>
+                    </div>
+                  </div>
+
+                  <!-- Deadline Cards -->
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-navy/5 rounded-xl p-4 border border-navy/10">
+                      <div class="text-xs text-text-secondary font-medium mb-1 uppercase tracking-wide">ACAS Notification Deadline</div>
+                      <div id="acas-deadline" class="font-heading text-xl font-bold text-navy"></div>
+                      <div id="acas-days" class="text-sm text-text-secondary mt-1"></div>
+                    </div>
+                    <div class="bg-orange/8 rounded-xl p-4 border border-orange/15">
+                      <div class="text-xs text-text-secondary font-medium mb-1 uppercase tracking-wide">ET1 Tribunal Deadline</div>
+                      <div id="et1-deadline" class="font-heading text-xl font-bold text-orange"></div>
+                      <div id="et1-days" class="text-sm text-text-secondary mt-1"></div>
+                    </div>
+                  </div>
+
+                  <!-- Explanation -->
+                  <div id="result-explanation" class="bg-gray-50 rounded-xl p-4 mb-5 text-sm text-text-secondary leading-relaxed"></div>
+
+                  <!-- Next Steps -->
+                  <div class="bg-white border border-gray-100 rounded-xl p-4">
+                    <h4 class="font-semibold text-text-primary text-sm mb-3">Your Next Steps</h4>
+                    <ol id="next-steps" class="space-y-2 text-sm text-text-secondary list-none">
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ad Unit 2: Below results -->
+          <div class="ad-unit mt-6" data-ad-position="below-tool">
+            <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+            <div class="h-[250px] bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+              <!-- 300x250 Rectangle Ad Unit -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+          <!-- Quick Guide -->
+          <div class="bg-navy rounded-xl p-5 text-white">
+            <h3 class="font-heading font-bold text-base mb-4">The 3-Month Rule</h3>
+            <div class="space-y-3">
+              {[
+                { step: '1', text: 'Incident/dismissal occurs' },
+                { step: '2', text: 'Contact ACAS within 3 months minus 1 day' },
+                { step: '3', text: 'ACAS Early Conciliation period (up to 6 weeks)' },
+                { step: '4', text: 'ACAS issues EC Certificate' },
+                { step: '5', text: 'Submit ET1 — deadline extended by conciliation time` },
+              ].map(item => (
+                <div class="flex items-start gap-3">
+                  <span class="w-6 h-6 bg-orange rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">{item.step}</span>
+                  <p class="text-gray-300 text-sm leading-snug">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="flex items-start gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-amber-800 mb-1">Important Notice</p>
+                <p class="text-xs text-amber-700 leading-relaxed">
+                  Deadlines may vary in exceptional circumstances. Employment tribunals have limited discretion to extend time limits. Always confirm your specific deadline with an employment solicitor or <a href="https://www.acas.org.uk" target="_blank" rel="noopener" class="underline">ACAS</a>.
+                </p>
+                <a href="/disclaimer/" class="text-xs text-amber-700 underline mt-1 block">Read full disclaimer →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Last Updated -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4 text-center">
+            <p class="text-xs text-gray-400">Last updated</p>
+            <p class="font-semibold text-text-primary text-sm">January 2026</p>
+            <p class="text-xs text-gray-400 mt-1">UK Employment Law ${TAX_YEAR}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white border-t border-gray-100 py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: `01', title: 'Enter Your Details', desc: 'Select your claim type and enter the date of your dismissal or the incident you are claiming about.' },
+          { num: '02', title: 'We Calculate', desc: 'The tool applies the 3-month minus 1 day rule and factors in any ACAS Early Conciliation time automatically.' },
+          { num: '03', title: 'Get Your Deadlines', desc: 'See your ACAS notification deadline and final ET1 deadline with a clear urgency indicator and next steps.' },
+        ].map(step => (
+          <div class="flex gap-4">
+            <div class="font-heading text-4xl font-bold text-navy/15 flex-shrink-0 leading-none">{step.num}</div>
+            <div>
+              <h3 class="font-heading font-semibold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-14 bg-cream">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-8 text-center">Frequently Asked Questions</h2>
+
+      <div class="space-y-3" id="faq-list">
+        {[
+          {
+            q: 'How long do I have to make an employment tribunal claim?',
+            a: 'For most employment tribunal claims in the UK, you have 3 months minus 1 day (under rule 4 of the Employment Tribunal Rules of Procedure 2013) from the date of the act you are complaining about. For unfair dismissal, this typically runs from your last day of employment. For discrimination claims, it runs from the last act of discrimination. Before filing your ET1 claim form, you must first notify ACAS for Early Conciliation (as required under section 18A Employment Tribunals Act 1996), which can add time to your deadline.'
+          },
+          {
+            q: 'What is ACAS Early Conciliation and do I have to do it?',
+            a: 'ACAS Early Conciliation is a mandatory step before you can submit an employment tribunal claim. You must contact ACAS and allow them to attempt to help you and your employer reach a settlement before the case goes to tribunal. The process can last up to 6 weeks. Once ACAS issues your Early Conciliation Certificate, your tribunal deadline is automatically extended by the time spent in conciliation.'
+          },
+          {
+            q: 'Can my employment tribunal deadline be extended?',
+            a: 'Employment tribunals have very limited discretion to extend time limits. For unfair dismissal, the test is whether it was "not reasonably practicable" to submit the claim in time. For discrimination claims, the test is whether it is "just and equitable" to extend time. Extensions are not automatically granted, and tribunals apply these tests strictly. You should always aim to meet your original deadline rather than rely on an extension being granted.'
+          },
+          {
+            q: 'What happens if I miss my employment tribunal deadline?',
+            a: 'If you miss your employment tribunal deadline, your claim will almost certainly be rejected. You would need to make a formal application to the tribunal explaining why you missed it, and the tribunal has discretion — rarely exercised — to accept late claims. It is absolutely critical that you take action well before your deadline. If you are close to your deadline, contact ACAS immediately or seek urgent legal advice.'
+          },
+          {
+            q: 'Does the ACAS Early Conciliation period extend my tribunal deadline?',
+            a: 'Yes. When you contact ACAS for Early Conciliation, the clock stops on your tribunal deadline. This is called "stopping the clock" and the time spent in Early Conciliation is added onto your deadline once ACAS issues your A Certificate. This means your final ET1 deadline can be extended beyond the original 3-month deadline, depending on how long the conciliation period lasts.'
+          }
+        ].map((faq, i) => (
+          <details class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-text-primary text-sm hover:text-navy transition-colors list-none">
+              <span>{faq.q}</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed border-t border-gray-50 pt-4">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Ad Unit 3: Within FAQ -->
+      <div class="ad-unit mt-8" data-ad-position="faq-mid">
+        <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+        <div class="h-[250px] bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+          <!-- 300x250 Rectangle Ad Unit -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Other Tools You Might Need</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="group bg-cream rounded-xl border border-gray-100 p-5 hover:border-orange/30 hover:shadow-card transition-all duration-200">
+            <span class="text-2xl block mb-3">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-navy transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+            <span class="text-orange text-xs font-medium mt-3 inline-flex items-center gap-1">
+              Use tool free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .results-animate { animation: fadeInUp 0.4s ease forwards; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  select, input[type="date"] { color: #1a1a2e; }
+  .accent-navy { accent-color: #1a3c5e; }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // Set max date to today
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+  const incidentDateInput = document.getElementById('incident-date') as HTMLInputElement;
+  if (incidentDateInput) incidentDateInput.setAttribute('max', todayStr);
+
+  // Show/hide ACAS date section
+  const acasRadios = document.querySelectorAll('input[name="acas-status"]');
+  const acasDateSection = document.getElementById('acas-date-section');
+  acasRadios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const val = (e.target as HTMLInputElement).value;
+      if (val === 'yes') {
+        acasDateSection?.classList.remove('hidden');
+      } else {
+        acasDateSection?.classList.add('hidden');
+      }
+    });
+  });
+
+  // Format date nicely
+  function formatDate(date: Date): string {
+    return date.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  function addDays(date: Date, days: number): Date {
+    const result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
+
+  function daysBetween(d1: Date, d2: Date): number {
+    return Math.round((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+  }
+
+  // Calculate
+  document.getElementById('calculate-btn')?.addEventListener('click', () => {
+    const claimType = (document.getElementById('claim-type') as HTMLSelectElement).value;
+    const incidentDateVal = (document.getElementById('incident-date') as HTMLInputElement).value;
+    const acasStatus = (document.querySelector('input[name="acas-status"]:checked') as HTMLInputElement)?.value;
+    const acasCertDateVal = (document.getElementById('acas-cert-date') as HTMLInputElement)?.value;
+
+    // Validate
+    let valid = true;
+    const claimTypeError = document.getElementById('claim-type-error');
+    const dateError = document.getElementById('date-error');
+
+    if (!claimType) {
+      claimTypeError?.classList.remove('hidden');
+      valid = false;
+    } else {
+      claimTypeError?.classList.add('hidden');
+    }
+
+    if (!incidentDateVal) {
+      dateError?.classList.remove('hidden');
+      valid = false;
+    } else {
+      dateError?.classList.add('hidden');
+    }
+
+    if (!valid) return;
+
+    const incidentDate = new Date(incidentDateVal + 'T12:00:00');
+    const todayDate = new Date();
+    todayDate.setHours(0,0,0,0);
+
+    // ACAS deadline = incident + 3 months - 1 day
+    const acasDeadline = new Date(incidentDate);
+    acasDeadline.setMonth(acasDeadline.getMonth() + 3);
+    acasDeadline.setDate(acasDeadline.getDate() - 1);
+
+    // ET1 deadline
+    let et1Deadline: Date;
+    let explanationText = '';
+
+    if (acasStatus === 'yes' && acasCertDateVal) {
+      const certDate = new Date(acasCertDateVal + 'T12:00:00');
+      const conciliationDays = daysBetween(incidentDate, certDate);
+      et1Deadline = addDays(acasDeadline, Math.min(conciliationDays, 42) + 1);
+      explanationText = `Because you have an ACAS Early Conciliation Certificate, your ET1 tribunal deadline has been extended. The time spent in Early Conciliation (${Math.min(conciliationDays, 42)} days) has been added to your original deadline.`;
+    } else {
+      et1Deadline = addDays(acasDeadline, 1);
+      explanationText = `You must contact ACAS for Early Conciliation before the ACAS deadline shown. Once you have your ACAS A Certificate, you can then file your ET1 claim form. Your ET1 deadline will be extended by the time spent in conciliation.`;
+    }
+
+    // Days remaining
+    const acasDaysLeft = daysBetween(todayDate, acasDeadline);
+    const et1DaysLeft = daysBetween(todayDate, et1Deadline);
+
+    // Update UI
+    const acasDeadlineEl = document.getElementById('acas-deadline');
+    const et1DeadlineEl = document.getElementById('et1-deadline');
+    const acasDaysEl = document.getElementById('acas-days');
+    const et1DaysEl = document.getElementById('et1-days');
+    const urgencyBanner = document.getElementById('urgency-banner');
+    const urgencyTitle = document.getElementById('urgency-title');
+    const urgencyMessage = document.getElementById('urgency-message');
+    const urgencyIcon = document.getElementById('urgency-icon');
+    const explanationEl = document.getElementById('result-explanation');
+    const nextStepsEl = document.getElementById('next-steps');
+
+    if (acasDeadlineEl) acasDeadlineEl.textContent = formatDate(acasDeadline);
+    if (et1DeadlineEl) et1DeadlineEl.textContent = formatDate(et1Deadline);
+
+    if (acasDaysEl) {
+      if (acasDaysLeft < 0) {
+        acasDaysEl.textContent = `${Math.abs(acasDaysLeft)} days ago — ACAS deadline passed`;
+        acasDaysEl.className = 'text-sm text-red-600 font-semibold mt-1';
+      } else {
+        acasDaysEl.textContent = `${acasDaysLeft} days remaining from today`;
+        acasDaysEl.className = acasDaysLeft <= 14 ? 'text-sm text-red-600 font-semibold mt-1' : 'text-sm text-text-secondary mt-1';
+      }
+    }
+
+    if (et1DaysEl) {
+      if (et1DaysLeft < 0) {
+        et1DaysEl.textContent = `${Math.abs(et1DaysLeft)} days ago — ET1 deadline passed`;
+        et1DaysEl.className = 'text-sm text-red-600 font-semibold mt-1';
+      } else {
+        et1DaysEl.textContent = `${et1DaysLeft} days remaining from today`;
+        et1DaysEl.className = et1DaysLeft <= 14 ? 'text-sm text-red-600 font-semibold mt-1' : 'text-sm text-text-secondary mt-1';
+      }
+    }
+
+    // Urgency banner
+    if (urgencyBanner && urgencyTitle && urgencyMessage && urgencyIcon) {
+      urgencyBanner.classList.remove('hidden');
+      if (acasDaysLeft < 0) {
+        urgencyBanner.className = 'rounded-xl p-4 mb-6 flex items-start gap-3 bg-red-50 border border-red-200';
+        urgencyIcon.textContent = '🚨';
+        urgencyTitle.textContent = 'ACAS Deadline Passed';
+        urgencyTitle.className = 'font-semibold text-sm text-red-800';
+        urgencyMessage.textContent = 'Your ACAS Early Conciliation deadline has passed. You may still be able to apply to tribunal in exceptional circumstances, but you should seek urgent legal advice immediately.';
+        urgencyMessage.className = 'text-sm mt-0.5 text-red-700';
+      } else if (acasDaysLeft <= 7) {
+        urgencyBanner.className = 'rounded-xl p-4 mb-6 flex items-start gap-3 bg-red-50 border border-red-200';
+        urgencyIcon.textContent = '🚨';
+        urgencyTitle.textContent = `Urgent — Only ${acasDaysLeft} Days Left`;
+        urgencyTitle.className = 'font-semibold text-sm text-red-800';
+        urgencyMessage.textContent = 'Contact ACAS immediately on 0300 123 1100. Do not wait. The deadline is very close.';
+        urgencyMessage.className = 'text-sm mt-0.5 text-red-700';
+      } else if (acasDaysLeft <= 21) {
+        urgencyBanner.className = 'rounded-xl p-4 mb-6 flex items-start gap-3 bg-amber-50 border border-amber-200';
+        urgencyIcon.textContent = '⚠️';
+        urgencyTitle.textContent = `Warning — ${acasDaysLeft} Days to ACAS Deadline`;
+        urgencyTitle.className = 'font-semibold text-sm text-amber-800';
+        urgencyMessage.textContent = 'You should contact ACAS Early Conciliation soon. Do not leave it until the last minute.';
+        urgencyMessage.className = 'text-sm mt-0.5 text-amber-700';
+      } else {
+        urgencyBanner.className = 'rounded-xl p-4 mb-6 flex items-start gap-3 bg-green-50 border border-green-200';
+        urgencyIcon.textContent = '✅';
+        urgencyTitle.textContent = `${acasDaysLeft} Days Remaining`;
+        urgencyTitle.className = 'font-semibold text-sm text-green-800';
+        urgencyMessage.textContent = 'You still have time, but do not delay. Begin the ACAS Early Conciliation process as soon as you are ready.';
+        urgencyMessage.className = 'text-sm mt-0.5 text-green-700';
+      }
+    }
+
+    if (explanationEl) explanationEl.textContent = explanationText;
+
+    // Next steps
+    const steps = acasDaysLeft < 0 ? [
+      '⚠️ Your ACAS deadline has passed — seek urgent legal advice immediately',
+      '📞 Call Citizens Advice on 0800 144 8848 for free guidance',
+      '⚖️ Consult an employment solicitor — many offer free initial consultations',
+      '📋 Gather all evidence: emails, letters, contracts, payslips',
+    ] : [
+      `📞 Contact ACAS for Early Conciliation: call 0300 123 1100 or visit acas.org.uk`,
+      `📅 Do this before ${formatDate(acasDeadline)} — your ACAS notification deadline`,
+      `📋 Gather evidence: emails, letters, dismissal letter, payslips, contract`,
+      `⚖️ Consider consulting an employment solicitor — many offer free initial advice`,
+      `📄 Once you have your ACAS certificate, complete your ET1 form on gov.uk`,
+    ];
+
+    if (nextStepsEl) {
+      nextStepsEl.innerHTML = steps.map((step, i) => 
+        `<li class="flex items-start gap-2.5 text-sm text-text-secondary">
+          <span class="flex-shrink-0 w-5 h-5 bg-navy/8 rounded-full flex items-center justify-center text-xs font-bold text-navy">${i+1}</span>
+          <span>${step}</span>
+        </li>`
+      ).join('');
+    }
+
+    // Show results
+    const resultsSection = document.getElementById('results-section');
+    resultsSection?.classList.remove('hidden');
+    resultsSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Reset
+  document.getElementById('reset-btn')?.addEventListener('click', () => {
+    (document.getElementById('claim-type') as HTMLSelectElement).value = '';
+    (document.getElementById('incident-date') as HTMLInputElement).value = '';
+    const acasNoRadio = document.querySelector('input[name="acas-status"][value="no"]') as HTMLInputElement;
+    if (acasNoRadio) acasNoRadio.checked = true;
+    acasDateSection?.classList.add('hidden');
+    document.getElementById('results-section')?.classList.add('hidden');
+    document.getElementById('claim-type-error')?.classList.add('hidden');
+    document.getElementById('date-error')?.classList.add('hidden');
+  });
+  });
+</script>

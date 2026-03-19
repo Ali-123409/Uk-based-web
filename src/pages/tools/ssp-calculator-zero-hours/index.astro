@@ -1,0 +1,799 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import Breadcrumb from '../../../components/Breadcrumb.astro';
+import { ALL_TOOLS } from '../../../data/tools';
+import { TAX_YEAR, CURRENT_YEAR, SSP_WEEKLY_RATE, LOWER_EARNINGS_LIMIT, MAX_SSP_WEEKS } from '../../../data/config';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Tools', href: '/tools/' },
+  { label: 'SSP Calculator — Zero Hours Workers' }
+];
+
+const relatedToolIds = ['tribunal-deadline', 'constructive-dismissal', 'settlement-tax'];
+const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SSP Calculator for Zero Hours Workers UK",
+    "url": "https://fairworkcheck.co.uk/tools/ssp-calculator-zero-hours/",
+    "description": "Calculate Statutory Sick Pay (SSP) eligibility and weekly amount for zero hours and irregular workers using the 8-week Average Weekly Earnings method. Updated for UK 2025/26 rates.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "SSP Calculator for Zero Hours Workers" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can zero hours workers get Statutory Sick Pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, zero hours workers can qualify for Statutory Sick Pay (SSP) if they meet the eligibility criteria. You must be classed as an employee (not self-employed) under the Social Security Contributions and Benefits Act 1992, have been ill for at least 4 consecutive days, and your Average Weekly Earnings over the previous 8 weeks must be at least equal to the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001), which is £123 per week for 2025/26. Even if some of those weeks had zero earnings, you may still qualify if your average meets the threshold."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is SSP calculated for zero hours contracts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For zero hours and irregular workers, SSP eligibility is based on your Average Weekly Earnings (AWE) over the 8 weeks immediately before the period of sickness began. Add up your total gross earnings over those 8 weeks and divide by 8. If the result is at least £123 (the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001) for 2025/26), you qualify for SSP at the flat rate of £116.75 per week for 2025/26."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are waiting days for SSP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Waiting days are the first 3 days of a period of sickness incapacity. You do not receive SSP for waiting days — SSP only starts from the 4th qualifying day of sickness. However, if you have a linked period of incapacity (a previous sick period within 8 weeks), waiting days may not apply again. This means if you were sick recently and return to sick leave quickly, you may receive SSP from day 1 of the new sick period."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long can I receive SSP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can receive SSP for a maximum of 28 weeks. After 28 weeks, SSP stops and your employer must give you an SSP1 form so you can apply for other benefits such as Employment and Support Allowance (ESA) or Universal Credit. The 28-week limit applies per period of sickness or linked periods of sickness within 8 weeks of each other."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my employer refuses to pay SSP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you believe you are entitled to SSP and your employer refuses to pay it, you should first ask your employer for a written explanation (they must provide form SSP1 if they believe you do not qualify). If you disagree with their decision, you can formally dispute it with HMRC. Contact HMRC's employer helpline on 0300 200 3200 or report the issue online. HMRC has the power to investigate and enforce SSP payment."
+        }
+      }
+    ]
+  }
+];
+---
+
+<BaseLayout
+  title={`SSP Calculator Zero Hours Workers UK ${CURRENT_YEAR} — Am I Entitled to Sick Pay? | FairWorkCheck`}
+  description={`Calculate Statutory Sick Pay for zero hours and irregular workers. Uses the 8-week Average Weekly Earnings method. Free UK tool, updated for ${TAX_YEAR} SSP rates.`}
+  canonical="https://fairworkcheck.co.uk/tools/ssp-calculator-zero-hours/"
+  schema={schema}
+>
+  <Header slot="header" />
+  <Breadcrumb items={breadcrumbs} />
+
+  <!-- Ad Unit 1 -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto">
+        <!-- 728x90 Leaderboard / 320x50 Mobile -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-teal-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Zero hours · Irregular hours · Variable pay
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        SSP Calculator for Zero Hours &amp; Irregular Workers
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Find out if you qualify for Statutory Sick Pay and exactly how much you are entitled to — even with irregular, variable, or zero earnings weeks. Built for UK zero hours workers. Updated for {TAX_YEAR} rates.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        {['Free to Use', 'No Registration', 'Instant Results', `SSP Rates ${TAX_YEAR}`].map(badge => (
+          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+            {badge}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Tool Section -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Tool Card -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-orange overflow-hidden">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-2 flex items-center gap-2">
+                <span class="text-2xl">🏥</span> Calculate Your SSP Entitlement
+              </h2>
+              <p class="text-sm text-text-secondary mb-8 leading-relaxed">
+                Enter your gross earnings for the last 8 weeks before you went off sick. Include all weeks — enter £0 for weeks you did not work. Gross earnings means before tax and National Insurance.
+              </p>
+
+              <!-- Section 1: Employment Status -->
+              <div class="mb-8">
+                <h3 class="font-semibold text-text-primary text-sm mb-4 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-navy rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0">1</span>
+                  Your Employment Type
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <label class="emp-option flex items-center gap-2.5 p-3.5 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 transition-all">
+                    <input type="radio" name="emp-type" value="employee" checked class="accent-navy flex-shrink-0" />
+                    <div>
+                      <span class="font-semibold text-sm text-text-primary block">Employee</span>
+                      <span class="text-xs text-text-secondary">Zero hours / variable hours</span>
+                    </div>
+                  </label>
+                  <label class="emp-option flex items-center gap-2.5 p-3.5 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 transition-all">
+                    <input type="radio" name="emp-type" value="worker" class="accent-navy flex-shrink-0" />
+                    <div>
+                      <span class="font-semibold text-sm text-text-primary block">Worker</span>
+                      <span class="text-xs text-text-secondary">Casual / gig work</span>
+                    </div>
+                  </label>
+                  <label class="emp-option flex items-center gap-2.5 p-3.5 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 transition-all">
+                    <input type="radio" name="emp-type" value="self-employed" class="accent-navy flex-shrink-0" />
+                    <div>
+                      <span class="font-semibold text-sm text-text-primary block">Self-Employed</span>
+                      <span class="text-xs text-text-secondary">Own business / freelance</span>
+                    </div>
+                  </label>
+                </div>
+                <!-- Self-employed warning -->
+                <div id="self-employed-warning" class="hidden mt-3 bg-red-50 border border-red-200 rounded-lg p-3 text-xs text-red-700">
+                  ❌ Self-employed people are not entitled to Statutory Sick Pay. You may be eligible for New Style Employment and Support Allowance (ESA) or Universal Credit if you are unable to work through illness.
+                </div>
+              </div>
+
+              <!-- Section 2: Sick Period -->
+              <div class="mb-8" id="sick-period-section">
+                <h3 class="font-semibold text-text-primary text-sm mb-4 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-navy rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0">2</span>
+                  Your Sickness Period
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label class="block text-xs font-semibold text-text-primary mb-1.5" for="sick-start">First day of sickness</label>
+                    <input type="date" id="sick-start" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all bg-white" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-text-primary mb-1.5" for="sick-weeks">How many weeks are you / have you been off sick?</label>
+                    <select id="sick-weeks" class="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all bg-white">
+                      <option value="">— Select weeks —</option>
+                      {Array.from({length: 28}, (_, i) => i + 1).map(w => (
+                        <option value={w}>{w} week{w > 1 ? 's' : ''}</option>
+                      ))}
+                      <option value="ongoing">Still off — ongoing</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- Linked period -->
+                <div class="bg-blue-50 border border-blue-100 rounded-lg p-3">
+                  <label class="flex items-start gap-2.5 cursor-pointer">
+                    <input type="checkbox" id="linked-period" class="mt-0.5 accent-navy flex-shrink-0" />
+                    <div>
+                      <span class="text-xs font-semibold text-blue-800 block">I had a previous period of sickness within the last 8 weeks</span>
+                      <span class="text-xs text-blue-600 mt-0.5 block">If yes, waiting days may not apply — your SSP could start from day 1 of this new sick period</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Section 3: Earnings -->
+              <div class="mb-8" id="earnings-section">
+                <h3 class="font-semibold text-text-primary text-sm mb-1 flex items-center gap-2">
+                  <span class="w-6 h-6 bg-navy rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0">3</span>
+                  Your Gross Earnings — Last 8 Weeks
+                </h3>
+                <p class="text-xs text-text-secondary mb-4 ml-8">Week 1 (most recent payslip before sickness) — this is your last full pay period before your illness began. Enter £0 for any week you did not work.</p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="earnings-grid">
+                  {Array.from({length: 8}, (_, i) => i + 1).map(week => (
+                    <div>
+                      <label class="block text-xs font-semibold text-text-secondary mb-1.5">
+                        Week {week} {week === 1 ? '(most recent payslip)' : week === 8 ? '(oldest)' : ''}
+                      </label>
+                      <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm font-medium">£</span>
+                        <input
+                          type="number"
+                          id={`week${week}`}
+                          class="week-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy transition-all bg-white"
+                          placeholder="0.00"
+                          min="0"
+                          step="0.01"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Running total -->
+                <div class="mt-4 bg-gray-50 rounded-xl p-4 flex items-center justify-between">
+                  <div>
+                    <p class="text-xs text-text-secondary">8-week total earnings</p>
+                    <p id="total-earnings-display" class="font-heading text-xl font-bold text-text-primary">£0.00</p>
+                  </div>
+                  <div class="text-right">
+                    <p class="text-xs text-text-secondary">Average Weekly Earnings</p>
+                    <p id="awe-display" class="font-heading text-xl font-bold text-navy">£0.00</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Calculate Button -->
+              <div id="calc-section">
+                <p id="form-error" class="text-red-500 text-xs mb-3 hidden">Please complete all required fields before calculating.</p>
+                <div class="flex gap-3">
+                  <button id="calculate-btn" class="flex-1 bg-orange hover:bg-orange-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                    Calculate My SSP
+                  </button>
+                  <button id="reset-btn" class="px-5 py-3.5 border border-gray-200 text-text-secondary hover:border-gray-300 rounded-lg transition-all text-sm font-medium">
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+              <!-- Results -->
+              <div id="results-section" class="hidden mt-8 results-animate">
+                <div class="border-t border-gray-100 pt-8">
+
+                  <!-- Eligibility verdict -->
+                  <div id="eligibility-banner" class="rounded-2xl p-5 mb-6 flex items-start gap-4">
+                    <span id="elig-icon" class="text-4xl flex-shrink-0"></span>
+                    <div>
+                      <h3 id="elig-title" class="font-heading text-xl font-bold mb-1"></h3>
+                      <p id="elig-desc" class="text-sm leading-relaxed"></p>
+                    </div>
+                  </div>
+
+                  <!-- AWE Breakdown -->
+                  <div class="bg-gray-50 rounded-xl p-5 mb-5">
+                    <h4 class="font-semibold text-text-primary text-sm mb-4">Your Earnings Calculation</h4>
+                    <div class="space-y-2.5">
+                      <div class="flex justify-between text-sm">
+                        <span class="text-text-secondary">Total earnings over 8 weeks</span>
+                        <span id="r-total" class="font-semibold text-text-primary"></span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-text-secondary">Average Weekly Earnings (AWE)</span>
+                        <span id="r-awe" class="font-semibold text-text-primary"></span>
+                      </div>
+                      <div class="border-t border-gray-200 pt-2.5 flex justify-between text-sm">
+                        <span class="text-text-secondary">Lower Earnings Limit (${TAX_YEAR})</span>
+                        <span class="font-semibold text-text-primary">£123.00/week</span>
+                      </div>
+                      <div class="flex justify-between text-sm">
+                        <span class="text-text-secondary">AWE vs LEL</span>
+                        <span id="r-vs-lel" class="font-semibold"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- SSP Payment Breakdown — shown only if eligible -->
+                  <div id="ssp-breakdown" class="hidden mb-5">
+                    <h4 class="font-heading font-bold text-text-primary mb-4">Your SSP Entitlement</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                      <div class="bg-green-50 border border-green-100 rounded-xl p-4 text-center">
+                        <div class="text-xs text-green-600 font-medium mb-1 uppercase tracking-wide">SSP Rate</div>
+                        <div class="font-heading text-2xl font-bold text-green-700">£116.75</div>
+                        <div class="text-xs text-green-600 mt-1">per week ({TAX_YEAR})</div>
+                      </div>
+                      <div class="bg-navy/5 border border-navy/10 rounded-xl p-4 text-center">
+                        <div class="text-xs text-navy font-medium mb-1 uppercase tracking-wide">Waiting Days</div>
+                        <div id="waiting-days-display" class="font-heading text-2xl font-bold text-navy"></div>
+                        <div id="waiting-days-sub" class="text-xs text-text-secondary mt-1"></div>
+                      </div>
+                      <div class="bg-orange/8 border border-orange/15 rounded-xl p-4 text-center">
+                        <div class="text-xs text-orange font-medium mb-1 uppercase tracking-wide">SSP Starts</div>
+                        <div id="ssp-start-day" class="font-heading text-xl font-bold text-orange"></div>
+                        <div class="text-xs text-text-secondary mt-1">of your sick period</div>
+                      </div>
+                    </div>
+
+                    <!-- Payment table -->
+                    <div class="bg-white border border-gray-100 rounded-xl overflow-hidden">
+                      <div class="bg-navy px-5 py-3">
+                        <h5 class="font-semibold text-white text-sm">SSP Payment Breakdown</h5>
+                      </div>
+                      <div class="p-5 space-y-3">
+                        <div class="flex justify-between text-sm">
+                          <span class="text-text-secondary">Sick period duration</span>
+                          <span id="r-sick-weeks" class="font-semibold text-text-primary"></span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                          <span class="text-text-secondary">SSP payable weeks</span>
+                          <span id="r-ssp-weeks" class="font-semibold text-text-primary"></span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                          <span class="text-text-secondary">Weekly SSP amount</span>
+                          <span class="font-semibold text-text-primary">£116.75</span>
+                        </div>
+                        <div class="border-t border-gray-100 pt-3 flex justify-between">
+                          <span class="font-semibold text-text-primary">Estimated total SSP</span>
+                          <span id="r-total-ssp" class="font-heading text-xl font-bold text-green-700"></span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                          <span class="text-text-secondary">Maximum SSP period</span>
+                          <span class="font-semibold text-text-primary">28 weeks</span>
+                        </div>
+                        <div id="r-max-date-row" class="flex justify-between text-sm hidden">
+                          <span class="text-text-secondary">SSP ends (28-week limit)</span>
+                          <span id="r-max-date" class="font-semibold text-text-primary"></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Daily SSP rate info -->
+                    <div class="mt-3 bg-blue-50 border border-blue-100 rounded-lg p-3 text-xs text-blue-700">
+                      💡 <strong>Daily SSP rate:</strong> £116.75 ÷ 7 = <strong>£16.68 per qualifying day</strong>. SSP is paid for qualifying days only (your normal working days as per your contract or agreed pattern).
+                    </div>
+                  </div>
+
+                  <!-- Next Steps -->
+                  <div class="bg-navy rounded-xl p-5 text-white mb-4">
+                    <h4 class="font-heading font-bold text-base mb-4">Your Next Steps</h4>
+                    <ol id="next-steps" class="space-y-3"></ol>
+                  </div>
+
+                  <!-- Employer obligations note -->
+                  <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-xs text-amber-800 leading-relaxed">
+                    <strong>Remember:</strong> Your employer pays SSP — not HMRC. You must notify your employer of your sickness (usually within 7 days). If your employer refuses to pay SSP you believe you are owed, contact HMRC on 0300 200 3200 or report via GOV.UK.
+                  </div>
+
+                  <!-- Restart -->
+                  <button id="restart-btn" class="w-full mt-4 py-3 border border-gray-200 text-text-secondary hover:border-orange hover:text-orange rounded-lg transition-all text-sm font-medium">
+                    Calculate Again
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Ad Unit 2 -->
+          <div class="ad-unit mt-6" data-ad-position="below-tool">
+            <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+            <div class="h-[250px] bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+              <!-- 300x250 Rectangle Ad Unit -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="lg:col-span-1 space-y-5">
+
+          <!-- ${TAX_YEAR} Rates -->
+          <div class="bg-navy rounded-xl p-5 text-white">
+            <h3 class="font-heading font-bold text-base mb-4">SSP Rates {TAX_YEAR}</h3>
+            <div class="space-y-3">
+              {[
+                { label: `Weekly SSP Rate', value: '£116.75' },
+                { label: 'Lower Earnings Limit', value: '£123.00/wk' },
+                { label: 'Maximum SSP Period', value: '28 weeks' },
+                { label: 'Waiting Days', value: '3 days' },
+                { label: 'SSP starts from', value: 'Day 4 of sickness' },
+                { label: 'Daily SSP rate', value: '£16.68' },
+              ].map(r => (
+                <div class="flex justify-between items-center text-sm border-b border-white/10 pb-2">
+                  <span class="text-gray-300">{r.label}</span>
+                  <span class="font-bold text-white">{r.value}</span>
+                </div>
+              ))}
+            </div>
+            <p class="text-xs text-gray-400 mt-3">Rates set by HMRC. Updated April 2025.</p>
+          </div>
+
+          <!-- How AWE works -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4">
+            <h3 class="font-semibold text-sm text-text-primary mb-3">How AWE Works for Zero Hours</h3>
+            <div class="space-y-2.5">
+              {[
+                { step: '1', text: 'Add up all gross earnings from the 8 weeks before sickness' },
+                { step: '2', text: 'Divide the total by 8 (including zero weeks)' },
+                { step: '3', text: 'If AWE ≥ £123, you qualify for SSP' },
+                { step: '4', text: 'SSP is paid at £116.75/week regardless of your AWE` },
+              ].map(s => (
+                <div class="flex items-start gap-2.5 text-xs text-text-secondary">
+                  <span class="w-4 h-4 bg-orange rounded-full text-white text-xs flex items-center justify-center flex-shrink-0 font-bold mt-0.5">{s.step}</span>
+                  <span>{s.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+            <div class="flex items-start gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
+              <div>
+                <p class="text-xs font-semibold text-amber-800 mb-1">Important Notice</p>
+                <p class="text-xs text-amber-700 leading-relaxed">SSP rates are updated annually by HMRC. This tool uses ${TAX_YEAR} figures. Always verify current rates at GOV.UK. Your employer pays SSP — contact HMRC if they refuse.</p>
+                <a href="/disclaimer/" class="text-xs text-amber-700 underline mt-1 block">Read full disclaimer →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- If SSP runs out -->
+          <div class="bg-white border border-gray-100 rounded-xl p-4">
+            <h3 class="font-semibold text-sm text-text-primary mb-2">When SSP Runs Out</h3>
+            <p class="text-xs text-text-secondary leading-relaxed mb-2">After 28 weeks your employer must give you form SSP1. You can then apply for:</p>
+            <ul class="space-y-1 text-xs text-text-secondary">
+              <li class="flex items-start gap-1.5"><span class="text-orange">→</span> Employment Support Allowance (ESA)</li>
+              <li class="flex items-start gap-1.5"><span class="text-orange">→</span> Universal Credit</li>
+              <li class="flex items-start gap-1.5"><span class="text-orange">→</span> Personal Independence Payment (PIP) if condition is long-term</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white border-t border-gray-100 py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { num: `01', title: 'Enter Your Earnings', desc: 'Input your gross pay for each of the 8 weeks before your sickness started. Enter £0 for any weeks you did not work — these still count.' },
+          { num: '02', title: 'We Calculate Your AWE', desc: 'The tool adds up your 8 weeks of earnings and divides by 8 to get your Average Weekly Earnings — the official HMRC method for irregular workers.' },
+          { num: '03', title: 'Get Your Result', desc: 'See whether you qualify for SSP, your weekly amount, waiting days, SSP start date, and total entitlement for your sick period.' },
+        ].map(step => (
+          <div class="flex gap-4">
+            <div class="font-heading text-4xl font-bold text-navy/15 flex-shrink-0 leading-none">{step.num}</div>
+            <div>
+              <h3 class="font-heading font-semibold text-text-primary mb-2">{step.title}</h3>
+              <p class="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-14 bg-cream">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        {[
+          {
+            q: 'Can zero hours workers get Statutory Sick Pay?',
+            a: `Yes, zero hours workers can qualify for Statutory Sick Pay if they meet the eligibility criteria. You must be classed as an employee (not self-employed) under the Social Security Contributions and Benefits Act 1992, have been ill for at least 4 consecutive days, and your Average Weekly Earnings over the previous 8 weeks must be at least £123 per week (the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001) for ${TAX_YEAR}). Even if some of those 8 weeks had zero earnings, you may still qualify if your average meets the threshold.`
+          },
+          {
+            q: 'How is SSP calculated for zero hours contracts?',
+            a: `For zero hours and irregular workers, SSP eligibility is based on your Average Weekly Earnings (AWE) over the 8 weeks immediately before the sickness period began. You add up your total gross earnings over those 8 weeks and divide by 8. If the result is at least £123 (the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001) for ${TAX_YEAR}), you qualify for SSP at the flat rate of £116.75 per week for {TAX_YEAR}. Note that weeks with zero earnings are still counted in the 8-week calculation.`
+          },
+          {
+            q: 'What are waiting days for SSP?',
+            a: 'Waiting days are the first 3 days of a period of sickness. You do not receive SSP for these days — SSP only starts from the 4th qualifying day of sickness. However, if you have a linked period of incapacity (a previous sick period that began within 8 weeks of the current one), waiting days may not apply again. This means if you were recently sick and return to sick leave quickly, SSP may start from day 1 of the new sick period.'
+          },
+          {
+            q: 'How long can I receive SSP?',
+            a: 'You can receive SSP for a maximum of 28 weeks. After 28 weeks, SSP stops and your employer must give you an SSP1 form so you can apply for other benefits such as Employment and Support Allowance or Universal Credit. The 28-week limit applies per period of sickness or linked periods of sickness that began within 8 weeks of each other.'
+          },
+          {
+            q: 'What if my employer refuses to pay SSP?',
+            a: 'If you believe you are entitled to SSP and your employer refuses to pay it, first ask your employer for a written explanation — they must provide form SSP1 if they believe you do not qualify. If you disagree, you can formally dispute it with HMRC. Contact HMRC\'s employer helpline on 0300 200 3200. HMRC has the power to investigate and enforce SSP payment where an employer has incorrectly refused to pay.'
+          }
+        ].map(faq => (
+          <details class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
+            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-text-primary text-sm hover:text-navy transition-colors list-none">
+              <span>{faq.q}</span>
+              <svg class="w-4 h-4 text-gray-400 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed border-t border-gray-50 pt-4">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+
+      <!-- Ad Unit 3 -->
+      <div class="ad-unit mt-8" data-ad-position="faq-mid">
+        <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
+        <div class="h-[250px] bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
+          <!-- 300x250 Rectangle Ad Unit -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="py-14 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Other Tools You Might Need</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="group bg-cream rounded-xl border border-gray-100 p-5 hover:border-orange/30 hover:shadow-card transition-all duration-200">
+            <span class="text-2xl block mb-3">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-navy transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+            <span class="text-orange text-xs font-medium mt-3 inline-flex items-center gap-1">
+              Use tool free
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .results-animate { animation: fadeInUp 0.4s ease forwards; }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .accent-navy { accent-color: #1a3c5e; }
+  select, input[type="date"], input[type="number"] { color: #1a1a2e; }
+</style>
+
+<script define:vars={{ SSP_WEEKLY_RATE, LOWER_EARNINGS_LIMIT, MAX_SSP_WEEKS }}>
+  // Statutory rates — update src/data/config.ts each April when HMRC publishes new rates.
+  // SSP_WEEKLY_RATE, LOWER_EARNINGS_LIMIT and MAX_SSP_WEEKS are defined in config.ts.
+  document.addEventListener('DOMContentLoaded', () => {
+  // Constants — SSP 2025/26
+  // SSP_WEEKLY_RATE, LOWER_EARNINGS_LIMIT, MAX_SSP_WEEKS injected via define:vars from config.ts
+  const WAITING_DAYS = 3;
+
+  // Live earnings calculator
+  function updateLiveTotals() {
+    let total = 0;
+    document.querySelectorAll('.week-input').forEach(input => {
+      const val = parseFloat((input as HTMLInputElement).value) || 0;
+      total += val;
+    });
+    const awe = total / 8;
+    const totalEl = document.getElementById('total-earnings-display');
+    const aweEl = document.getElementById('awe-display');
+    if (totalEl) totalEl.textContent = `£${total.toFixed(2)}`;
+    if (aweEl) {
+      aweEl.textContent = `£${awe.toFixed(2)}`;
+      aweEl.className = `font-heading text-xl font-bold ${awe >= LOWER_EARNINGS_LIMIT ? 'text-green-600' : awe > 0 ? 'text-red-500' : 'text-navy'}`;
+    }
+  }
+
+  document.querySelectorAll('.week-input').forEach(input => {
+    input.addEventListener('input', updateLiveTotals);
+  });
+
+  // Employment type handler
+  document.querySelectorAll('input[name="emp-type"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const val = (e.target as HTMLInputElement).value;
+      const warning = document.getElementById('self-employed-warning');
+      const earningsSection = document.getElementById('earnings-section');
+      const sickSection = document.getElementById('sick-period-section');
+      const calcSection = document.getElementById('calc-section');
+      if (val === 'self-employed') {
+        warning?.classList.remove('hidden');
+        earningsSection?.classList.add('opacity-40', 'pointer-events-none');
+        sickSection?.classList.add('opacity-40', 'pointer-events-none');
+        calcSection?.classList.add('opacity-40', 'pointer-events-none');
+      } else {
+        warning?.classList.add('hidden');
+        earningsSection?.classList.remove('opacity-40', 'pointer-events-none');
+        sickSection?.classList.remove('opacity-40', 'pointer-events-none');
+        calcSection?.classList.remove('opacity-40', 'pointer-events-none');
+      }
+    });
+  });
+
+  // Format currency
+  function fmt(n: number): string { return `£${n.toFixed(2)}`; }
+
+  // Format date
+  function fmtDate(d: Date): string {
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  // Main calculation
+  document.getElementById('calculate-btn')?.addEventListener('click', () => {
+    const empType = (document.querySelector('input[name="emp-type"]:checked') as HTMLInputElement)?.value;
+    if (empType === 'self-employed') return;
+
+    const sickStart = (document.getElementById('sick-start') as HTMLInputElement).value;
+    const sickWeeksVal = (document.getElementById('sick-weeks') as HTMLSelectElement).value;
+    const linkedPeriod = (document.getElementById('linked-period') as HTMLInputElement).checked;
+    const formError = document.getElementById('form-error');
+
+    if (!sickStart || !sickWeeksVal) {
+      formError?.classList.remove('hidden');
+      return;
+    }
+    formError?.classList.add('hidden');
+
+    // Collect earnings
+    let total8Weeks = 0;
+    let allZero = true;
+    for (let i = 1; i <= 8; i++) {
+      const val = parseFloat((document.getElementById(`week${i}`) as HTMLInputElement).value) || 0;
+      total8Weeks += val;
+      if (val > 0) allZero = false;
+    }
+
+    const awe = total8Weeks / 8;
+    const qualified = awe >= LOWER_EARNINGS_LIMIT;
+
+    // Determine sick weeks
+    const isOngoing = sickWeeksVal === 'ongoing';
+    const sickWeeks = isOngoing ? MAX_SSP_WEEKS : parseInt(sickWeeksVal);
+
+    // Waiting days logic
+    const waitingDays = linkedPeriod ? 0 : WAITING_DAYS;
+    const waitingDaysWeeks = waitingDays / 7;
+
+    // SSP payable weeks
+    let sspWeeks = 0;
+    if (qualified) {
+      const sickWeeksCapped = Math.min(sickWeeks, MAX_SSP_WEEKS);
+      sspWeeks = Math.max(0, sickWeeksCapped - waitingDaysWeeks);
+    }
+
+    const totalSSP = sspWeeks * SSP_WEEKLY_RATE;
+
+    // SSP end date if start date provided
+    let sspMaxDate = '';
+    if (sickStart) {
+      const startDate = new Date(sickStart);
+      const maxDate = new Date(startDate);
+      maxDate.setDate(maxDate.getDate() + (MAX_SSP_WEEKS * 7));
+      sspMaxDate = fmtDate(maxDate);
+    }
+
+    // Render eligibility banner
+    const eligBanner = document.getElementById('eligibility-banner');
+    const eligIcon = document.getElementById('elig-icon');
+    const eligTitle = document.getElementById('elig-title');
+    const eligDesc = document.getElementById('elig-desc');
+
+    if (qualified) {
+      if (eligBanner) eligBanner.className = 'rounded-2xl p-5 mb-6 flex items-start gap-4 bg-green-50 border border-green-200';
+      if (eligIcon) eligIcon.textContent = '✅';
+      if (eligTitle) { eligTitle.textContent = 'You Are Eligible for SSP'; eligTitle.className = 'font-heading text-xl font-bold mb-1 text-green-800'; }
+      if (eligDesc) { eligDesc.textContent = `Your Average Weekly Earnings of £${awe.toFixed(2)} meets the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001) of £${LOWER_EARNINGS_LIMIT}. You qualify for Statutory Sick Pay at £${SSP_WEEKLY_RATE}/week.`; eligDesc.className = 'text-sm leading-relaxed text-green-700'; }
+    } else {
+      if (eligBanner) eligBanner.className = 'rounded-2xl p-5 mb-6 flex items-start gap-4 bg-red-50 border border-red-200';
+      if (eligIcon) eligIcon.textContent = '❌';
+      if (eligTitle) { eligTitle.textContent = allZero ? 'No Earnings Entered — Cannot Calculate' : 'Not Eligible for SSP'; eligTitle.className = 'font-heading text-xl font-bold mb-1 text-red-800'; }
+      if (eligDesc) {
+        eligDesc.className = 'text-sm leading-relaxed text-red-700';
+        if (allZero) {
+          eligDesc.textContent = 'Please enter your earnings for the 8 weeks before your sickness began. Enter £0 for any weeks you did not work.';
+        } else {
+          eligDesc.textContent = `Your Average Weekly Earnings of £${awe.toFixed(2)} is below the Lower Earnings Limit (as set annually by HMRC under the Social Security (Contributions) Regulations 2001) of £${LOWER_EARNINGS_LIMIT}/week. Unfortunately you do not qualify for SSP. You may be eligible for Universal Credit instead.`;
+        }
+      }
+    }
+
+    // AWE breakdown
+    const rTotal = document.getElementById('r-total');
+    const rAwe = document.getElementById('r-awe');
+    const rVsLel = document.getElementById('r-vs-lel');
+    if (rTotal) rTotal.textContent = fmt(total8Weeks);
+    if (rAwe) rAwe.textContent = fmt(awe);
+    if (rVsLel) {
+      const diff = awe - LOWER_EARNINGS_LIMIT;
+      rVsLel.textContent = diff >= 0 ? `£${diff.toFixed(2)} above LEL ✅` : `£${Math.abs(diff).toFixed(2)} below LEL ❌`;
+      rVsLel.className = `font-semibold ${diff >= 0 ? 'text-green-600' : 'text-red-500'}`;
+    }
+
+    // SSP breakdown (only if eligible)
+    const sspBreakdown = document.getElementById('ssp-breakdown');
+    if (qualified && sspBreakdown) {
+      sspBreakdown.classList.remove('hidden');
+
+      const waitingDisplay = document.getElementById('waiting-days-display');
+      const waitingSub = document.getElementById('waiting-days-sub');
+      const sspStartDay = document.getElementById('ssp-start-day');
+      const rSickWeeks = document.getElementById('r-sick-weeks');
+      const rSspWeeks = document.getElementById('r-ssp-weeks');
+      const rTotalSSP = document.getElementById('r-total-ssp');
+      const rMaxDateRow = document.getElementById('r-max-date-row');
+      const rMaxDate = document.getElementById('r-max-date');
+
+      if (waitingDisplay) waitingDisplay.textContent = linkedPeriod ? '0 days' : '3 days';
+      if (waitingSub) waitingSub.textContent = linkedPeriod ? 'Waived — linked period' : 'No SSP for first 3 days';
+      if (sspStartDay) sspStartDay.textContent = linkedPeriod ? 'Day 1' : 'Day 4';
+      if (rSickWeeks) rSickWeeks.textContent = isOngoing ? 'Ongoing (up to 28 weeks max)' : `${sickWeeks} week${sickWeeks > 1 ? 's' : ''}`;
+      if (rSspWeeks) rSspWeeks.textContent = `${(Math.round(sspWeeks * 2) / 2).toFixed(1)} weeks`;
+      if (rTotalSSP) rTotalSSP.textContent = fmt(totalSSP);
+      if (sspMaxDate && rMaxDateRow && rMaxDate) {
+        rMaxDateRow.classList.remove('hidden');
+        rMaxDate.textContent = sspMaxDate;
+      }
+    } else if (sspBreakdown) {
+      sspBreakdown.classList.add('hidden');
+    }
+
+    // Next steps
+    const nextStepsEl = document.getElementById('next-steps');
+    const steps = qualified ? [
+      '📋 Notify your employer of your sickness in writing if you have not already done so',
+      '🏥 Obtain a fit note (sick note) from your GP if your illness lasts more than 7 days',
+      `💷 Expect SSP of £${SSP_WEEKLY_RATE}/week to be paid through your normal payroll`,
+      '📄 Keep records of all communications with your employer about your sickness',
+      '⚠️ If your employer refuses to pay, contact HMRC on 0300 200 3200 to report it',
+      isOngoing ? `⏱️ SSP will stop after 28 weeks. Ask your employer for form SSP1 at that point.` : '',
+    ].filter(Boolean) : [
+      '💻 Check your eligibility for Universal Credit at gov.uk/universal-credit',
+      '📞 Contact Citizens Advice on 0800 144 8848 for free benefits guidance',
+      '🏥 If your condition is long-term, consider applying for Personal Independence Payment (PIP)',
+      '💡 Check whether your employer offers contractual sick pay above the SSP minimum',
+      '📋 Ask your employer for form SSP1 confirming why SSP is not being paid',
+    ];
+
+    if (nextStepsEl) {
+      nextStepsEl.innerHTML = steps.map((step, i) =>
+        `<li class="flex items-start gap-3 text-sm text-gray-200">
+          <span class="w-5 h-5 bg-orange rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">${i + 1}</span>
+          <span>${step}</span>
+        </li>`
+      ).join('');
+    }
+
+    // Show results
+    document.getElementById('results-section')?.classList.remove('hidden');
+    document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Reset
+  document.getElementById('reset-btn')?.addEventListener('click', () => {
+    document.querySelectorAll('.week-input').forEach(i => (i as HTMLInputElement).value = '');
+    (document.getElementById('sick-start') as HTMLInputElement).value = '';
+    (document.getElementById('sick-weeks') as HTMLSelectElement).value = '';
+    (document.getElementById('linked-period') as HTMLInputElement).checked = false;
+    const empEmployee = document.querySelector('input[name="emp-type"][value="employee"]') as HTMLInputElement;
+    if (empEmployee) empEmployee.checked = true;
+    document.getElementById('self-employed-warning')?.classList.add('hidden');
+    document.getElementById('results-section')?.classList.add('hidden');
+    document.getElementById('form-error')?.classList.add('hidden');
+    updateLiveTotals();
+  });
+
+  // Restart
+  document.getElementById('restart-btn')?.addEventListener('click', () => {
+    document.getElementById('reset-btn')?.click();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  });
+</script>
