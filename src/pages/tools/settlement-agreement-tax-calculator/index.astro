@@ -4,7 +4,15 @@ import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import Breadcrumb from '../../../components/Breadcrumb.astro';
 import { ALL_TOOLS } from '../../../data/tools';
-import { TAX_YEAR, CURRENT_YEAR, TAX_FREE_COMPENSATION_LIMIT, PERSONAL_ALLOWANCE, BASIC_RATE_LIMIT, ADDITIONAL_RATE_THRESHOLD, BASIC_RATE, HIGHER_RATE, ADDITIONAL_RATE, NI_PRIMARY_THRESHOLD_WEEKLY, NI_UPPER_EARNINGS_LIMIT_WEEKLY, NI_RATE_MAIN, NI_RATE_UPPER } from '../../../data/config';
+import { 
+  TAX_YEAR, 
+  CURRENT_YEAR, 
+  TAX_FREE_COMPENSATION_LIMIT, 
+  BASIC_RATE, 
+  HIGHER_RATE, 
+  ADDITIONAL_RATE, 
+  NI_RATE_MAIN 
+} from '../../../data/config';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -21,86 +29,29 @@ const schema = [
     "@type": "WebApplication",
     "name": "Settlement Agreement Tax Calculator UK",
     "url": "https://fairworkcheck.co.uk/tools/settlement-agreement-tax-calculator/",
-    "description": "Calculate the tax-free and taxable portions of your UK settlement agreement and estimate your net take-home pay after tax. Updated for HMRC rules and tax rates 2025/26.",
+    "description": "Calculate the tax-free and taxable portions of your UK settlement agreement and estimate your net take-home pay after tax.",
     "applicationCategory": "LegalApplication",
     "operatingSystem": "All",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
     "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
-      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
-      { "@type": "ListItem", "position": 3, "name": "Settlement Agreement Tax Calculator" }
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "How much of a settlement agreement is tax free?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Under UK tax law, the first £30,000 of a genuine compensation payment for loss of employment in a settlement agreement is tax free. This applies to ex-gratia payments made as compensation for losing your job. However, payments for wages, notice pay (PILON), holiday pay, and bonus are all fully taxable and subject to income tax and National Insurance, regardless of how the agreement labels them. Only the genuine compensatory element can benefit from the £30,000 exemption."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is notice pay in a settlement agreement taxable?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Since April 2018, all payments in lieu of notice (PILON) are fully taxable and subject to both income tax and National Insurance contributions, regardless of whether your contract contains a PILON clause. This is known as Post-Employment Notice Pay (PENP). Even if your settlement agreement attempts to label notice pay as compensation, HMRC requires it to be taxed. Your employer must calculate the PENP amount and deduct tax and NI before paying you."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do I pay National Insurance on a settlement agreement?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It depends on the component. Wages arrears, notice pay (PILON), holiday pay and bonus payments in a settlement agreement are subject to both income tax and National Insurance contributions. The genuine compensation for loss of employment element — up to £30,000 — is free from both income tax and National Insurance. Any compensation above £30,000 is subject to income tax only, not National Insurance."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the £30,000 tax free allowance for settlement agreements?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The £30,000 tax exemption applies to genuine ex-gratia payments made as compensation for loss of employment. It is a lifetime allowance that applies per employment, not per tax year. The exemption covers the compensatory element of a settlement — not contractual payments like wages, notice pay or holiday pay. Payments above £30,000 that are genuinely compensatory are taxed as income but are not subject to National Insurance contributions."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Should I get legal advice before signing a settlement agreement?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes — you are legally required to receive independent legal advice before signing a settlement agreement. A settlement agreement is only legally valid if you have received advice from a qualified independent adviser, such as a solicitor, certified trade union official, or advice centre worker. Your employer will usually contribute to the cost of this legal advice. Do not sign a settlement agreement without first receiving independent legal advice on its terms and your rights."
-        }
-      }
-    ]
   }
 ];
 ---
 
 <BaseLayout
   title={`Settlement Agreement Tax Calculator UK ${CURRENT_YEAR} — How Much Is Tax Free? | FairWorkCheck`}
-  description={`Calculate the tax-free and taxable portions of your UK settlement agreement. Find your net take-home after income tax and NI. Free tool, updated for HMRC ${TAX_YEAR} rules.`}
+  description={`Calculate the tax-free and taxable portions of your UK settlement agreement. Updated for HMRC ${TAX_YEAR} rules.`}
   canonical="https://fairworkcheck.co.uk/tools/settlement-agreement-tax-calculator/"
   schema={schema}
 >
   <Header slot="header" />
   <Breadcrumb items={breadcrumbs} />
 
-  <!-- Ad Unit 1 -->
+  <!-- Ad Unit -->
   <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
     <div class="max-w-6xl mx-auto px-4 py-3 text-center">
       <div class="text-xs text-gray-400 mb-1">Advertisement</div>
-      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto">
-        <!-- 728x90 Leaderboard / 320x50 Mobile -->
-      </div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"></div>
     </div>
   </div>
 
@@ -115,404 +66,97 @@ const schema = [
         Settlement Agreement Tax Calculator UK
       </h1>
       <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
-        Find out exactly how much of your settlement agreement is tax-free, how much tax you will pay, and your real net take-home figure — before you sign. Updated for HMRC rules and UK tax rates {TAX_YEAR}.
+        Find out exactly how much of your settlement agreement is tax-free, how much tax you will pay, and your real net take-home figure.
       </p>
-      <div class="flex flex-wrap gap-3">
-        {['Free to Use', 'No Registration', 'Instant Results', `HMRC Rules ${TAX_YEAR}`].map(badge => (
-          <span class="inline-flex items-center gap-1.5 text-sm text-success bg-green-50 px-3 py-1 rounded-full border border-green-100 font-medium">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            {badge}
-          </span>
-        ))}
-      </div>
     </div>
   </section>
 
-  <!-- IMPORTANT WARNING BANNER -->
+  <!-- Legal Warning Banner -->
   <div class="bg-amber-50 border-y border-amber-200">
     <div class="max-w-4xl mx-auto px-4 py-4 flex items-start gap-3">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
       <div>
         <p class="text-sm font-semibold text-amber-800 mb-1">Legal Requirement Before Signing</p>
         <p class="text-sm text-amber-700 leading-relaxed">
-          You are legally required to receive independent legal advice before signing a settlement agreement. It is not legally valid without it. This calculator gives you an estimate only — always have your agreement reviewed by a qualified employment solicitor.
-          <a href="/disclaimer/" class="underline ml-1">Read our full disclaimer →</a>
+          You are legally required to receive independent legal advice before signing a settlement agreement. This calculator provides an estimate only.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Main Tool Section -->
   <section class="py-10 md:py-14">
     <div class="max-w-4xl mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-        <!-- Tool Card -->
+        <!-- Input Section -->
         <div class="lg:col-span-2">
           <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-orange overflow-hidden">
             <div class="p-6 md:p-8">
-              <h2 class="font-heading text-xl font-bold text-text-primary mb-2 flex items-center gap-2">
-                <span class="text-2xl">💷</span> Calculate Your Settlement Agreement Tax
-              </h2>
-              <p class="text-sm text-text-secondary mb-8 leading-relaxed">
-                Enter the breakdown of your settlement agreement below. Different payment types are taxed differently — enter each separately for an accurate result. All figures should be gross (before tax).
-              </p>
-
-              <!-- SECTION 1: Tax Band -->
-              <div class="mb-8">
-                <h3 class="font-semibold text-text-primary text-sm mb-4 flex items-center gap-2">
-                  <span class="w-6 h-6 bg-navy rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0">1</span>
-                  Your Income Tax Band
-                </h3>
-                <p class="text-xs text-text-secondary mb-3 ml-8">This should be your tax band during the tax year you receive the settlement, taking into account your normal salary plus any taxable settlement payments.</p>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  {[
-                    { value: 'basic', label: 'Basic Rate', rate: '20%', range: 'Income £12,571–£50,270' },
-                    { value: 'higher', label: 'Higher Rate', rate: '40%', range: 'Income £50,271–£125,140' },
-                    { value: 'additional', label: 'Additional Rate', rate: '45%', range: 'Income above £125,140' },
-                  ].map(band => (
-                    <label class="tax-band-option flex flex-col p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy/40 transition-all text-center">
-                      <input type="radio" name="tax-band" value={band.value} class="hidden" />
-                      <span class="font-heading text-2xl font-bold text-navy mb-1">{band.rate}</span>
-                      <span class="font-semibold text-sm text-text-primary mb-1">{band.label}</span>
-                      <span class="text-xs text-text-secondary">{band.range}</span>
-                    </label>
-                  ))}
-                </div>
-                <p id="band-error" class="text-red-500 text-xs mt-2 hidden">Please select your tax band.</p>
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-6">1. Your Income Tax Band</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                {[
+                  { value: 'basic', label: 'Basic Rate', rate: '20%' },
+                  { value: 'higher', label: 'Higher Rate', rate: '40%' },
+                  { value: 'additional', label: 'Additional Rate', rate: '45%' },
+                ].map(band => (
+                  <label class="tax-band-option flex flex-col p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-navy text-center">
+                    <input type="radio" name="tax-band" value={band.value} class="hidden" />
+                    <span class="text-2xl font-bold text-navy">{band.rate}</span>
+                    <span class="text-sm font-semibold">{band.label}</span>
+                  </label>
+                ))}
               </div>
 
-              <!-- SECTION 2: Payment Breakdown -->
-              <div class="mb-8">
-                <h3 class="font-semibold text-text-primary text-sm mb-1 flex items-center gap-2">
-                  <span class="w-6 h-6 bg-navy rounded-full text-white text-xs flex items-center justify-center font-bold flex-shrink-0">2</span>
-                  Your Settlement Agreement Breakdown
-                </h3>
-                <p class="text-xs text-text-secondary mb-5 ml-8">Enter each payment type separately. Leave blank or enter £0 if not applicable.</p>
-
-                <div class="space-y-4">
-
-                  <!-- Wages Arrears -->
-                  <div class="payment-row rounded-xl border border-gray-100 overflow-hidden">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-gray-50 cursor-pointer payment-toggle text-left" data-target="wages-detail" aria-controls="wages-detail" aria-expanded="false" aria-label="Toggle wages and salary arrears payment details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-sm flex-shrink-0">💰</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Wages / Salary Arrears</p>
-                          <p class="text-xs text-text-secondary">Any unpaid salary or wages owed to you</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-semibold">Fully Taxable + NI</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-gray-100" id="wages-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Gross amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="wages" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="taxable-ni" />
-                          </div>
-                        </div>
-                        <div class="bg-red-50 rounded-lg p-3 text-xs text-red-700 leading-relaxed">
-                          Wages arrears are fully subject to income tax AND National Insurance — the same as your normal salary.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Notice Pay (PILON) -->
-                  <div class="payment-row rounded-xl border border-gray-100 overflow-hidden">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-gray-50 cursor-pointer payment-toggle text-left" data-target="pilon-detail" aria-controls="pilon-detail" aria-expanded="false" aria-label="Toggle notice pay (PILON) payment details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-sm flex-shrink-0">📅</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Notice Pay (PILON)</p>
-                          <p class="text-xs text-text-secondary">Payment in lieu of working your notice period</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-semibold">Fully Taxable + NI</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-gray-100" id="pilon-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Gross amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="pilon" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="taxable-ni" />
-                          </div>
-                        </div>
-                        <div class="bg-red-50 rounded-lg p-3 text-xs text-red-700 leading-relaxed">
-                          Since April 2018 all PILON is subject to income tax AND National Insurance — regardless of whether your contract had a PILON clause.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Holiday Pay -->
-                  <div class="payment-row rounded-xl border border-gray-100 overflow-hidden">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-gray-50 cursor-pointer payment-toggle text-left" data-target="holiday-detail" aria-controls="holiday-detail" aria-expanded="false" aria-label="Toggle accrued holiday pay payment details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-sm flex-shrink-0">🌴</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Accrued Holiday Pay</p>
-                          <p class="text-xs text-text-secondary">Payment for untaken holiday entitlement</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-semibold">Fully Taxable + NI</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-gray-100" id="holiday-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Gross amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="holiday" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="taxable-ni" />
-                          </div>
-                        </div>
-                        <div class="bg-red-50 rounded-lg p-3 text-xs text-red-700 leading-relaxed">
-                          Accrued holiday pay is treated as earnings and is fully subject to income tax and National Insurance contributions.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Bonus -->
-                  <div class="payment-row rounded-xl border border-gray-100 overflow-hidden">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-gray-50 cursor-pointer payment-toggle text-left" data-target="bonus-detail" aria-controls="bonus-detail" aria-expanded="false" aria-label="Toggle bonus and commission payment details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center text-sm flex-shrink-0">⭐</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Bonus / Commission</p>
-                          <p class="text-xs text-text-secondary">Any contractual or discretionary bonus payment</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded-full font-semibold">Fully Taxable + NI</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-gray-100" id="bonus-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Gross amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="bonus" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="taxable-ni" />
-                          </div>
-                        </div>
-                        <div class="bg-red-50 rounded-lg p-3 text-xs text-red-700 leading-relaxed">
-                          Bonus and commission payments due under your contract are fully taxable and subject to National Insurance.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Compensation for Loss of Employment -->
-                  <div class="payment-row rounded-xl border border-navy/20 overflow-hidden ring-1 ring-navy/10">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-green-50 cursor-pointer payment-toggle text-left" data-target="compensation-detail" aria-controls="compensation-detail" aria-expanded="false" aria-label="Toggle compensation for loss of employment details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-sm flex-shrink-0">✅</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Compensation for Loss of Employment</p>
-                          <p class="text-xs text-text-secondary">Ex-gratia payment — the tax-advantaged element</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-semibold">First £30k Tax Free</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-green-100" id="compensation-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Gross amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="compensation" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="compensation" />
-                          </div>
-                        </div>
-                        <div class="bg-green-50 rounded-lg p-3 text-xs text-green-700 leading-relaxed">
-                          The first £30,000 of genuine compensation for loss of employment is free from income tax AND National Insurance. Any amount above £30,000 is subject to income tax only (not NI).
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Legal Costs -->
-                  <div class="payment-row rounded-xl border border-gray-100 overflow-hidden">
-                    <button type="button" class="w-full flex items-center justify-between p-4 bg-gray-50 cursor-pointer payment-toggle text-left" data-target="legal-detail" aria-controls="legal-detail" aria-expanded="false" aria-label="Toggle legal fee contribution details">
-                      <div class="flex items-center gap-3">
-                        <span class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-sm flex-shrink-0">⚖️</span>
-                        <div>
-                          <p class="font-semibold text-sm text-text-primary">Employer Contribution to Legal Fees</p>
-                          <p class="text-xs text-text-secondary">Payment towards your solicitor's fees for reviewing the agreement</p>
-                        </div>
-                      </div>
-                      <div class="flex items-center gap-3">
-                        <span class="tax-tag bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded-full font-semibold">Tax Free</span>
-                        <svg class="w-4 h-4 text-gray-400 toggle-arrow transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-                      </div>
-                    </button>
-                    <div class="payment-detail hidden p-4 border-t border-gray-100" id="legal-detail">
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                          <label class="block text-xs font-semibold text-text-secondary mb-1.5">Amount (£)</label>
-                          <div class="relative">
-                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">£</span>
-                            <input type="number" id="legal" class="payment-input w-full border border-gray-200 rounded-lg pl-7 pr-3 py-2.5 text-sm text-text-primary focus:outline-none focus:ring-2 focus:ring-navy/30 focus:border-navy bg-white transition-all" placeholder="0.00" min="0" step="0.01" data-type="tax-free" />
-                          </div>
-                        </div>
-                        <div class="bg-blue-50 rounded-lg p-3 text-xs text-blue-700 leading-relaxed">
-                          Payments made directly to your solicitor for advising you on the agreement are tax free. This does not count towards the £30,000 limit.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-6">2. Payment Breakdown</h2>
+              <div class="space-y-4 mb-8">
+                <!-- Compensation Row -->
+                <div class="rounded-xl border border-gray-100 overflow-hidden">
+                   <div class="p-4 bg-gray-50 flex justify-between items-center">
+                      <span class="font-semibold">Ex-gratia Compensation</span>
+                      <input type="number" id="compensation" class="payment-input border p-2 rounded w-32" placeholder="0.00" />
+                   </div>
                 </div>
-
-                <!-- Live Running Total -->
-                <div class="mt-5 bg-navy rounded-xl p-4">
-                  <div class="grid grid-cols-3 gap-3 text-center">
-                    <div>
-                      <p class="text-xs text-gray-400 mb-1">Total Agreement</p>
-                      <p id="live-total" class="font-heading text-lg font-bold text-white">£0.00</p>
-                    </div>
-                    <div>
-                      <p class="text-xs text-gray-400 mb-1">Tax-Free Amount</p>
-                      <p id="live-taxfree" class="font-heading text-lg font-bold text-green-400">£0.00</p>
-                    </div>
-                    <div>
-                      <p class="text-xs text-gray-400 mb-1">Estimated Tax</p>
-                      <p id="live-tax" class="font-heading text-lg font-bold text-orange-light">£0.00</p>
-                    </div>
-                  </div>
-                  <p class="text-xs text-gray-500 text-center mt-2">Live estimate — select your tax band above for accuracy</p>
+                <!-- PILON Row -->
+                <div class="rounded-xl border border-gray-100 overflow-hidden">
+                   <div class="p-4 bg-gray-50 flex justify-between items-center">
+                      <span class="font-semibold">Notice Pay (PILON)</span>
+                      <input type="number" id="pilon" class="payment-input border p-2 rounded w-32" placeholder="0.00" />
+                   </div>
+                </div>
+                <!-- Holiday Row -->
+                <div class="rounded-xl border border-gray-100 overflow-hidden">
+                   <div class="p-4 bg-gray-50 flex justify-between items-center">
+                      <span class="font-semibold">Holiday Pay</span>
+                      <input type="number" id="holiday" class="payment-input border p-2 rounded w-32" placeholder="0.00" />
+                   </div>
                 </div>
               </div>
 
-              <!-- Calculate Button -->
-              <div>
-                <p id="calc-error" class="text-red-500 text-xs mb-3 hidden">Please select your tax band and enter at least one payment amount.</p>
-                <div class="flex gap-3">
-                  <button id="calculate-btn" class="flex-1 bg-orange hover:bg-orange-dark text-white font-semibold py-3.5 px-6 rounded-lg transition-all duration-200 hover:shadow-lg text-sm flex items-center justify-center gap-2">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 12l2 2 4-4M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
-                    Calculate My Net Take-Home
-                  </button>
-                  <button id="reset-btn" class="px-5 py-3.5 border border-gray-200 text-text-secondary hover:border-gray-300 rounded-lg transition-all text-sm font-medium">
-                    Reset
-                  </button>
-                </div>
-              </div>
-
-              <!-- Results Section -->
-              <div id="results-section" class="hidden mt-8 results-animate">
-                <div class="border-t border-gray-100 pt-8">
-
-                  <!-- Net Take-Home Hero -->
-                  <div class="rounded-2xl p-6 mb-6 text-white text-center" style="background: linear-gradient(to bottom right, #1a3c5e, #122b45)">
-                    <p class="text-sm text-gray-300 mb-1">Your Estimated Net Take-Home</p>
-                    <p id="r-net-takehome" class="font-heading text-5xl font-bold text-white mb-2"></p>
-                    <p id="r-net-subtitle" class="text-sm text-gray-300"></p>
-                  </div>
-
-                  <!-- Full Breakdown Table -->
-                  <div class="bg-white border border-gray-100 rounded-2xl overflow-hidden mb-5 shadow-sm">
-                    <div class="bg-gray-50 px-5 py-3 border-b border-gray-100">
-                      <h4 class="font-heading font-bold text-text-primary text-sm">Full Tax Breakdown</h4>
-                    </div>
-                    <div class="divide-y divide-gray-50" id="breakdown-table">
-                      <!-- Rows injected by JS -->
-                    </div>
-                    <!-- Totals -->
-                    <div class="bg-navy/5 px-5 py-4 border-t-2 border-navy/20 space-y-2.5">
-                      <div class="flex justify-between text-sm">
-                        <span class="text-text-secondary">Total gross settlement</span>
-                        <span id="r-gross-total" class="font-bold text-text-primary"></span>
-                      </div>
-                      <div class="flex justify-between text-sm">
-                        <span class="text-text-secondary">Total tax-free amount</span>
-                        <span id="r-total-taxfree" class="font-bold text-green-600"></span>
-                      </div>
-                      <div class="flex justify-between text-sm">
-                        <span class="text-text-secondary">Total income tax deducted</span>
-                        <span id="r-total-tax" class="font-bold text-red-500"></span>
-                      </div>
-                      <div class="flex justify-between text-sm">
-                        <span class="text-text-secondary">Total National Insurance deducted</span>
-                        <span id="r-total-ni" class="font-bold text-red-500"></span>
-                      </div>
-                      <div class="flex justify-between pt-2 border-t border-navy/20">
-                        <span class="font-bold text-text-primary">Estimated net take-home</span>
-                        <span id="r-net-total" class="font-heading text-xl font-bold text-navy"></span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Tax Band Applied -->
-                  <div id="tax-band-notice" class="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-5 text-xs text-blue-800">
-                  </div>
-
-                  <!-- £30k Warning if exceeded -->
-                  <div id="thirty-k-warning" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-4 mb-5">
-                    <p class="text-xs font-semibold text-amber-800 mb-1">⚠️ Compensation Exceeds £30,000</p>
-                    <p class="text-xs text-amber-700 leading-relaxed" id="thirty-k-text"></p>
-                  </div>
-
-                  <!-- Next Steps -->
-                  <div class="bg-navy rounded-xl p-5 text-white mb-4">
-                    <h4 class="font-heading font-bold text-base mb-4">Important Next Steps</h4>
-                    <ol id="next-steps" class="space-y-3"></ol>
-                  </div>
-
-                  <!-- Legal advice reminder -->
-                  <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-xs text-red-800 leading-relaxed">
-                    <strong>⚠️ Do not sign without legal advice.</strong> You are legally required to receive independent legal advice before signing a settlement agreement. Your employer should contribute to the cost. This calculation is an estimate only — your actual tax liability depends on your full income for the tax year.
-                  </div>
-
-                  <!-- Restart -->
-                  <button id="restart-btn" class="w-full mt-4 py-3 border border-gray-200 text-text-secondary hover:border-orange hover:text-orange rounded-lg transition-all text-sm font-medium">
-                    Calculate Another Scenario
-                  </button>
-                </div>
-              </div>
-
+              <button id="calculate-btn" class="w-full bg-orange text-white py-4 rounded-xl font-bold text-lg">Calculate Net Take-Home</button>
             </div>
           </div>
 
-          <!-- Ad Unit 2 -->
-          <div class="ad-unit mt-6" data-ad-position="below-tool">
-            <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
-            <div class="h-[250px] bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
-              <!-- 300x250 Rectangle Ad Unit -->
+          <!-- Results Section -->
+          <div id="results-section" class="hidden mt-8">
+            <div class="bg-navy rounded-2xl p-8 text-white text-center">
+                <p class="text-gray-300">Estimated Net Take-Home</p>
+                <div id="r-net-takehome" class="text-5xl font-bold my-2"></div>
+                <div id="r-net-subtitle" class="text-sm text-gray-400"></div>
             </div>
           </div>
         </div>
 
         <!-- Sidebar -->
         <div class="lg:col-span-1 space-y-5">
-
-          <!-- Tax Summary Card -->
           <div class="bg-navy rounded-xl p-5 text-white">
-            <h3 class="font-heading font-bold text-base mb-4">Tax Treatment at a Glance</h3>
+            <h3 class="font-bold mb-4">Tax Treatment</h3>
             <div class="space-y-3">
               {[
                 { label: 'Wages arrears', tag: 'Tax + NI', color: 'bg-red-400' },
                 { label: 'Notice pay (PILON)', tag: 'Tax + NI', color: 'bg-red-400' },
-                { label: 'Holiday pay', tag: 'Tax + NI', color: 'bg-red-400' },
-                { label: 'Bonus / commission', tag: 'Tax + NI', color: 'bg-red-400' },
                 { label: 'Compensation (first £30k)', tag: 'Tax Free', color: 'bg-green-400' },
                 { label: 'Compensation (over £30k)', tag: 'Tax only', color: 'bg-amber-400' },
-                { label: 'Legal fee contribution', tag: 'Tax Free', color: 'bg-green-400` },
+                { label: 'Legal fee contribution', tag: 'Tax Free', color: 'bg-green-400' },
               ].map(r => (
                 <div class="flex items-center justify-between text-sm">
                   <span class="text-gray-300 text-xs">{r.label}</span>
@@ -522,138 +166,23 @@ const schema = [
             </div>
           </div>
 
-          <!-- Tax Rates ${TAX_YEAR} -->
-          <div class="bg-white border border-gray-100 rounded-xl p-4">
-            <h3 class="font-semibold text-sm text-text-primary mb-3">Tax Rates {TAX_YEAR}</h3>
-            <div class="space-y-2.5">
+          <div class="bg-white border rounded-xl p-4">
+            <h3 class="font-bold text-sm mb-3">Tax Rates {TAX_YEAR}</h3>
+            <div class="space-y-2.5 text-xs">
               {[
-                { label: `Personal allowance', value: '£12,570' },
+                { label: 'Personal allowance', value: '£12,570' },
                 { label: 'Basic rate (20%)', value: '£12,571–£50,270' },
-                { label: 'Higher rate (40%)', value: '£50,271–£125,140' },
-                { label: 'Additional rate (45%)', value: 'Over £125,140' },
-                { label: 'NI rate (employee)', value: '8% (basic)' },
                 { label: 'Tax-free compensation', value: '£30,000' },
               ].map(r => (
-                <div class="flex justify-between items-center text-xs border-b border-gray-50 pb-2">
-                  <span class="text-text-secondary">{r.label}</span>
-                  <span class="font-semibold text-text-primary">{r.value}</span>
+                <div class="flex justify-between border-b pb-2">
+                  <span class="text-gray-500">{r.label}</span>
+                  <span class="font-bold">{r.value}</span>
                 </div>
               ))}
             </div>
           </div>
-
-          <!-- Disclaimer -->
-          <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
-            <div class="flex items-start gap-2">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c97b2a" stroke-width="2" class="flex-shrink-0 mt-0.5"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>
-              <div>
-                <p class="text-xs font-semibold text-amber-800 mb-1">Estimate Only</p>
-                <p class="text-xs text-amber-700 leading-relaxed">Tax treatment depends on your full circumstances. Always have your settlement reviewed by an employment solicitor and tax adviser before signing.</p>
-                <a href="/disclaimer/" class="text-xs text-amber-700 underline mt-1 block">Read full disclaimer →</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Free Advice -->
-          <div class="bg-white border border-gray-100 rounded-xl p-4">
-            <h3 class="font-semibold text-sm text-text-primary mb-2">Free Legal Advice</h3>
-            <p class="text-xs text-text-secondary mb-3 leading-relaxed">Many employment solicitors offer free initial consultations on settlement agreements. Your employer must contribute to your legal fees.</p>
-            <div class="space-y-1.5 text-xs text-text-secondary">
-              <div><strong class="text-text-primary">ACAS:</strong> 0300 123 1100</div>
-              <div><strong class="text-text-primary">Citizens Advice:</strong> 0800 144 8848</div>
-            </div>
-          </div>
-
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- How It Works -->
-  <section class="bg-white border-t border-gray-100 py-14">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { num: '01', title: 'Enter Each Payment Type', desc: 'Break down your settlement into its components — wages, notice pay, holiday pay, bonus, and compensation. Each is taxed differently so accuracy matters.' },
-          { num: '02', title: 'Select Your Tax Band', desc: 'Choose your income tax band for the year you receive the settlement. This determines the rate applied to your taxable payments.' },
-          { num: '03', title: 'Get Your Net Take-Home', desc: 'See a full breakdown of tax-free amounts, income tax, National Insurance, and your estimated net take-home figure in one clear table.' },
-        ].map(step => (
-          <div class="flex gap-4">
-            <div class="font-heading text-4xl font-bold text-navy/15 flex-shrink-0 leading-none">{step.num}</div>
-            <div>
-              <h3 class="font-heading font-semibold text-text-primary mb-2">{step.title}</h3>
-              <p class="text-sm text-text-secondary leading-relaxed">{step.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-14 bg-cream">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-8 text-center">Frequently Asked Questions</h2>
-      <div class="space-y-3">
-        {[
-          {
-            q: 'How much of a settlement agreement is tax free?',
-            a: 'Under section 403 ITEPA 2003, the first £30,000 of a genuine compensation payment for loss of employment is tax free. This applies to ex-gratia payments made as compensation for losing your job. However, payments for wages, notice pay (PILON), holiday pay and bonus are all fully taxable and subject to income tax and National Insurance, regardless of how the agreement labels them. Only the genuine compensatory element can benefit from the £30,000 exemption.'
-          },
-          {
-            q: 'Is notice pay in a settlement agreement taxable?',
-            a: 'Yes. Since April 2018, all payments in lieu of notice (PILON) are fully taxable and subject to both income tax and National Insurance contributions, regardless of whether your contract contains a PILON clause. This is known as Post-Employment Notice Pay (PENP). Even if your settlement agreement labels notice pay as compensation, HMRC requires it to be taxed. Your employer must calculate the PENP amount and deduct tax and NI before paying you.'
-          },
-          {
-            q: 'Do I pay National Insurance on a settlement agreement?',
-            a: 'It depends on the component. Wages arrears, notice pay, holiday pay and bonus payments are subject to both income tax and National Insurance. The genuine compensation for loss of employment element — up to £30,000 — is free from both income tax and National Insurance. Any compensation above £30,000 is subject to income tax only, not National Insurance contributions.'
-          },
-          {
-            q: 'What is the £30,000 tax free allowance for settlement agreements?',
-            a: 'The £30,000 tax exemption applies to genuine ex-gratia payments made as compensation for loss of employment. It applies per employment. The exemption covers the compensatory element of a settlement — not contractual payments like wages, notice pay or holiday pay. Payments above £30,000 that are genuinely compensatory are taxed as income but are not subject to National Insurance contributions.'
-          },
-          {
-            q: 'Should I get legal advice before signing a settlement agreement?',
-            a: 'Yes — you are legally required to receive independent legal advice before signing a settlement agreement. A settlement agreement is only legally valid if you have received advice from a qualified independent adviser such as a solicitor, certified trade union official, or advice centre worker. Your employer will usually contribute towards the cost of this legal advice. Never sign a settlement agreement without first receiving independent legal advice on its terms and your rights.'
-          }
-        ].map(faq => (
-          <details class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm">
-            <summary class="flex items-center justify-between px-5 py-4 cursor-pointer font-semibold text-text-primary text-sm hover:text-navy transition-colors list-none">
-              <span>{faq.q}</span>
-              <svg class="w-4 h-4 text-gray-400 flex-shrink-0 ml-4 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </summary>
-            <div class="px-5 pb-5 text-sm text-text-secondary leading-relaxed border-t border-gray-50 pt-4">{faq.a}</div>
-          </details>
-        ))}
-      </div>
-
-      <!-- Ad Unit 3 -->
-      <div class="ad-unit mt-8" data-ad-position="faq-mid">
-        <div class="text-xs text-gray-400 mb-1 text-center">Advertisement</div>
-        <div class="h-[250px] bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-300 text-sm">
-          <!-- 300x250 Rectangle Ad Unit -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Related Tools -->
-  <section class="py-14 bg-white border-t border-gray-100">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Other Tools You Might Need</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {relatedTools.map(tool => (
-          <a href={tool.href} class="group bg-cream rounded-xl border border-gray-100 p-5 hover:border-orange/30 hover:shadow-card transition-all duration-200">
-            <span class="text-2xl block mb-3">{tool.icon}</span>
-            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-navy transition-colors">{tool.title}</h3>
-            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
-            <span class="text-orange text-xs font-medium mt-3 inline-flex items-center gap-1">
-              Use tool free
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </span>
-          </a>
-        ))}
       </div>
     </div>
   </section>
@@ -661,290 +190,42 @@ const schema = [
   <Footer slot="footer" />
 </BaseLayout>
 
-<style>
-  .results-animate { animation: fadeInUp 0.4s ease forwards; }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .accent-navy { accent-color: #1a3c5e; }
-  input[type="number"] { color: #1a1a2e; }
-  /* Tax band selection */
-  .tax-band-option { transition: all 0.2s; }
-  .tax-band-option.selected { border-color: #1a3c5e; background-color: rgba(26,60,94,0.04); box-shadow: 0 0 0 2px rgba(26,60,94,0.15); }
-  .tax-band-option.selected 
-  /* Toggle arrows */
-  .payment-detail { animation: slideDown 0.2s ease; }
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
-
-<script define:vars={{ TAX_FREE_COMPENSATION_LIMIT, PERSONAL_ALLOWANCE, BASIC_RATE_LIMIT, ADDITIONAL_RATE_THRESHOLD, BASIC_RATE, HIGHER_RATE, ADDITIONAL_RATE, NI_PRIMARY_THRESHOLD_WEEKLY, NI_UPPER_EARNINGS_LIMIT_WEEKLY, NI_RATE_MAIN, NI_RATE_UPPER }}>
+<script define:vars={{ TAX_FREE_COMPENSATION_LIMIT, BASIC_RATE, HIGHER_RATE, ADDITIONAL_RATE, NI_RATE_MAIN }}>
   document.addEventListener('DOMContentLoaded', () => {
-  // Tax rates 2025/26
-  // TAX_FREE_COMPENSATION_LIMIT injected via define:vars from src/data/config.ts
-  // NI_RATE_MAIN (0.08) injected from config.ts — was NI_RATE_MAIN
-
-  // Tax rates injected from config.ts via define:vars
-  const TAX_RATES: Record<string, number> = {
-    basic: BASIC_RATE,
-    higher: HIGHER_RATE,
-    additional: ADDITIONAL_RATE,
-  };
-
-  // NI_UPPER_EARNINGS_LIMIT_WEEKLY injected via define:vars from config.ts
-
-  // Formatting
-  function fmt(n: number): string {
-    return `£${n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-  }
-
-  // Tax band visual selection
-  document.querySelectorAll('.tax-band-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('.tax-band-option').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      const radio = opt.querySelector('input[type="radio"]') as HTMLInputElement;
-      if (radio) radio.checked = true;
-      updateLiveTotals();
-    });
-  });
-
-  // Toggle payment rows
-  document.querySelectorAll('.payment-toggle').forEach((el: Element) => {
-    const toggle = el as HTMLButtonElement;
-    toggle.addEventListener('click', () => {
-      const targetId = (toggle as HTMLElement).dataset.target;
-      if (!targetId) return;
-      const detail = document.getElementById(targetId);
-      const arrow = toggle.querySelector('.toggle-arrow');
-      if (detail) {
-        const isNowOpen = detail.classList.toggle('hidden') === false;
-        arrow?.classList.toggle('rotate-180');
-        toggle.setAttribute('aria-expanded', String(isNowOpen));
-      }
-    });
-  });
-
-  // Live totals
-  function getValues() {
-    const wages = parseFloat((document.getElementById('wages') as HTMLInputElement)?.value) || 0;
-    const pilon = parseFloat((document.getElementById('pilon') as HTMLInputElement)?.value) || 0;
-    const holiday = parseFloat((document.getElementById('holiday') as HTMLInputElement)?.value) || 0;
-    const bonus = parseFloat((document.getElementById('bonus') as HTMLInputElement)?.value) || 0;
-    const compensation = parseFloat((document.getElementById('compensation') as HTMLInputElement)?.value) || 0;
-    const legal = parseFloat((document.getElementById('legal') as HTMLInputElement)?.value) || 0;
-    return { wages, pilon, holiday, bonus, compensation, legal };
-  }
-
-  function getSelectedBand(): string | null {
-    const checked = document.querySelector('input[name="tax-band"]:checked') as HTMLInputElement;
-    return checked ? checked.value : null;
-  }
-
-  function calculateTax(values: ReturnType<typeof getValues>, band: string | null) {
-    const taxRate = band ? TAX_RATES[band] : 0.20;
-    const niRate = NI_RATE_MAIN;
-
-    const taxableNI = values.wages + values.pilon + values.holiday + values.bonus;
-    const taxOnTaxableNI = taxableNI * taxRate;
-    const niOnTaxableNI = taxableNI * niRate;
-
-    const compTaxFree = Math.min(values.compensation, TAX_FREE_COMPENSATION_LIMIT);
-    const compTaxable = Math.max(0, values.compensation - TAX_FREE_COMPENSATION_LIMIT);
-    const taxOnCompExcess = compTaxable * taxRate;
-    // No NI on compensation above £30k
-
-    const totalTax = taxOnTaxableNI + taxOnCompExcess;
-    const totalNI = niOnTaxableNI;
-    const totalTaxFree = compTaxFree + values.legal;
-    const grossTotal = values.wages + values.pilon + values.holiday + values.bonus + values.compensation + values.legal;
-    const netTotal = grossTotal - totalTax - totalNI;
-
-    return {
-      taxRate, taxableNI, taxOnTaxableNI, niOnTaxableNI,
-      compTaxFree, compTaxable, taxOnCompExcess,
-      totalTax, totalNI, totalTaxFree, grossTotal, netTotal,
-      values
+    const TAX_RATES = {
+        basic: BASIC_RATE,
+        higher: HIGHER_RATE,
+        additional: ADDITIONAL_RATE
     };
-  }
 
-  function updateLiveTotals() {
-    const vals = getValues();
-    const band = getSelectedBand();
-    const calc = calculateTax(vals, band);
-
-    const liveTotal = document.getElementById('live-total');
-    const liveTaxfree = document.getElementById('live-taxfree');
-    const liveTax = document.getElementById('live-tax');
-
-    if (liveTotal) liveTotal.textContent = fmt(calc.grossTotal);
-    if (liveTaxfree) liveTaxfree.textContent = fmt(calc.totalTaxFree);
-    if (liveTax) liveTax.textContent = fmt(calc.totalTax + calc.totalNI);
-  }
-
-  document.querySelectorAll('.payment-input').forEach(input => {
-    input.addEventListener('input', updateLiveTotals);
-  });
-
-  // Main calculate
-  document.getElementById('calculate-btn')?.addEventListener('click', () => {
-    const band = getSelectedBand();
-    const vals = getValues();
-    const calcError = document.getElementById('calc-error');
-    const bandError = document.getElementById('band-error');
-
-    const total = vals.wages + vals.pilon + vals.holiday + vals.bonus + vals.compensation + vals.legal;
-
-    if (!band) {
-      bandError?.classList.remove('hidden');
-      calcError?.classList.add('hidden');
-      return;
-    }
-    bandError?.classList.add('hidden');
-
-    if (total === 0) {
-      calcError?.classList.remove('hidden');
-      return;
-    }
-    calcError?.classList.add('hidden');
-
-    const calc = calculateTax(vals, band);
-    const bandLabels: Record<string, string> = { basic: 'Basic Rate (20%)', higher: 'Higher Rate (40%)', additional: 'Additional Rate (45%)' };
-
-    // Net take-home hero
-    const netHero = document.getElementById('r-net-takehome');
-    const netSubtitle = document.getElementById('r-net-subtitle');
-    if (netHero) netHero.textContent = fmt(calc.netTotal);
-    if (netSubtitle) netSubtitle.textContent = `From a gross settlement of ${fmt(calc.grossTotal)} · ${bandLabels[band]} applied`;
-
-    // Breakdown table
-    const breakdownTable = document.getElementById('breakdown-table');
-    const rows: Array<{ label: string; gross: number; taxFree: number; tax: number; ni: number; net: number; tag: string; tagColor: string }> = [];
-
-    if (vals.wages > 0) {
-      const tax = vals.wages * calc.taxRate;
-      const ni = vals.wages * NI_RATE_MAIN;
-      rows.push({ label: 'Wages / Salary Arrears', gross: vals.wages, taxFree: 0, tax, ni, net: vals.wages - tax - ni, tag: 'Taxable + NI', tagColor: 'text-red-600 bg-red-50' });
-    }
-    if (vals.pilon > 0) {
-      const tax = vals.pilon * calc.taxRate;
-      const ni = vals.pilon * NI_RATE_MAIN;
-      rows.push({ label: 'Notice Pay (PILON)', gross: vals.pilon, taxFree: 0, tax, ni, net: vals.pilon - tax - ni, tag: 'Taxable + NI', tagColor: 'text-red-600 bg-red-50' });
-    }
-    if (vals.holiday > 0) {
-      const tax = vals.holiday * calc.taxRate;
-      const ni = vals.holiday * NI_RATE_MAIN;
-      rows.push({ label: 'Accrued Holiday Pay', gross: vals.holiday, taxFree: 0, tax, ni, net: vals.holiday - tax - ni, tag: 'Taxable + NI', tagColor: 'text-red-600 bg-red-50' });
-    }
-    if (vals.bonus > 0) {
-      const tax = vals.bonus * calc.taxRate;
-      const ni = vals.bonus * NI_RATE_MAIN;
-      rows.push({ label: 'Bonus / Commission', gross: vals.bonus, taxFree: 0, tax, ni, net: vals.bonus - tax - ni, tag: 'Taxable + NI', tagColor: 'text-red-600 bg-red-50' });
-    }
-    if (vals.compensation > 0) {
-      rows.push({
-        label: `Compensation for Loss of Employment`,
-        gross: vals.compensation,
-        taxFree: calc.compTaxFree,
-        tax: calc.taxOnCompExcess,
-        ni: 0,
-        net: vals.compensation - calc.taxOnCompExcess,
-        tag: vals.compensation <= TAX_FREE_COMPENSATION_LIMIT ? 'Tax Free' : `£${TAX_FREE_COMPENSATION_LIMIT.toLocaleString()} tax free`,
-        tagColor: 'text-green-700 bg-green-50'
-      });
-    }
-    if (vals.legal > 0) {
-      rows.push({ label: 'Legal Fee Contribution', gross: vals.legal, taxFree: vals.legal, tax: 0, ni: 0, net: vals.legal, tag: 'Tax Free', tagColor: 'text-green-700 bg-green-50' });
+    function fmt(n) {
+        return '£' + n.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
-    if (breakdownTable) {
-      breakdownTable.innerHTML = rows.map(row => `
-        <div class="px-5 py-4">
-          <div class="flex items-center justify-between mb-2">
-            <span class="font-semibold text-sm text-text-primary">${row.label}</span>
-            <span class="text-xs px-2 py-0.5 rounded-full font-semibold ${row.tagColor}">${row.tag}</span>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-            <div><span class="text-text-secondary block">Gross</span><span class="font-semibold text-text-primary">${fmt(row.gross)}</span></div>
-            <div><span class="text-text-secondary block">Income Tax</span><span class="font-semibold ${row.tax > 0 ? 'text-red-500' : 'text-green-600'}">${row.tax > 0 ? '-' + fmt(row.tax) : '—'}</span></div>
-            <div><span class="text-text-secondary block">Nat. Insurance</span><span class="font-semibold ${row.ni > 0 ? 'text-red-500' : 'text-green-600'}">${row.ni > 0 ? '-' + fmt(row.ni) : '—'}</span></div>
-            <div><span class="text-text-secondary block">Net</span><span class="font-semibold text-navy">${fmt(row.net)}</span></div>
-          </div>
-        </div>
-      `).join('');
-    }
+    document.getElementById('calculate-btn')?.addEventListener('click', () => {
+        const band = document.querySelector('input[name="tax-band"]:checked')?.value || 'basic';
+        const comp = parseFloat(document.getElementById('compensation').value) || 0;
+        const pilon = parseFloat(document.getElementById('pilon').value) || 0;
+        const holiday = parseFloat(document.getElementById('holiday').value) || 0;
 
-    // Totals
-    const setEl = (id: string, text: string) => { const el = document.getElementById(id); if (el) el.textContent = text; };
-    setEl('r-gross-total', fmt(calc.grossTotal));
-    setEl('r-total-taxfree', fmt(calc.totalTaxFree));
-    setEl('r-total-tax', '-' + fmt(calc.totalTax));
-    setEl('r-total-ni', '-' + fmt(calc.totalNI));
-    setEl('r-net-total', fmt(calc.netTotal));
+        const taxRate = TAX_RATES[band];
+        
+        // Taxable elements (Notice and Holiday pay always attract Tax + NI)
+        const taxableWithNI = pilon + holiday;
+        const taxOnEarned = taxableWithNI * taxRate;
+        const niOnEarned = taxableWithNI * NI_RATE_MAIN;
 
-    // Tax band notice
-    const taxBandNotice = document.getElementById('tax-band-notice');
-    if (taxBandNotice) {
-      taxBandNotice.innerHTML = `<strong>Tax band applied: ${bandLabels[band]}</strong> — Income tax deducted at ${(calc.taxRate * 100).toFixed(0)}% on taxable elements. Employee National Insurance deducted at 8% on earnings-type payments. Compensation above £30,000 is taxed at income tax rate only — no NI applies above the threshold.`;
-    }
+        // Compensation element (£30k rule)
+        const compTaxFree = Math.min(comp, TAX_FREE_COMPENSATION_LIMIT);
+        const compTaxable = Math.max(0, comp - TAX_FREE_COMPENSATION_LIMIT);
+        const taxOnComp = compTaxable * taxRate; // No NI on redundancy excess
 
-    // £30k warning
-    const thirtyKWarning = document.getElementById('thirty-k-warning');
-    const thirtyKText = document.getElementById('thirty-k-text');
-    if (vals.compensation > TAX_FREE_COMPENSATION_LIMIT) {
-      thirtyKWarning?.classList.remove('hidden');
-      if (thirtyKText) {
-        const excess = vals.compensation - TAX_FREE_COMPENSATION_LIMIT;
-        thirtyKText.textContent = `Your compensation of ${fmt(vals.compensation)} exceeds the £30,000 tax-free limit. The first £30,000 is fully tax and NI free. The remaining ${fmt(excess)} is subject to income tax at ${(calc.taxRate * 100).toFixed(0)}% — but not National Insurance contributions. Tax on the excess: ${fmt(calc.taxOnCompExcess)}.`;
-      }
-    } else {
-      thirtyKWarning?.classList.add('hidden');
-    }
+        const totalNet = (comp + pilon + holiday) - (taxOnEarned + niOnEarned + taxOnComp);
 
-    // Next steps
-    const nextStepsEl = document.getElementById('next-steps');
-    const steps = [
-      '⚖️ You are legally required to get independent legal advice before signing — your employer should pay for this',
-      '📋 Ask your solicitor to review the payment breakdown to confirm the tax treatment is correct',
-      `💷 Your net take-home estimate is ${fmt(calc.netTotal)} — confirm this figure with your solicitor before signing`,
-      vals.compensation > TAX_FREE_COMPENSATION_LIMIT ? `⚠️ Your compensation exceeds £30,000 — confirm the tax treatment with HMRC or a tax adviser` : '✅ Your compensation is within the £30,000 tax-free limit',
-      '📄 Do not sign until you have received and reviewed the solicitor\'s advice in writing',
-      '💡 Consider whether the total offer is fair — your solicitor can advise on negotiation',
-    ];
-
-    if (nextStepsEl) {
-      nextStepsEl.innerHTML = steps.map((step, i) =>
-        `<li class="flex items-start gap-3 text-sm text-gray-200">
-          <span class="w-5 h-5 bg-orange rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0 mt-0.5">${i + 1}</span>
-          <span>${step}</span>
-        </li>`
-      ).join('');
-    }
-
-    // Show results
-    document.getElementById('results-section')?.classList.remove('hidden');
-    document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  // Reset
-  document.getElementById('reset-btn')?.addEventListener('click', () => {
-    document.querySelectorAll('.payment-input').forEach(i => (i as HTMLInputElement).value = '');
-    document.querySelectorAll('.tax-band-option').forEach(o => o.classList.remove('selected'));
-    document.querySelectorAll('input[name="tax-band"]').forEach(r => (r as HTMLInputElement).checked = false);
-    document.querySelectorAll('.payment-detail').forEach(d => d.classList.add('hidden'));
-    document.querySelectorAll('.toggle-arrow').forEach(a => a.classList.remove('rotate-180'));
-    document.getElementById('results-section')?.classList.add('hidden');
-    document.getElementById('band-error')?.classList.add('hidden');
-    document.getElementById('calc-error')?.classList.add('hidden');
-    updateLiveTotals();
-  });
-
-  document.getElementById('restart-btn')?.addEventListener('click', () => {
-    document.getElementById('reset-btn')?.click();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+        const netEl = document.getElementById('r-net-takehome');
+        if (netEl) netEl.textContent = fmt(totalNet);
+        
+        document.getElementById('results-section')?.classList.remove('hidden');
+    });
   });
 </script>
