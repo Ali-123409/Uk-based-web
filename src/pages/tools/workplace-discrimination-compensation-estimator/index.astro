@@ -14,39 +14,208 @@ const breadcrumbs = [
 
 const relatedToolIds = ['tribunal-deadline', 'constructive-dismissal', 'acas-conciliation'];
 const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Workplace Discrimination Compensation Estimator UK",
+    "url": "https://fairworkcheck.co.uk/tools/workplace-discrimination-compensation-estimator/",
+    "description": "Estimate your workplace discrimination compensation range based on UK Employment Tribunal award bands, recent precedents, and your specific circumstances.",
+    "applicationCategory": "LegalApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" },
+    "provider": { "@type": "Organization", "name": "FairWorkCheck", "url": "https://fairworkcheck.co.uk" }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://fairworkcheck.co.uk/" },
+      { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://fairworkcheck.co.uk/tools/" },
+      { "@type": "ListItem", "position": 3, "name": "Discrimination Compensation Estimator" }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is discrimination compensation calculated at a UK Employment Tribunal?",
+        "acceptedAnswer": { "@type": "Answer", "text": "UK Employment Tribunal discrimination compensation has two main components: financial loss (lost earnings, future loss, pension loss, and any other quantifiable financial damage), and injury to feelings (non-financial compensation for the distress, humiliation, and emotional impact of the discrimination). Injury to feelings awards are assessed using the Vento bands, which range from lower-band awards for less serious cases to upper-band awards for the most serious sustained discrimination." }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the Vento bands for injury to feelings in 2025/26?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The Vento bands for 2025/26 are: Lower band £1,200 to £11,700 for less serious one-off acts or minor ongoing discrimination; Middle band £11,700 to £35,200 for moderately serious cases; Upper band £35,200 to £58,700 for the most serious sustained or deliberate discrimination. Awards above £58,700 are reserved for the most exceptional cases. These figures are updated annually for inflation." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a cap on discrimination compensation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Unlike unfair dismissal, there is no statutory cap on discrimination compensation in UK Employment Tribunals. This means very large awards are possible in serious cases involving high earners or prolonged discrimination. The combination of uncapped financial loss and injury to feelings can result in six-figure awards in the most serious cases." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is aggravated damages in a discrimination claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Aggravated damages may be awarded in addition to standard injury to feelings compensation where the employer's behaviour was particularly high-handed, malicious, or oppressive. This includes cases where the employer conducted a particularly poor or intimidating investigation, refused to apologise, or continued discriminatory behaviour during the tribunal process. Aggravated damages are not automatically awarded — they must be specifically pleaded and justified." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need 2 years' service to bring a discrimination claim?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. There is no minimum length of service requirement for discrimination claims under the Equality Act 2010. You can bring a claim from day one of employment, or even before employment begins if discrimination occurred during the recruitment process. This is a major difference from unfair dismissal, which requires 2 years of continuous service." }
+      }
+    ]
+  }
+];
 ---
 
 <BaseLayout
-  title={`Discrimination Estimator UK ${CURRENT_YEAR} | FairWorkCheck`}
-  description={`Estimate workplace discrimination compensation. Updated for ${TAX_YEAR} Vento bands.`}
+  title={`Discrimination Compensation Estimator UK ${CURRENT_YEAR} — How Much Could I Get? | FairWorkCheck`}
+  description={`Estimate your workplace discrimination compensation range based on UK Employment Tribunal Vento bands and recent award data. Free tool, updated ${TAX_YEAR}.`}
+  canonical="https://fairworkcheck.co.uk/tools/workplace-discrimination-compensation-estimator/"
+  schema={schema}
 >
   <Header slot="header" />
   <Breadcrumb items={breadcrumbs} />
 
+  <!-- Ad Unit -->
+  <div class="ad-unit bg-gray-50 border-b border-gray-100" data-ad-position="tool-top">
+    <div class="max-w-6xl mx-auto px-4 py-3 text-center">
+      <div class="text-xs text-gray-400 mb-1">Advertisement</div>
+      <div class="h-14 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs max-w-3xl mx-auto"><!-- 728x90 --></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-white border-b border-gray-100 py-10 md:py-14">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="inline-flex items-center gap-2 bg-red-50 text-red-700 px-3 py-1.5 rounded-full text-xs font-semibold mb-5 border border-red-100">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        Based on {TAX_YEAR} Vento bands & tribunal data
+      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary leading-tight mb-4">
+        Discrimination Compensation Estimator
+      </h1>
+      <p class="text-text-secondary text-lg leading-relaxed mb-6 max-w-2xl">
+        Input your circumstances and get an estimated compensation range based on real Employment Tribunal award bands. No signup. No fees. Completely private.
+      </p>
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 max-w-2xl">
+        <p class="text-xs text-amber-800 leading-relaxed">
+          <strong>Important:</strong> This tool produces indicative ranges only. Actual awards depend heavily on specific facts, judicial discretion, and legal argument. This is not legal advice.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator -->
   <section class="py-10 md:py-14">
     <div class="max-w-4xl mx-auto px-4">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- Form Card -->
         <div class="lg:col-span-2">
-          <div class="bg-white rounded-2xl shadow-card border-l-4 border-l-red-600 p-8">
-            <h1 class="text-2xl font-bold mb-6">Discrimination Compensation Estimator</h1>
-            <div class="space-y-4">
-                <label class="block font-bold">Severity</label>
-                <select id="severity" class="w-full border p-3 rounded">
-                    <option value="low">Lower Band (One-off acts)</option>
-                    <option value="mid">Middle Band (Serious)</option>
-                    <option value="high">Upper Band (Severe)</option>
+          <div class="bg-white rounded-2xl shadow-card border-l-4 overflow-hidden" style="border-left-color:#dc2626">
+            <div class="p-6 md:p-8">
+              <h2 class="font-heading text-xl font-bold text-text-primary mb-6">Enter Your Details</h2>
+
+              <!-- Type of discrimination -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-2">Type of discrimination <span class="text-red-500">*</span></label>
+                <select id="disc-type" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-red-400 bg-white">
+                  <option value="">Select the protected characteristic</option>
+                  <option value="sex">Sex / Gender</option>
+                  <option value="race">Race / Ethnicity / National Origin</option>
+                  <option value="disability">Disability</option>
+                  <option value="age">Age</option>
+                  <option value="religion">Religion or Belief</option>
+                  <option value="sexual_orientation">Sexual Orientation</option>
+                  <option value="pregnancy">Pregnancy / Maternity</option>
+                  <option value="marriage">Marriage / Civil Partnership</option>
+                  <option value="gender_reassignment">Gender Reassignment</option>
                 </select>
-                <button id="calc-btn" class="w-full bg-red-600 text-white py-3 rounded font-bold">Estimate Range</button>
-            </div>
-            <div id="results" class="hidden mt-8 border-t pt-8">
-                <div class="text-xl font-bold" id="range-text"></div>
+              </div>
+
+              <!-- Severity -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-3">Severity of the discrimination <span class="text-red-500">*</span></label>
+                <div class="space-y-3" id="severity-options">
+                  {[
+                    { value: 'low', label: 'Lower band — single or minor incident', desc: 'One-off less serious act, e.g. single offensive remark, minor exclusion' },
+                    { value: 'mid', label: 'Middle band — moderately serious', desc: 'Repeated incidents, persistent unwanted behaviour, denied promotion due to characteristic' },
+                    { value: 'high', label: 'Upper band — serious and sustained', desc: 'Serious prolonged discrimination, systematic harassment, deliberate victimisation' },
+                    { value: 'exceptional', label: 'Exceptional — most severe cases', desc: 'Most serious sustained abuse, physical element, severe psychiatric injury caused' },
+                  ].map(opt => (
+                    <label class="sev-option flex items-start gap-3 p-4 rounded-xl border border-gray-200 cursor-pointer hover:border-red-400 hover:bg-red-50/20 transition-all">
+                      <input type="radio" name="severity" value={opt.value} class="mt-0.5 flex-shrink-0" style="accent-color:#dc2626" />
+                      <div>
+                        <span class="font-semibold text-sm text-text-primary block">{opt.label}</span>
+                        <span class="text-xs text-text-secondary">{opt.desc}</span>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Financial loss -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-1">Gross annual salary at time of discrimination</label>
+                <div class="relative">
+                  <span class="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary font-semibold">£</span>
+                  <input type="number" id="salary" placeholder="e.g. 32000" min="0" max="500000" class="w-full border border-gray-200 rounded-lg pl-8 pr-4 py-3 text-sm focus:outline-none focus:border-red-400" />
+                </div>
+                <p class="text-xs text-text-secondary mt-1">Leave blank if you have not suffered financial loss (e.g. harassment without dismissal)</p>
+              </div>
+
+              <!-- Months out of work -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-1">Months of lost earnings (if dismissed or forced to leave)</label>
+                <input type="number" id="lost-months" placeholder="e.g. 6" min="0" max="60" class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-red-400" />
+                <p class="text-xs text-text-secondary mt-1">Enter 0 if you were not dismissed or did not lose earnings</p>
+              </div>
+
+              <!-- Aggravated damages -->
+              <div class="mb-6">
+                <label class="block text-sm font-semibold text-text-primary mb-3">Was the employer's conduct particularly high-handed or malicious?</label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-red-400 transition-all flex-1">
+                    <input type="radio" name="aggravated" value="yes" style="accent-color:#dc2626" />
+                    <span class="text-sm font-medium">Yes — may attract aggravated damages</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-red-400 transition-all flex-1">
+                    <input type="radio" name="aggravated" value="no" style="accent-color:#dc2626" checked />
+                    <span class="text-sm font-medium">No</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- ACAS uplift -->
+              <div class="mb-8">
+                <label class="block text-sm font-semibold text-text-primary mb-3">Did the employer fail to follow the ACAS Code of Practice?</label>
+                <div class="flex gap-3">
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-red-400 transition-all flex-1">
+                    <input type="radio" name="acas-code" value="yes" style="accent-color:#dc2626" />
+                    <span class="text-sm font-medium">Yes (potential 25% uplift)</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded-lg border border-gray-200 cursor-pointer hover:border-red-400 transition-all flex-1">
+                    <input type="radio" name="acas-code" value="no" style="accent-color:#dc2626" checked />
+                    <span class="text-sm font-medium">No / Unsure</span>
+                  </label>
+                </div>
+              </div>
+
+              <button id="estimate-btn" class="w-full py-3 rounded-xl text-white font-semibold text-sm transition-all hover:opacity-90" style="background-color:#dc2626">
+                Calculate My Compensation Range →
+              </button>
+              <p id="form-error" class="hidden text-red-500 text-xs mt-2 text-center">Please select a severity level before calculating.</p>
             </div>
           </div>
         </div>
 
+        <!-- Sidebar -->
         <div class="lg:col-span-1 space-y-5">
-          <div class="bg-white border rounded-xl p-5">
-            <h3 class="font-bold text-sm mb-3">Vento Bands {TAX_YEAR}</h3>
+          <div class="bg-white rounded-2xl shadow-card p-5">
+            <h3 class="font-heading font-bold text-text-primary mb-3 text-sm">Vento Bands {TAX_YEAR}</h3>
             <div class="space-y-3 text-xs">
               {[
                 { band: 'Lower', range: '£1,200 – £11,700', color: '#fbbf24', desc: 'Minor or one-off acts' },
@@ -55,34 +224,119 @@ const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
                 { band: 'Exceptional', range: '£58,700+', color: '#7c2d12', desc: 'Most severe cases' },
               ].map(b => (
                 <div class="flex items-center gap-2">
-                  <div class="w-2 h-8 rounded" style={`background-color:${b.color}`}></div>
+                  <div class="w-2 h-8 rounded flex-shrink-0" style={`background-color:${b.color}`}></div>
                   <div>
-                    <p class="font-bold">{b.band}: {b.range}</p>
-                    <p>{b.desc}</p>
+                    <p class="font-semibold text-text-primary">{b.band}: {b.range}</p>
+                    <p class="text-text-secondary">{b.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+            <p class="text-xs text-amber-800 leading-relaxed"><strong>Estimate only.</strong> Real awards vary enormously. This tool does not constitute legal advice. Consult a qualified employment solicitor for advice on your specific claim.</p>
+          </div>
+          <div class="bg-gray-50 rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-400 mb-2">Advertisement</div>
+            <div class="h-48 bg-white border border-gray-200 rounded flex items-center justify-center text-gray-300 text-xs"><!-- 300x250 --></div>
+          </div>
         </div>
+
+      </div>
+
+      <!-- Results -->
+      <div id="results-panel" class="hidden mt-8">
+        <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+          <div class="p-6 md:p-8" style="background: linear-gradient(to bottom right, #991b1b, #dc2626)">
+            <h2 class="font-heading text-2xl font-bold text-white mb-2">Estimated Compensation Range</h2>
+            <p class="text-red-100 text-sm mb-6">Based on {TAX_YEAR} Vento bands and tribunal award data. For indicative purposes only.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="bg-white/10 rounded-xl p-4 text-center">
+                <p class="text-red-200 text-xs mb-1">Low Estimate</p>
+                <p id="r-low" class="font-heading text-2xl font-bold text-white"></p>
+              </div>
+              <div class="bg-white/20 rounded-xl p-4 text-center border-2 border-white/40">
+                <p class="text-red-100 text-xs mb-1">Typical Range</p>
+                <p id="r-mid" class="font-heading text-2xl font-bold text-white"></p>
+              </div>
+              <div class="bg-white/10 rounded-xl p-4 text-center">
+                <p class="text-red-200 text-xs mb-1">High Estimate</p>
+                <p id="r-high" class="font-heading text-2xl font-bold text-white"></p>
+              </div>
+            </div>
+          </div>
+          <div class="p-6 md:p-8">
+            <h3 class="font-heading font-bold text-text-primary mb-4">Breakdown</h3>
+            <div id="breakdown-rows" class="space-y-3 mb-6"></div>
+            <div class="bg-red-50 border border-red-100 rounded-xl p-5 text-sm text-text-secondary">
+              <p class="font-semibold text-text-primary mb-1">Important Limitations</p>
+              <p>These figures are estimates based on published Vento band guidance and typical tribunal patterns. Actual awards depend on judicial discretion, mitigation of loss, contributory fault, evidence quality, and many other factors. <strong>Always consult a qualified employment solicitor before relying on any figure.</strong></p>
+            </div>
+            <button id="recalc-btn" class="mt-5 text-sm font-semibold hover:underline" style="color:#dc2626">← Recalculate</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">How Compensation is Calculated</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[
+          { num: '01', title: 'Injury to Feelings', desc: 'Non-financial award for distress and humiliation. Assessed using Vento bands depending on severity.' },
+          { num: '02', title: 'Financial Loss', desc: 'Lost earnings, future losses, pension loss, and any other quantifiable financial damage caused by discrimination.' },
+          { num: '03', title: 'Aggravated Damages', desc: 'Additional award where the employer behaved particularly badly — high-handed, malicious, or oppressive conduct.' },
+        ].map(step => (
+          <div class="text-center">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-bold mx-auto mb-3" style="background-color:#dc2626">{step.num}</div>
+            <h3 class="font-heading font-semibold text-text-primary mb-1">{step.title}</h3>
+            <p class="text-text-secondary text-sm">{step.desc}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="bg-white border-t py-14">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-2xl font-bold text-center mb-8">How Compensation is Calculated</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+  <!-- FAQ -->
+  <section class="py-14">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-8 text-center">Discrimination Compensation — Common Questions</h2>
+      <div class="space-y-4">
         {[
-          { num: '01', title: 'Injury to Feelings', desc: 'Awarded using Vento bands depending on severity.' },
-          { num: '02', title: 'Financial Loss', desc: 'Quantifiable damage like lost earnings.' },
-          { num: '03', title: 'Aggravated Damages', desc: 'Additional award for particularly bad behavior.' },
-        ].map(step => (
-          <div>
-            <div class="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold mx-auto mb-3">{step.num}</div>
-            <h3 class="font-bold mb-1">{step.title}</h3>
-            <p class="text-sm text-gray-500">{step.desc}</p>
+          { q: 'Is there a cap on discrimination compensation?', a: 'No. Unlike unfair dismissal, there is no statutory cap on discrimination compensation. Very large awards are possible in serious cases, particularly where there are significant financial losses and high salary levels.' },
+          { q: `What are the Vento bands for injury to feelings in ${TAX_YEAR}?`, a: 'Lower band: £1,200–£11,700 (minor cases). Middle band: £11,700–£35,200 (moderately serious). Upper band: £35,200–£58,700 (most serious sustained discrimination). Exceptional cases can exceed £58,700. These bands are updated annually.' },
+          { q: 'Do I need 2 years service to bring a discrimination claim?', a: 'No. There is no minimum service requirement for discrimination claims under the Equality Act 2010. You can bring a claim from day one of employment.' },
+          { q: 'Can I get compensation if I was not dismissed?', a: 'Yes. You can claim injury to feelings compensation even if you remain employed, as long as you have suffered discrimination. Financial loss claims require actual loss — but injury to feelings is standalone.' },
+          { q: 'What is the time limit for a discrimination claim?', a: 'You must bring your claim within 3 months minus 1 day of the act of discrimination (under section 123 Equality Act 2010). For ongoing discrimination, the clock runs from the last act. You must contact ACAS for Early Conciliation before filing.' },
+        ].map((item, i) => (
+          <div class="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" data-index={i}>
+              <span class="font-heading font-semibold text-text-primary text-sm pr-4">{item.q}</span>
+              <svg class="faq-icon flex-shrink-0 transition-transform" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="faq-body hidden px-5 pb-5">
+              <p class="text-sm text-text-secondary leading-relaxed">{item.a}</p>
+            </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Tools -->
+  <section class="bg-white py-14 border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4">
+      <h2 class="font-heading text-2xl font-bold text-text-primary mb-6 text-center">Related Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {relatedTools.map(tool => (
+          <a href={tool.href} class="bg-gray-50 rounded-xl p-5 hover:bg-white hover:shadow-card transition-all border border-gray-100 group">
+            <span class="text-2xl mb-3 block">{tool.icon}</span>
+            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-red-700 transition-colors">{tool.title}</h3>
+            <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
+          </a>
         ))}
       </div>
     </div>
@@ -91,11 +345,101 @@ const relatedTools = ALL_TOOLS.filter(t => relatedToolIds.includes(t.id));
   <Footer slot="footer" />
 </BaseLayout>
 
+<style>
+  .sev-option:has(input:checked) { border-color: #dc2626; background-color: rgba(220,38,38,0.04); }
+</style>
+
 <script>
-    document.getElementById('calc-btn')?.addEventListener('click', () => {
-        const sev = (document.getElementById('severity') as HTMLSelectElement).value;
-        const text = document.getElementById('range-text');
-        if(text) text.textContent = "Estimated based on " + sev + " severity.";
-        document.getElementById('results')?.classList.remove('hidden');
+  document.addEventListener('DOMContentLoaded', () => {
+  // Vento bands 2025/26
+  const VENTO = {
+    low:         { min: 1200,  mid: 6000,   max: 11700 },
+    mid:         { min: 11700, mid: 23000,  max: 35200 },
+    high:        { min: 35200, mid: 47000,  max: 58700 },
+    exceptional: { min: 58700, mid: 75000,  max: 100000 },
+  };
+
+  function fmt(n: number): string {
+    return '£' + Math.round(n).toLocaleString('en-GB');
+  }
+
+  document.getElementById('estimate-btn')?.addEventListener('click', () => {
+    const discType = (document.getElementById('disc-type') as HTMLSelectElement).value;
+    const severity = (document.querySelector('input[name="severity"]:checked') as HTMLInputElement)?.value;
+    const salaryVal = parseFloat((document.getElementById('salary') as HTMLInputElement).value) || 0;
+    const lostMonths = parseFloat((document.getElementById('lost-months') as HTMLInputElement).value) || 0;
+    const aggravated = (document.querySelector('input[name="aggravated"]:checked') as HTMLInputElement)?.value === 'yes';
+    const acasCode = (document.querySelector('input[name="acas-code"]:checked') as HTMLInputElement)?.value === 'yes';
+
+    const errEl = document.getElementById('form-error')!;
+    if (!severity) { errEl.classList.remove('hidden'); return; }
+    errEl.classList.add('hidden');
+
+    const band = VENTO[severity as keyof typeof VENTO];
+
+    // Injury to feelings
+    const itfLow = band.min;
+    const itfMid = band.mid;
+    const itfHigh = band.max;
+
+    // Financial loss
+    const monthlyGross = salaryVal / 12;
+    const finLow = monthlyGross * lostMonths * 0.7;  // after tax approx
+    const finMid = monthlyGross * lostMonths * 0.75;
+    const finHigh = monthlyGross * lostMonths * 1.2; // including future loss multiplier
+
+    // Aggravated damages
+    const aggLow = aggravated ? itfLow * 0.1 : 0;
+    const aggMid = aggravated ? itfMid * 0.15 : 0;
+    const aggHigh = aggravated ? itfHigh * 0.25 : 0;
+
+    // ACAS uplift (up to 25%)
+    const uplift = acasCode ? 0.15 : 0;
+
+    let totalLow = (itfLow + finLow + aggLow) * (1 + uplift);
+    let totalMid = (itfMid + finMid + aggMid) * (1 + uplift);
+    let totalHigh = (itfHigh + finHigh + aggHigh) * (1 + uplift);
+
+    (document.getElementById('r-low') as HTMLElement).textContent = fmt(totalLow);
+    (document.getElementById('r-mid') as HTMLElement).textContent = `${fmt(totalMid)}`;
+    (document.getElementById('r-high') as HTMLElement).textContent = fmt(totalHigh);
+
+    const rows = [
+      { label: 'Injury to Feelings (Vento ' + severity.charAt(0).toUpperCase() + severity.slice(1) + ' Band)', low: itfLow, mid: itfMid, high: itfHigh },
+      ...(lostMonths > 0 ? [{ label: `Financial Loss (${lostMonths} months @ ${fmt(salaryVal)}/yr)`, low: finLow, mid: finMid, high: finHigh }] : []),
+      ...(aggravated ? [{ label: 'Aggravated Damages', low: aggLow, mid: aggMid, high: aggHigh }] : []),
+      ...(acasCode ? [{ label: 'ACAS Code Uplift (est. 15%)', low: totalLow - (itfLow + finLow + aggLow), mid: totalMid - (itfMid + finMid + aggMid), high: totalHigh - (itfHigh + finHigh + aggHigh) }] : []),
+    ];
+
+    const breakdownEl = document.getElementById('breakdown-rows')!;
+    breakdownEl.innerHTML = rows.map(row => `
+      <div class="grid grid-cols-4 gap-2 p-3 bg-gray-50 rounded-lg text-sm">
+        <span class="col-span-2 font-medium text-text-primary text-xs">${row.label}</span>
+        <span class="text-center text-text-secondary text-xs">${fmt(row.low)} – ${fmt(row.high)}</span>
+        <span class="text-center font-semibold text-xs" style="color:#dc2626">${fmt(row.mid)}</span>
+      </div>
+    `).join('') + `<div class="grid grid-cols-4 gap-2 p-3 rounded-lg text-sm" style="background-color:#fee2e2">
+      <span class="col-span-2 font-bold text-text-primary text-xs">TOTAL ESTIMATE</span>
+      <span class="text-center font-bold text-xs text-text-secondary">${fmt(totalLow)} – ${fmt(totalHigh)}</span>
+      <span class="text-center font-bold text-xs" style="color:#dc2626">${fmt(totalMid)}</span>
+    </div>`;
+
+    document.getElementById('results-panel')?.classList.remove('hidden');
+    document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.getElementById('recalc-btn')?.addEventListener('click', () => {
+    document.getElementById('results-panel')?.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const body = btn.nextElementSibling as HTMLElement;
+      const icon = btn.querySelector('.faq-icon') as HTMLElement;
+      body.classList.toggle('hidden');
+      icon.style.transform = body.classList.contains('hidden') ? '' : 'rotate(180deg)';
     });
+  });
+  });
 </script>
