@@ -314,7 +314,7 @@ const CRITERIA = [
             <div id="criteria-results" class="space-y-3 mb-6"></div>
             <div id="process-flags" class="mb-6"></div>
             <div id="next-steps" class="bg-orange-50 border border-orange-100 rounded-xl p-5"></div>
-            <button id="restart-btn" class="mt-5 text-sm font-semibold hover:underline" style="color:#ea580c">← Check Again</button>
+            <button id="restart-btn-results" class="mt-5 text-sm font-semibold hover:underline" style="color:#ea580c">← Check Again</button>
           </div>
         </div>
       </div>
@@ -355,7 +355,7 @@ const CRITERIA = [
         {relatedTools.map(tool => (
           <a href={tool.href} class="bg-white rounded-xl p-5 hover:shadow-card transition-all border border-gray-100 group">
             <span class="text-2xl mb-3 block">{tool.icon}</span>
-            <h3 class="font-heading font-semibold text-text-primary text-sm mb-1 group-hover:text-orange-700 transition-colors">{tool.title}</h3>
+            <h3 class="font-heading font-semibold text-sm text-text-primary mb-1 group-hover:text-orange-700 transition-colors">{tool.title}</h3>
             <p class="text-xs text-text-secondary leading-relaxed">{tool.desc}</p>
           </a>
         ))}
@@ -482,7 +482,7 @@ const CRITERIA = [
     document.getElementById('results-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  document.getElementById('restart-btn')?.addEventListener('click', () => {
+  document.getElementById('restart-btn-results')?.addEventListener('click', () => {
     document.querySelectorAll('input[type="checkbox"]').forEach((c: any) => c.checked = false);
     document.getElementById('results-panel')?.classList.add('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
