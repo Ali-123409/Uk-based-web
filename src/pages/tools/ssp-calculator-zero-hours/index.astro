@@ -403,7 +403,7 @@ const schema = [
             <h3 class="font-heading font-bold text-base mb-4">SSP Rates {TAX_YEAR}</h3>
             <div class="space-y-3">
               {[
-                { label: `Weekly SSP Rate', value: '£116.75' },
+                { label: 'Weekly SSP Rate', value: '£116.75' },
                 { label: 'Lower Earnings Limit', value: '£123.00/wk' },
                 { label: 'Maximum SSP Period', value: '28 weeks' },
                 { label: 'Waiting Days', value: '3 days' },
@@ -427,7 +427,7 @@ const schema = [
                 { step: '1', text: 'Add up all gross earnings from the 8 weeks before sickness' },
                 { step: '2', text: 'Divide the total by 8 (including zero weeks)' },
                 { step: '3', text: 'If AWE ≥ £123, you qualify for SSP' },
-                { step: '4', text: 'SSP is paid at £116.75/week regardless of your AWE` },
+                { step: '4', text: 'SSP is paid at £116.75/week regardless of your AWE' },
               ].map(s => (
                 <div class="flex items-start gap-2.5 text-xs text-text-secondary">
                   <span class="w-4 h-4 bg-orange rounded-full text-white text-xs flex items-center justify-center flex-shrink-0 font-bold mt-0.5">{s.step}</span>
@@ -471,7 +471,7 @@ const schema = [
       <h2 class="font-heading text-2xl md:text-3xl font-bold text-text-primary mb-10 text-center">How This Tool Works</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         {[
-          { num: `01', title: 'Enter Your Earnings', desc: 'Input your gross pay for each of the 8 weeks before your sickness started. Enter £0 for any weeks you did not work — these still count.' },
+          { num: '01', title: 'Enter Your Earnings', desc: 'Input your gross pay for each of the 8 weeks before your sickness started. Enter £0 for any weeks you did not work — these still count.' },
           { num: '02', title: 'We Calculate Your AWE', desc: 'The tool adds up your 8 weeks of earnings and divides by 8 to get your Average Weekly Earnings — the official HMRC method for irregular workers.' },
           { num: '03', title: 'Get Your Result', desc: 'See whether you qualify for SSP, your weekly amount, waiting days, SSP start date, and total entitlement for your sick period.' },
         ].map(step => (
