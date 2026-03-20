@@ -11,7 +11,7 @@ export default defineConfig({
     tailwind(),
     sitemap({
       // FORCED SITE PROPERTY (This fixes the 'reduce' error)
-      site: 'https://fairworkcheck.co.uk'
+      site: 'https://fairworkcheck.pakistanbill.online'
     })
   ]
 });
