@@ -17,6 +17,6 @@ Disallow: /
 User-agent: Claude-Web
 Disallow: /
 
-Sitemap: https://fairworkcheck.co.uk/sitemap-index.xml
+Sitemap: https://fairworkcheck.pakistanbill.online/sitemap-index.xml
 
-Host: https://fairworkcheck.co.uk
+Host: https://fairworkcheck.pakistanbill.online
