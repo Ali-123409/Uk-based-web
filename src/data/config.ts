@@ -1,6 +1,7 @@
 // ─── Tax Year Labels ─────────────────────────────────────────────────────────
 export const TAX_YEAR = "2025/26";
 export const CURRENT_YEAR = new Date().getFullYear().toString();
+export const SITE_URL = 'https://fairworkcheck.pakistanbill.online';
 
 // ─── SSP Rates (Social Security Contributions and Benefits Act 1992) ─────────
 // Update each April when HMRC publishes new rates.
