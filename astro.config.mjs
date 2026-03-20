@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Root site property (standard)
-  site: 'https://fairworkcheck.co.uk',
+  site: 'https://fairworkcheck.pakistanbill.online',
   trailingSlash: 'always',
   output: 'static',
   integrations: [
