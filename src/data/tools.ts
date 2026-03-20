@@ -38,7 +38,7 @@ export const ALL_TOOLS: Tool[] = [
     description: 'Estimate your compensation range based on real Vento bands and Employment Tribunal award data.',
     href: '/tools/workplace-discrimination-compensation-estimator/',
     icon: '💼',
-    badge: 'New'
+    badge: 'Most searched'
   },
   {
     id: 'zero-hours-holiday',
@@ -46,7 +46,7 @@ export const ALL_TOOLS: Tool[] = [
     description: 'Calculate holiday entitlement and pay using the 52-week reference period method. Harpur v Brazel compliant.',
     href: '/tools/zero-hours-holiday-pay-calculator/',
     icon: '🏖️',
-    badge: 'New'
+    badge: 'Highly used'
   },
   {
     id: 'redundancy-fairness',
@@ -54,7 +54,7 @@ export const ALL_TOOLS: Tool[] = [
     description: 'Check whether the criteria your employer used to select you for redundancy were legally fair.',
     href: '/tools/redundancy-selection-fairness-checker/',
     icon: '📋',
-    badge: 'New'
+    badge: 'Popular'
   },
   {
     id: 'acas-conciliation',
