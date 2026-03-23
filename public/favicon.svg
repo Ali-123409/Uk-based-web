@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3c5e"/>
+      <stop offset="100%" style="stop-color:#0d1f33"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+
+  <!-- Orange left border accent -->
+  <rect x="0" y="0" width="4" height="32" rx="3" fill="#e8622a"/>
+
+  <!-- FW large -->
+  <text x="7" y="19" font-family="Georgia, serif" font-weight="700" font-size="13" fill="#ffffff" letter-spacing="0.3">FW</text>
+
+  <!-- UK small tag -->
+  <rect x="7" y="21" width="16" height="7" rx="2" fill="#e8622a"/>
+  <text x="9" y="27" font-family="Arial, sans-serif" font-weight="800" font-size="5.5" fill="#ffffff" letter-spacing="0.8">UK</text>
+</svg>
